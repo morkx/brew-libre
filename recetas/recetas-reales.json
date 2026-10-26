@@ -1,0 +1,2168 @@
+{
+ "app": "Brew-libre",
+ "version": 2,
+ "kind": "recipe-db",
+ "name": "Recetas reales (clones publicados)",
+ "about": "Recetas clon publicadas en Brew Your Own (byo.com) y Home Brew Answers, convertidas a métrico. Cada receta cita su fuente en las notas.",
+ "equipment": [],
+ "recipes": [
+  {
+   "id": "real-snpa",
+   "name": "Sierra Nevada Pale Ale (clon)",
+   "brewer": "Clon BYO · Sierra Nevada Brewing Co.",
+   "style": "B21-18B",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 73,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) US",
+     "kg": 4.7,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Caramel/Crystal Malt - 60L",
+     "kg": 0.45,
+     "color": 60.0,
+     "pot": 1.034,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Magnum",
+     "g": 14,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 12,
+     "form": "Pellet"
+    },
+    {
+     "name": "Perle",
+     "g": 14,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 7,
+     "form": "Pellet"
+    },
+    {
+     "name": "Cascade",
+     "g": 57,
+     "use": "Hervor",
+     "time": 30,
+     "temp": 100,
+     "aa": 5.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Cascade",
+     "g": 57,
+     "use": "Hervor",
+     "time": 0,
+     "temp": 100,
+     "aa": 5.5,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [
+    {
+     "name": "Musgo irlandés",
+     "amount": 2.5,
+     "unit": "g",
+     "when": "Hervor 15 min"
+    }
+   ],
+   "yeast": {
+    "name": "Fermentis - US-05 American Ale Yeast",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 68,
+     "time": 60,
+     "type": "directo"
+    },
+    {
+     "name": "Mash out",
+     "temp": 76,
+     "time": 10,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Balanced"
+   },
+   "carb": {
+    "vols": 2.5,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 20 °C hasta FG. Levaduras alternativas: WLP001 o Wyeast 1056."
+   },
+   "notes": "La pale ale americana de referencia: base de malta pálida y una pizca de cristal, con Cascade marcando el perfil a pino y pomelo.\n\nValores publicados: OG 1.053 · FG 1.011 · 37 IBU · 10 SRM.\nFuente: https://byo.com/recipes/sierra-nevada-pale-ale-clone-2/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/sierra-nevada-pale-ale-clone-2/"
+  },
+  {
+   "id": "real-pliny",
+   "name": "Pliny the Elder (clon)",
+   "brewer": "Vinnie Cilurzo · Russian River Brewing (vía BYO)",
+   "style": "B21-22A",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 77,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) US",
+     "kg": 5.9,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Corn Sugar (Dextrose)",
+     "kg": 0.37,
+     "color": 0.0,
+     "pot": 1.035,
+     "type": "azúcar"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Warrior",
+     "g": 38,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 15.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Amarillo",
+     "g": 12,
+     "use": "Hervor",
+     "time": 15,
+     "temp": 100,
+     "aa": 10,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 40,
+     "use": "Hervor",
+     "time": 15,
+     "temp": 100,
+     "aa": 12,
+     "form": "Pellet"
+    },
+    {
+     "name": "Cascade",
+     "g": 31,
+     "use": "Whirlpool",
+     "time": 20,
+     "temp": 90,
+     "aa": 6.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 28,
+     "use": "Whirlpool",
+     "time": 20,
+     "temp": 90,
+     "aa": 12,
+     "form": "Pellet"
+    },
+    {
+     "name": "Amarillo",
+     "g": 20,
+     "use": "Whirlpool",
+     "time": 20,
+     "temp": 90,
+     "aa": 10,
+     "form": "Pellet"
+    },
+    {
+     "name": "Centennial",
+     "g": 19,
+     "use": "Whirlpool",
+     "time": 20,
+     "temp": 90,
+     "aa": 8.2,
+     "form": "Pellet"
+    },
+    {
+     "name": "Amarillo",
+     "g": 30,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 9,
+     "form": "Pellet"
+    },
+    {
+     "name": "Citra",
+     "g": 14,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Citra Cryo",
+     "g": 14,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 24,
+     "form": "Pellet"
+    },
+    {
+     "name": "Crystal",
+     "g": 26,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 3.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Chinook",
+     "g": 8,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 12.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 44,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Fermentis - US-05 American Ale Yeast",
+    "att": 87
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 69,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "West Coast IPA (seca, sulfatos)"
+   },
+   "carb": {
+    "vols": 2.5,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 18 °C. Dry hop en dos tandas cerca del final de la fermentación (la original separa Amarillo/Amarillo CGX y Simcoe Cryo; aquí agrupados). Envasar cuanto antes: es una cerveza para tomar fresca."
+   },
+   "notes": "Double IPA de la costa oeste muy seca: casi todo malta pálida y dextrosa para secar el cuerpo, amargor alto y mucho lúpulo tardío y en seco. En la lista, el último Simcoe representa el Simcoe Cryo de la receta original.\n\nValores publicados: OG 1.069 · FG 1.009 · 100 IBU · 5 SRM.\nFuente: https://byo.com/recipes/russian-river-brewing-co-s-pliny-the-elder-clone-2/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/russian-river-brewing-co-s-pliny-the-elder-clone-2/"
+  },
+  {
+   "id": "real-urquell",
+   "name": "Pilsner Urquell (clon)",
+   "brewer": "Clon BYO · Plzeňský Prazdroj",
+   "style": "B21-3B",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 73,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) German",
+     "kg": 3.6,
+     "color": 2.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Vienna Malt",
+     "kg": 0.45,
+     "color": 3.5,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Munich 10L (Briess)",
+     "kg": 0.23,
+     "color": 7.0,
+     "pot": 1.035,
+     "type": "grano"
+    },
+    {
+     "name": "Weyermann CaraFoam",
+     "kg": 0.23,
+     "color": 2.2,
+     "pot": 1.033,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Saaz",
+     "g": 38,
+     "use": "Hervor",
+     "time": 80,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    },
+    {
+     "name": "Saaz",
+     "g": 23,
+     "use": "Hervor",
+     "time": 45,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    },
+    {
+     "name": "Saaz",
+     "g": 21,
+     "use": "Hervor",
+     "time": 25,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Wyeast - Urquell Lager (2001.0)",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Proteica / sacarificación baja",
+     "temp": 61,
+     "time": 30,
+     "type": "directo"
+    },
+    {
+     "name": "Decocción → sacarificación",
+     "temp": 68,
+     "time": 30,
+     "type": "decoccion"
+    },
+    {
+     "name": "Mash out",
+     "temp": 77,
+     "time": 10,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Pilsen (Light Lager)"
+   },
+   "carb": {
+    "vols": 2.4,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Enfriar a 10 °C, fermentar a 10 °C hasta FG, descanso de diacetilo breve y luego lagerizar a 4 °C de 4 a 6 semanas. Alternativa: WLP800."
+   },
+   "notes": "La pilsner checa original: malta pálida con un toque de Viena y Múnich, decocción para el sabor a malta rico y Saaz en tres adiciones. Usá agua muy blanda.\n\nValores publicados: OG 1.048 · FG 1.015 · 40 IBU · 4 SRM.\nFuente: https://byo.com/recipes/pilsner-urquell-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/pilsner-urquell-clone/"
+  },
+  {
+   "id": "real-guinness",
+   "name": "Guinness Draught (clon)",
+   "brewer": "Clon BYO · Guinness / St. James’s Gate",
+   "style": "B21-15B",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 73,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) UK",
+     "kg": 2.3,
+     "color": 3.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Barley, Flaked",
+     "kg": 1.1,
+     "color": 1.7,
+     "pot": 1.032,
+     "type": "adjunto"
+    },
+    {
+     "name": "Roasted Barley",
+     "kg": 0.45,
+     "color": 500.0,
+     "pot": 1.025,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "East Kent Golding",
+     "g": 68,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "White Labs - Irish Ale Yeast (WLP004)",
+    "att": 84
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 66,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Dublin (Dry Stout)"
+   },
+   "carb": {
+    "vols": 1.8,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 22 °C. Carbonatar bajo (≈1.8 vol) o servir con mezcla nitrógeno/CO₂ y canilla de stout. Alternativa: Wyeast 1084."
+   },
+   "notes": "Stout irlandesa liviana y seca: malta pálida, cebada en copos para la espuma y cebada tostada para el café tostado y el color.\n\nValores publicados: OG 1.038 · FG 1.006 · 45 IBU · 36 SRM.\nFuente: https://byo.com/recipes/guinness-draught-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/guinness-draught-clone/"
+  },
+  {
+   "id": "real-westmalle",
+   "name": "Westmalle Tripel (clon)",
+   "brewer": "Clon BYO · Abdij der Trappisten van Westmalle",
+   "style": "B21-26C",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 120,
+    "boilOff": 4,
+    "eff": 77,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) Belgian",
+     "kg": 5.8,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Belgian Candi Sugar, Clear",
+     "kg": 0.91,
+     "color": 0.5,
+     "pot": 1.046,
+     "type": "azúcar"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Styrian Golding",
+     "g": 53,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Tettnang",
+     "g": 21,
+     "use": "Hervor",
+     "time": 15,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    },
+    {
+     "name": "Saaz",
+     "g": 21,
+     "use": "Hervor",
+     "time": 5,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "White Labs - Abbey Ale Yeast (WLP530)",
+    "att": 81
+   },
+   "mash": [
+    {
+     "name": "Rampa desde 55 °C",
+     "temp": 55,
+     "time": 15,
+     "type": "directo"
+    },
+    {
+     "name": "Sacarificación (subida lenta ≥1 h)",
+     "temp": 64,
+     "time": 60,
+     "type": "directo"
+    },
+    {
+     "name": "Mash out",
+     "temp": 76,
+     "time": 10,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Light & Hoppy"
+   },
+   "carb": {
+    "vols": 3.0,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Agregar el azúcar al menos 15 min antes del final del hervor. Fermentar a 20 °C y dejar subir libremente al final. Alternativa: Wyeast 3787."
+   },
+   "notes": "Tripel trapense dorada, seca y fuerte: solo malta Pilsner y azúcar blanco para aligerar el cuerpo, lúpulos nobles discretos y mucho carácter de levadura.\n\nValores publicados: OG 1.081 · FG 1.015 · 39 IBU · 5 SRM.\nFuente: https://byo.com/recipes/westmalle-abbey-tripel-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/westmalle-abbey-tripel-clone/"
+  },
+  {
+   "id": "real-esb",
+   "name": "Fuller’s ESB (clon)",
+   "brewer": "Clon BYO · Fuller, Smith & Turner",
+   "style": "B21-11C",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 74,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Maris Otter Malt (Muntons)",
+     "kg": 5.1,
+     "color": 3.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Caramel/Crystal Malt - 80L",
+     "kg": 0.51,
+     "color": 80.0,
+     "pot": 1.034,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Target",
+     "g": 15,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 10,
+     "form": "Pellet"
+    },
+    {
+     "name": "Challenger",
+     "g": 10,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 7.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Northdown",
+     "g": 3,
+     "use": "Hervor",
+     "time": 15,
+     "temp": 100,
+     "aa": 8.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "East Kent Golding",
+     "g": 9,
+     "use": "Hervor",
+     "time": 15,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    },
+    {
+     "name": "East Kent Golding",
+     "g": 9,
+     "use": "Dry hop",
+     "time": 5,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "White Labs - English Ale Yeast (WLP002)",
+    "att": 77
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 67,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Burton"
+   },
+   "carb": {
+    "vols": 2.0,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 21 °C. Alternativa: Wyeast 1968 London ESB. Carbonatación baja, al estilo inglés."
+   },
+   "notes": "La strong bitter clásica: malta pálida inglesa y cristal (la original usa 75 °L; aquí cristal 80 °L, el más cercano) con lúpulos ingleses.\n\nValores publicados: OG 1.060 · FG 1.014 · 35 IBU · 13 SRM.\nFuente: https://byo.com/recipes/fuller-s-esb-clone-2/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/fuller-s-esb-clone-2/"
+  },
+  {
+   "id": "real-heady",
+   "name": "Heady Topper (clon)",
+   "brewer": "Clon BYO · The Alchemist",
+   "style": "B21-22A",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 21,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 78,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) UK",
+     "kg": 6.8,
+     "color": 3.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Caravienne Malt",
+     "kg": 0.17,
+     "color": 22.0,
+     "pot": 1.034,
+     "type": "grano"
+    },
+    {
+     "name": "Brown Sugar, Light",
+     "kg": 0.45,
+     "color": 10.0,
+     "pot": 1.035,
+     "type": "azúcar"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Magnum",
+     "g": 14,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 14,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 28,
+     "use": "Hervor",
+     "time": 30,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Cascade",
+     "g": 28,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 90,
+     "aa": 5.75,
+     "form": "Pellet"
+    },
+    {
+     "name": "Apollo",
+     "g": 14,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 90,
+     "aa": 17.2,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 28,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 90,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Centennial",
+     "g": 28,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 90,
+     "aa": 10.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Columbus",
+     "g": 14,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 90,
+     "aa": 14,
+     "form": "Pellet"
+    },
+    {
+     "name": "Chinook",
+     "g": 28,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 12.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Apollo",
+     "g": 28,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 19.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 28,
+     "use": "Dry hop",
+     "time": 7,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Centennial",
+     "g": 35,
+     "use": "Dry hop",
+     "time": 4,
+     "temp": 100,
+     "aa": 8.2,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 35,
+     "use": "Dry hop",
+     "time": 4,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "White Labs - Burlington Ale Yeast (WLP095)",
+    "att": 82
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 67,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "West Coast IPA (seca, sulfatos)"
+   },
+   "carb": {
+    "vols": 2.4,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 20 °C. Primer dry hop (Chinook, Apollo, Simcoe) cuando la fermentación se calma; el segundo (Centennial, Simcoe) unos días después. Whirlpool de al menos 30 min al apagar el fuego."
+   },
+   "notes": "DIPA de Vermont, precursora de las hazy: malta británica, un poco de Caravienne y azúcar turbinado (aquí azúcar rubio, el sustituto más cercano), con una enorme carga de lúpulo tardío.\n\nValores publicados: OG 1.076 · FG 1.014 · 100+ IBU · 6 SRM · lote 21 L.\nFuente: https://byo.com/recipes/alchemist-heady-topper-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/alchemist-heady-topper-clone/"
+  },
+  {
+   "id": "real-hp-dunkel",
+   "name": "Hacker-Pschorr Dunkle Weisse (clon)",
+   "brewer": "Clon BYO · Hacker-Pschorr",
+   "style": "B21-10B",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 68,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) German",
+     "kg": 1.8,
+     "color": 2.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Wheat Malt, Ger",
+     "kg": 2.8,
+     "color": 2.0,
+     "pot": 1.039,
+     "type": "grano"
+    },
+    {
+     "name": "Munich I (Weyermann)",
+     "kg": 0.23,
+     "color": 7.1,
+     "pot": 1.038,
+     "type": "grano"
+    },
+    {
+     "name": "Weyermann CaraMunich Type 2",
+     "kg": 0.2,
+     "color": 45.5,
+     "pot": 1.034,
+     "type": "grano"
+    },
+    {
+     "name": "Weyermann Carafa Special Type 3",
+     "kg": 0.17,
+     "color": 525.2,
+     "pot": 1.03,
+     "type": "grano"
+    },
+    {
+     "name": "Rice Hulls",
+     "kg": 0.25,
+     "color": 0,
+     "pot": 1.0,
+     "type": "adjunto"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Tettnang",
+     "g": 28,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Wyeast - Weihenstephan Weizen (3068.0)",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 66,
+     "time": 90,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Munich (Dark Lager)"
+   },
+   "carb": {
+    "vols": 3.2,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 20 °C. Carbonatación alta, típica de las weizen."
+   },
+   "notes": "Weizen oscura: trigo y Pilsner con Múnich, CaraMunich y un poco de Carafa Special III para color sin tostado agresivo. La cáscara de arroz ayuda al filtrado.\n\nValores publicados: OG 1.054 · FG 1.013 · 13 IBU · 21 SRM.\nFuente: https://byo.com/recipes/hacker-pschorr-weisse-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/hacker-pschorr-weisse-clone/"
+  },
+  {
+   "id": "real-hp-hefe",
+   "name": "Hacker-Pschorr Hefe Weisse (clon)",
+   "brewer": "Clon BYO · Hacker-Pschorr",
+   "style": "B21-10A",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 67,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Wheat Malt, Ger",
+     "kg": 3.2,
+     "color": 2.0,
+     "pot": 1.039,
+     "type": "grano"
+    },
+    {
+     "name": "Pilsner (2 Row) German",
+     "kg": 1.8,
+     "color": 2.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Munich I (Weyermann)",
+     "kg": 0.34,
+     "color": 7.1,
+     "pot": 1.038,
+     "type": "grano"
+    },
+    {
+     "name": "Rice Hulls",
+     "kg": 0.25,
+     "color": 0,
+     "pot": 1.0,
+     "type": "adjunto"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Tettnang",
+     "g": 28,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 4,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Wyeast - Weihenstephan Weizen (3068.0)",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 65,
+     "time": 90,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Light & Malty"
+   },
+   "carb": {
+    "vols": 3.2,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 20 °C (más frío, más clavo; más caliente, más banana)."
+   },
+   "notes": "Hefeweizen bávara clásica: más de la mitad de trigo malteado, lúpulo apenas para equilibrar y la levadura Weihenstephan aportando banana y clavo. (Versión de grano completo publicada en la misma página.)\n\nValores publicados: OG 1.055 · FG 1.012 · 13 IBU · 4 SRM.\nFuente: https://byo.com/recipes/hacker-pschorr-weisse-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/hacker-pschorr-weisse-clone/"
+  },
+  {
+   "id": "real-tipopils",
+   "name": "Birrificio Italiano Tipopils 1996 (clon)",
+   "brewer": "Clon BYO · Birrificio Italiano",
+   "style": "B21-5D",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 90,
+    "boilOff": 4,
+    "eff": 73,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) German",
+     "kg": 4.45,
+     "color": 2.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Weyermann CaraMunich Type 2",
+     "kg": 0.045,
+     "color": 45.5,
+     "pot": 1.034,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Magnum",
+     "g": 14,
+     "use": "Hervor",
+     "time": 75,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Perle",
+     "g": 9,
+     "use": "Hervor",
+     "time": 45,
+     "temp": 100,
+     "aa": 6,
+     "form": "Pellet"
+    },
+    {
+     "name": "Hersbrucker",
+     "g": 11,
+     "use": "Hervor",
+     "time": 5,
+     "temp": 100,
+     "aa": 4.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Saaz",
+     "g": 11,
+     "use": "Hervor",
+     "time": 5,
+     "temp": 100,
+     "aa": 4.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Hersbrucker",
+     "g": 11,
+     "use": "Dry hop",
+     "time": 3,
+     "temp": 100,
+     "aa": 4.0,
+     "form": "Pellet"
+    },
+    {
+     "name": "Saaz",
+     "g": 11,
+     "use": "Dry hop",
+     "time": 3,
+     "temp": 100,
+     "aa": 4.0,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Fermentis - W-34/70 German Lager Yeast",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 64,
+     "time": 90,
+     "type": "directo"
+    },
+    {
+     "name": "Mash out + recirculado",
+     "temp": 76,
+     "time": 15,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Pils / lager suave"
+   },
+   "carb": {
+    "vols": 2.5,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Enfriar a 11 °C y fermentar a 12 °C; cuando baja la actividad subir despacio a 15 °C una semana. Dry hop 3 días al inicio de la maduración y lagerizar a 2 °C tres semanas, bajando la temperatura de a poco. Alternativas: Wyeast 2124, WLP830."
+   },
+   "notes": "La pils italiana que creó el estilo: Pilsner alemana casi sola, amargor limpio y un dry hop corto de Hallertau Hersbrucker y Saaz. Hoy se presenta como Italian Pils; en BJCP 2021 entra como German Pils.\n\nValores publicados: OG 1.049 · FG 1.010 · 32 IBU · 4 SRM.\nFuente: https://byo.com/recipes/birrificio-italianos-tipopils-1996-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/birrificio-italianos-tipopils-1996-clone/"
+  },
+  {
+   "id": "real-julius",
+   "name": "Tree House Julius (clon)",
+   "brewer": "Clon BYO · Tree House Brewing Co.",
+   "style": "B21-21C",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 77,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) UK",
+     "kg": 5.0,
+     "color": 3.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Oats, Malted",
+     "kg": 0.45,
+     "color": 1.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Honey Malt",
+     "kg": 0.14,
+     "color": 25.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Cara-Pils/Dextrine",
+     "kg": 0.14,
+     "color": 2.0,
+     "pot": 1.033,
+     "type": "grano"
+    },
+    {
+     "name": "Oats, Flaked",
+     "kg": 0.14,
+     "color": 1.0,
+     "pot": 1.037,
+     "type": "adjunto"
+    },
+    {
+     "name": "Brown Sugar, Light",
+     "kg": 0.14,
+     "color": 10.0,
+     "pot": 1.035,
+     "type": "azúcar"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Magnum",
+     "g": 24,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 14,
+     "form": "Pellet"
+    },
+    {
+     "name": "Citra",
+     "g": 57,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 82,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Mosaic",
+     "g": 57,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 82,
+     "aa": 12.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 28,
+     "use": "Whirlpool",
+     "time": 30,
+     "temp": 82,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Citra",
+     "g": 71,
+     "use": "Dry hop",
+     "time": 3,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Mosaic",
+     "g": 57,
+     "use": "Dry hop",
+     "time": 3,
+     "temp": 100,
+     "aa": 12.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Simcoe",
+     "g": 43,
+     "use": "Dry hop",
+     "time": 3,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Wyeast - London Ale III (1318.0)",
+    "att": 79
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 68,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Hazy / NEIPA (cloruros)"
+   },
+   "carb": {
+    "vols": 2.4,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Fermentar a 20 °C. Dry hop y válvula de spunding cuando cae el krausen (día 4–5); 3 días sobre el lúpulo. Agua con relación sulfato:cloruro 100:200 ppm. Alternativas: WLP022, Wyeast 1335."
+   },
+   "notes": "Hazy IPA de Massachusetts con mucha avena, malta miel y lúpulo tardío de Citra, Mosaic y Simcoe. La original amarga con 8 ml de extracto HopShot; aquí lo reemplaza un Magnum al hervor. El azúcar turbinado figura como azúcar rubio.\n\nValores publicados: OG 1.066 · FG 1.014 · 75 IBU · 8 SRM · lote 19 L (la fuente sugiere llenar 21 L en el fermentador para compensar la absorción del lúpulo).\nFuente: https://byo.com/recipes/tree-house-brewing-company-julius-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/tree-house-brewing-company-julius-clone/"
+  },
+  {
+   "id": "real-mexican",
+   "name": "Mexican Lager (BYO)",
+   "brewer": "Receta BYO",
+   "style": "B21-2A",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 75,
+    "boilOff": 4,
+    "eff": 71,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) German",
+     "kg": 1.6,
+     "color": 2.0,
+     "pot": 1.037,
+     "type": "grano"
+    },
+    {
+     "name": "Pale Malt (2 Row) US",
+     "kg": 0.91,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Vienna Malt",
+     "kg": 0.91,
+     "color": 3.5,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Corn, Flaked",
+     "kg": 1.25,
+     "color": 1.3,
+     "pot": 1.037,
+     "type": "adjunto"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Tettnang",
+     "g": 9,
+     "use": "FWH",
+     "time": 75,
+     "temp": 100,
+     "aa": 4.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Tettnang",
+     "g": 19,
+     "use": "Hervor",
+     "time": 45,
+     "temp": 100,
+     "aa": 4.5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Tettnang",
+     "g": 14,
+     "use": "Hervor",
+     "time": 5,
+     "temp": 100,
+     "aa": 4.5,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [
+    {
+     "name": "Ácido fosfórico 10 %",
+     "amount": 1.25,
+     "unit": "ml",
+     "when": "Agua (pH 5,5)"
+    },
+    {
+     "name": "Cloruro de calcio",
+     "amount": 5,
+     "unit": "g",
+     "when": "Macerado"
+    }
+   ],
+   "yeast": {
+    "name": "White Labs - Mexican Lager Yeast (WLP940)",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 65,
+     "time": 60,
+     "type": "directo"
+    },
+    {
+     "name": "Mash out",
+     "temp": 76,
+     "time": 15,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Pils / lager suave"
+   },
+   "carb": {
+    "vols": 2.6,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Enfriar a 10 °C, fermentar a 10 °C hasta terminar, separar de la levadura y lagerizar a 0 °C de 4 a 8 semanas. Agua de ósmosis inversa. Alternativa: Lallemand Diamond Lager."
+   },
+   "notes": "Lager mexicana tipo pilsner: Pilsner, 2-row y Viena con un cuarto de maíz en copos para un cuerpo liviano y crocante.\n\nValores publicados: OG 1.049 · FG 1.011 · 19 IBU · 3,5 SRM.\nFuente: https://byo.com/recipes/mexican-lager/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/mexican-lager/"
+  },
+  {
+   "id": "real-breakfast",
+   "name": "Founders Breakfast Stout (clon)",
+   "brewer": "Clon BYO · Founders Brewing Co.",
+   "style": "B21-20C",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 72,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pale Malt (2 Row) US",
+     "kg": 6.0,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    },
+    {
+     "name": "Oats, Flaked",
+     "kg": 0.62,
+     "color": 1.0,
+     "pot": 1.037,
+     "type": "adjunto"
+    },
+    {
+     "name": "Chocolate Malt",
+     "kg": 0.45,
+     "color": 350.0,
+     "pot": 1.028,
+     "type": "grano"
+    },
+    {
+     "name": "Roasted Barley",
+     "kg": 0.34,
+     "color": 500.0,
+     "pot": 1.025,
+     "type": "grano"
+    },
+    {
+     "name": "Belgian Debittered Black Malt",
+     "kg": 0.25,
+     "color": 550.0,
+     "pot": 1.01,
+     "type": "grano"
+    },
+    {
+     "name": "Caramel/Crystal Malt -120L",
+     "kg": 0.19,
+     "color": 120.0,
+     "pot": 1.033,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "Nugget",
+     "g": 31,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 13,
+     "form": "Pellet"
+    },
+    {
+     "name": "Willamette",
+     "g": 14,
+     "use": "Hervor",
+     "time": 30,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    },
+    {
+     "name": "Willamette",
+     "g": 14,
+     "use": "Hervor",
+     "time": 0,
+     "temp": 100,
+     "aa": 5,
+     "form": "Pellet"
+    }
+   ],
+   "misc": [
+    {
+     "name": "Café Sumatra molido",
+     "amount": 57,
+     "unit": "g",
+     "when": "Fin del hervor"
+    },
+    {
+     "name": "Chocolate amargo",
+     "amount": 71,
+     "unit": "g",
+     "when": "Fin del hervor"
+    },
+    {
+     "name": "Nibs de cacao",
+     "amount": 43,
+     "unit": "g",
+     "when": "Fin del hervor"
+    },
+    {
+     "name": "Café Kona molido",
+     "amount": 57,
+     "unit": "g",
+     "when": "Maduración (1 semana)"
+    },
+    {
+     "name": "Nutriente de levadura",
+     "amount": 2.5,
+     "unit": "g",
+     "when": "Hervor 15 min"
+    },
+    {
+     "name": "Musgo irlandés",
+     "amount": 2.5,
+     "unit": "g",
+     "when": "Hervor 15 min"
+    }
+   ],
+   "yeast": {
+    "name": "White Labs - California Ale Yeast (WLP001)",
+    "att": null
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 68,
+     "time": 60,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "London (Porter)"
+   },
+   "carb": {
+    "vols": 2.3,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "Starter de 3,5 L. Fermentar a 20 °C hasta FG, pasar a secundario con el café Kona una semana, envasar y madurar 2 semanas. Alternativa: Wyeast 1056."
+   },
+   "notes": "Imperial stout de avena con café y chocolate: base pálida, avena para la sedosidad y tres maltas oscuras más cristal 120.\n\nValores publicados: OG 1.078 · FG 1.020 · 60 IBU · 59 SRM.\nFuente: https://byo.com/recipes/founder-s-brewings-breakfast-stout-clone/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://byo.com/recipes/founder-s-brewings-breakfast-stout-clone/"
+  },
+  {
+   "id": "real-dupont",
+   "name": "Saison Dupont (clon)",
+   "brewer": "Neil · Home Brew Answers · Brasserie Dupont",
+   "style": "B21-25B",
+   "method": "All Grain",
+   "autoScale": true,
+   "equip": {
+    "system": null,
+    "fermenter": null
+   },
+   "batch": {
+    "volume": 19,
+    "boilTime": 60,
+    "boilOff": 4,
+    "eff": 81,
+    "kettleLoss": 1.5,
+    "tunLoss": 1.0,
+    "grainAbs": 1.0,
+    "steepRatio": 4,
+    "steepEff": 50,
+    "steepAdd": 15,
+    "hopAbs": 5,
+    "hopAbsLeaf": 10,
+    "ratio": 3.0,
+    "grainTemp": 20,
+    "fermLoss": 1.0
+   },
+   "fermentables": [
+    {
+     "name": "Pilsner (2 Row) Belgian",
+     "kg": 4.7,
+     "color": 2.0,
+     "pot": 1.036,
+     "type": "grano"
+    }
+   ],
+   "hops": [
+    {
+     "name": "East Kent Golding",
+     "g": 46.5,
+     "use": "Hervor",
+     "time": 60,
+     "temp": 100,
+     "aa": 5,
+     "form": "Flor"
+    },
+    {
+     "name": "Styrian Golding",
+     "g": 15,
+     "use": "Hervor",
+     "time": 10,
+     "temp": 100,
+     "aa": 5.4,
+     "form": "Flor"
+    }
+   ],
+   "misc": [],
+   "yeast": {
+    "name": "Wyeast - Belgian Saison (3724.0)",
+    "att": 91
+   },
+   "mash": [
+    {
+     "name": "Sacarificación",
+     "temp": 64.5,
+     "time": 75,
+     "type": "directo"
+    },
+    {
+     "name": "Mash out",
+     "temp": 75.5,
+     "time": 10,
+     "type": "directo"
+    }
+   ],
+   "water": {
+    "source": {
+     "ca": 0,
+     "mg": 0,
+     "na": 0,
+     "cl": 0,
+     "so4": 0,
+     "hco3": 0
+    },
+    "alkAs": "hco3",
+    "ro": 0,
+    "salts": {
+     "gypsum": 0,
+     "cacl2": 0,
+     "epsom": 0,
+     "nacl": 0,
+     "soda": 0,
+     "chalk": 0,
+     "lime": 0
+    },
+    "lactic": 0,
+    "sparge": true,
+    "target": "Light & Hoppy"
+   },
+   "carb": {
+    "vols": 3.0,
+    "temp": 20,
+    "sugar": "dextrose",
+    "vol": null,
+    "bottle": 500
+   },
+   "ferm": {
+    "notes": "La 3724 trabaja entre 21 y 35 °C: arrancar en el rango bajo y dejar subir; tiende a frenarse cerca del final, así que dale calor y paciencia. Alternativa: WLP565 o cultivar el sedimento de botellas de Saison Dupont."
+   },
+   "notes": "La saison de referencia: 100 % Pilsner belga, Goldings ingleses y estirios, y la levadura Dupont haciendo todo el trabajo hasta dejarla muy seca.\n\nValores publicados: OG 1.054 · FG 1.005 · 28 IBU · 7 EBC.\nFuente: https://homebrewanswers.com/saison-dupont-clone-recipe/\nReceta original en unidades imperiales (5 gal ≈ 19 L), convertida a métrico para Brew-libre. La eficiencia se ajustó para que la OG calculada coincida con la publicada; revisala con tu equipo.",
+   "source": "https://homebrewanswers.com/saison-dupont-clone-recipe/"
+  }
+ ]
+}

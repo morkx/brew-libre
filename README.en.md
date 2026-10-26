@@ -19,6 +19,14 @@ A free brewing recipe book for homebrewers: an installable web app (PWA) in Engl
 
 The interface follows your browser's language (Spanish or English); you can switch it anytime with the **EN / ES** button at the top or in Preferences.
 
+## Clone recipes
+
+The [`recetas/`](recetas/) folder contains [`recetas-reales.json`](recetas/recetas-reales.json): 14 clone recipes published in Brew Your Own and Home Brew Answers, converted to metric. Each one cites its source in the notes (the recipe notes are in Spanish).
+
+Sierra Nevada Pale Ale, Pliny the Elder, Pilsner Urquell, Guinness Draught, Westmalle Tripel, Fuller's ESB, Heady Topper, Hacker-Pschorr Dunkle Weisse and Hefe Weisse, Tipopils, Tree House Julius, Mexican Lager, Founders Breakfast Stout and Saison Dupont.
+
+To load them: download the file and in the app use **More → Import recipes…**. They are added to "My recipes" without replacing yours.
+
 ## Install
 
 Open the address above and:
@@ -37,6 +45,7 @@ You can also download `index.html` and open it with a double click: it works the
 | `manifest.webmanifest` | Data for installing it as an app |
 | `sw.js` | Service worker: offline use |
 | `icons/` | App icons |
+| `recetas/` | Recipes to import |
 
 When you change `index.html`, bump `VERSION` in `sw.js` so installed copies update.
 

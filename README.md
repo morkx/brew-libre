@@ -17,6 +17,14 @@ Recetario cervecero libre para cerveceros caseros: una app web instalable (PWA),
 - Lista de compras, impresión e importación/exportación BeerXML.
 - Recetas prediseñadas 2026.
 
+## Recetas clon
+
+La carpeta [`recetas/`](recetas/) trae [`recetas-reales.json`](recetas/recetas-reales.json): 14 recetas clon publicadas en Brew Your Own y Home Brew Answers, convertidas a métrico. Cada una cita su fuente en las notas.
+
+Sierra Nevada Pale Ale, Pliny the Elder, Pilsner Urquell, Guinness Draught, Westmalle Tripel, Fuller's ESB, Heady Topper, Hacker-Pschorr Dunkle Weisse y Hefe Weisse, Tipopils, Tree House Julius, Mexican Lager, Founders Breakfast Stout y Saison Dupont.
+
+Para cargarlas: descargá el archivo y en la app usá **Más → Importar recetas…**. Se suman a «Mis recetas» sin reemplazar las tuyas.
+
 ## Instalar
 
 Abrí la dirección de arriba y:
@@ -35,6 +43,7 @@ También podés descargar `index.html` y abrirlo con doble clic: funciona igual,
 | `manifest.webmanifest` | Datos para instalarla como app |
 | `sw.js` | Service worker: funcionamiento sin conexión |
 | `icons/` | Íconos de la app |
+| `recetas/` | Recetas para importar |
 
 Al cambiar `index.html`, subí el número de `VERSION` en `sw.js` para que las copias instaladas se actualicen.
 
