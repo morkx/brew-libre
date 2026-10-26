@@ -40,6 +40,12 @@ Al cambiar `index.html`, subí el número de `VERSION` en `sw.js` para que las c
 
 Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta `/ (root)`.
 
+## Licencia
+
+Brew-libre es software libre: podés usarlo, estudiarlo, modificarlo y redistribuirlo bajo los términos de la [Licencia Pública General de GNU, versión 3](LICENSE) o (a tu elección) cualquier versión posterior. Las versiones modificadas que distribuyas deben mantener la misma licencia y publicar su código fuente.
+
+Copyright © 2026 Sebastián Valenzuela.
+
 ## Apoyar el proyecto
 
 Brew-libre es gratis. Si te sirve, podés colaborar desde la pestaña «Acerca de…» de la app.
