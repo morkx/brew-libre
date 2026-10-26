@@ -1,5 +1,7 @@
 # Brew-libre
 
+**Español** · [English](README.en.md)
+
 Recetario cervecero libre para cerveceros caseros: una app web instalable (PWA), en español e inglés, con unidades métricas. No necesita cuenta ni nube: las recetas se guardan en archivos `.json` en tu propio equipo, y funciona sin conexión.
 
 **Usarla:** https://morkx.github.io/brew-libre/
