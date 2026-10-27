@@ -1,0 +1,9 @@
+{
+  "appId": "uy.morkx.brewlibre",
+  "appName": "Brew-libre",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  }
+}

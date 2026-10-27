@@ -513,6 +513,7 @@ const EN_EXACT = {
 'Notas de la receta, cata y cambios':'Recipe notes, tasting and changes',
 'Acerca de Brew-libre':'About Brew-libre',
 'Recetario cervecero libre y gratuito, basado en la planilla Beer_calc v5.6. Calcula densidades, amargor, color, agua, carbonatación y lecturas de refractómetro, y guarda tus recetas en un archivo en tu equipo.':'A free homebrew recipe book based on the Beer_calc v5.6 spreadsheet. It calculates gravities, bitterness, color, water, carbonation and refractometer readings, and saves your recipes to a file on your device.',
+'Créditos: las fórmulas, las bases de ingredientes originales y la receta de ejemplo provienen de la planilla Beer_calc v5.6 (autor original no identificado; si sos el autor, escribime para darte el crédito). El código fue escrito con asistencia de IA (Claude, de Anthropic); la idea, el diseño funcional y el criterio cervecero son de Sebastián Valenzuela.':'Credits: the formulas, the original ingredient databases and the example recipe come from the Beer_calc v5.6 spreadsheet (original author unknown; if you are the author, write to me so I can credit you). The code was written with AI assistance (Claude, by Anthropic); the idea, functional design and brewing know-how are by Sebastián Valenzuela.',
 'Contacto y sugerencias':'Contact and suggestions','Copiar':'Copy','Copiar correo':'Copy email','Si te gusta podés donarme a:':'If you like it, you can donate:',
 'Transferencias dentro de Santander':'Transfers within Santander (Uruguay)','Transferencias desde otros bancos':'Transfers from other banks','Cuenta:':'Account:','Moneda: UYU':'Currency: UYU',
 'Copiar cuenta Santander':'Copy Santander account','Copiar cuenta para otros bancos':'Copy account for other banks','Donar con PayPal':'Donate with PayPal',
@@ -1624,6 +1625,7 @@ function renderTab(){
   if(tab==='acerca'){
     return `<div class="sec donate"><div class="sechead"><h3>Acerca de Brew-libre</h3></div>
       <p class="info" style="margin:0">Recetario cervecero libre y gratuito, basado en la planilla Beer_calc v5.6. Calcula densidades, amargor, color, agua, carbonatación y lecturas de refractómetro, y guarda tus recetas en un archivo en tu equipo.</p>
+      <p class="info" style="margin:6px 0 0">Créditos: las fórmulas, las bases de ingredientes originales y la receta de ejemplo provienen de la planilla Beer_calc v5.6 (autor original no identificado; si sos el autor, escribime para darte el crédito). El código fue escrito con asistencia de IA (Claude, de Anthropic); la idea, el diseño funcional y el criterio cervecero son de Sebastián Valenzuela.</p>
       <div class="don">
         <b>Contacto y sugerencias</b>
         <span><a href="mailto:sebadarva@gmail.com?subject=Brew-libre" style="color:var(--accent)"><code>sebadarva@gmail.com</code></a> <button class="btn icon ghost" data-copy="sebadarva@gmail.com" aria-label="Copiar correo">Copiar</button></span>

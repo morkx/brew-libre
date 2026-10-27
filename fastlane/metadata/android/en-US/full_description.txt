@@ -1,0 +1,15 @@
+<p><b>Brew-libre</b> is a free homebrew recipe book for home brewers, in Spanish and English, using metric units. No account or cloud needed: recipes are saved as <i>.json</i> files on your own device, and it works offline.</p>
+<p><b>What it does</b></p>
+<ul>
+<li>All Grain, BIAB and Extract recipe design, with BJCP 2021 style guidelines (including regional styles) and AHA/BA.</li>
+<li>OG, FG, ABV, IBU (Tinseth, Rager, Garetz) and color (Morey, Daniels, Mosher) in SRM, EBC or °L; gravity in SG, °Plato or °Brix.</li>
+<li>Commercial ingredient database (malts by maltster, hops, yeasts) with search.</li>
+<li>Water: lab reports in any unit, mash pH, salts and acid (lactic or citric).</li>
+<li>Mash and decoction, refractometer (Terrill / Novotný), carbonation with sugar or kegging.</li>
+<li>Commercial systems (BrewZilla, Grainfather, Anvil Foundry…) with automatic rescaling.</li>
+<li>Shopping list, printing and BeerXML import/export.</li>
+<li>2026 preset recipes.</li>
+</ul>
+<p>No ads, no trackers and no data collection.</p>
+<p><b>Credits:</b> the formulas, the original ingredient databases and the example recipe come from the Beer_calc v5.6 spreadsheet (original author unknown). The code was written with AI assistance (Claude, by Anthropic); the idea, functional design and brewing know-how are by the author.</p>
+<p>Free software under the GPL-3.0-or-later license.</p>

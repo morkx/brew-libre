@@ -37,6 +37,18 @@ Open the address above and:
 
 You can also download `index.html` and open it with a double click: it works the same, nothing to install.
 
+## Android app
+
+The `android/` folder holds the Android project (built with [Capacitor](https://capacitorjs.com/)), which packages the whole app so it works offline. To build and sign the APK on Arch Linux:
+
+```bash
+bash build-apk.sh
+```
+
+The script installs JDK 21, Node and the Android SDK, copies the web app into the Android project and signs the APK with your release key, which is kept outside the repo. Before each new version, bump `versionCode` and `versionName` in `android/app/build.gradle` and add the changelog at `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
+
+Descriptions, icon and screenshots for F-Droid/IzzyOnDroid stores are in `fastlane/metadata/android/`.
+
 ## Structure
 
 | File | Purpose |
@@ -46,12 +58,21 @@ You can also download `index.html` and open it with a double click: it works the
 | `sw.js` | Service worker: offline use |
 | `icons/` | App icons |
 | `recetas/` | Recipes to import |
+| `android/` | Android project (Capacitor) |
+| `fastlane/` | Description, icon and screenshots for app stores |
+| `build-apk.sh` | Builds and signs the APK on Arch Linux |
 
 When you change `index.html`, bump `VERSION` in `sw.js` so installed copies update.
 
 ## Publishing on GitHub Pages
 
 Settings → Pages → Source: "Deploy from a branch" → branch `main`, folder `/ (root)`.
+
+## Credits
+
+Brew-libre is based on the **Beer_calc v5.6** brewing spreadsheet (original author unknown; if you are the author, write to me so I can credit you properly). The calculation formulas, the original ingredient databases and the example recipe "Jambo Beer" come from it. The idea of turning it into a free app, the choice of features and the brewing know-how are by Sebastián Valenzuela, who also drew on his experience with proprietary brewing apps.
+
+The code was written with AI assistance (Claude, by Anthropic).
 
 ## License
 

@@ -1,0 +1,15 @@
+<p><b>Brew-libre</b> es un recetario cervecero libre para cerveceros caseros, en español e inglés y con unidades métricas. No necesita cuenta ni nube: las recetas se guardan en archivos <i>.json</i> en tu propio equipo, y funciona sin conexión.</p>
+<p><b>Qué hace</b></p>
+<ul>
+<li>Diseño de recetas All Grain, BIAB y Extracto, con guías de estilo BJCP 2021 (incluye estilos regionales) y AHA/BA.</li>
+<li>OG, FG, ABV, IBU (Tinseth, Rager, Garetz) y color (Morey, Daniels, Mosher) en SRM, EBC o °L; densidad en SG, °Plato o °Brix.</li>
+<li>Base de ingredientes comerciales (maltas por maltería, lúpulos, levaduras) con buscador.</li>
+<li>Agua: análisis de laboratorio en cualquier unidad, pH de macerado, sales y ácido (láctico o cítrico).</li>
+<li>Macerado y decocción, refractómetro (Terrill / Novotný), carbonatación con azúcar o en barril.</li>
+<li>Equipos comerciales (BrewZilla, Grainfather, Anvil Foundry…) con reescalado automático.</li>
+<li>Lista de compras, impresión e importación/exportación BeerXML.</li>
+<li>Recetas prediseñadas 2026.</li>
+</ul>
+<p>Sin publicidad, sin rastreadores y sin recolección de datos.</p>
+<p><b>Créditos:</b> las fórmulas, las bases de ingredientes originales y la receta de ejemplo provienen de la planilla Beer_calc v5.6 (autor original no identificado). El código fue escrito con asistencia de IA (Claude, de Anthropic); la idea, el diseño funcional y el criterio cervecero son del autor.</p>
+<p>Software libre bajo la licencia GPL-3.0 o posterior.</p>

@@ -35,6 +35,18 @@ Abrí la dirección de arriba y:
 
 También podés descargar `index.html` y abrirlo con doble clic: funciona igual, sin instalar nada.
 
+## App para Android
+
+La carpeta `android/` contiene el proyecto Android (hecho con [Capacitor](https://capacitorjs.com/)), que empaqueta la app completa para que funcione sin conexión. Para compilar y firmar la APK en Arch Linux:
+
+```bash
+bash build-apk.sh
+```
+
+El script instala JDK 21, Node y el Android SDK, copia la app web al proyecto Android y firma la APK con tu clave de release, que se guarda fuera del repo. Antes de cada versión nueva subí `versionCode` y `versionName` en `android/app/build.gradle` y agregá el changelog en `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
+
+Las descripciones, el ícono y las capturas para tiendas F-Droid/IzzyOnDroid están en `fastlane/metadata/android/`.
+
 ## Estructura
 
 | Archivo | Para qué |
@@ -44,12 +56,21 @@ También podés descargar `index.html` y abrirlo con doble clic: funciona igual,
 | `sw.js` | Service worker: funcionamiento sin conexión |
 | `icons/` | Íconos de la app |
 | `recetas/` | Recetas para importar |
+| `android/` | Proyecto Android (Capacitor) |
+| `fastlane/` | Descripción, ícono y capturas para tiendas de apps |
+| `build-apk.sh` | Compila y firma la APK en Arch Linux |
 
 Al cambiar `index.html`, subí el número de `VERSION` en `sw.js` para que las copias instaladas se actualicen.
 
 ## Publicar en GitHub Pages
 
 Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta `/ (root)`.
+
+## Créditos
+
+Brew-libre se basa en la planilla de cálculo cervecero **Beer_calc v5.6** (autor original no identificado; si sos el autor, escribime para darte el crédito correspondiente). De ella provienen las fórmulas de cálculo, las bases de ingredientes originales y la receta de ejemplo «Jambo Beer». La idea de convertirla en una app libre, la selección de funciones y el criterio cervecero son de Sebastián Valenzuela, que se apoyó también en su experiencia con apps de elaboración privativas.
+
+El código fue escrito con asistencia de IA (Claude, de Anthropic).
 
 ## Licencia
 

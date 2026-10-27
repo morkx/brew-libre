@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Brew-libre</string>
+    <string name="title_activity_main">Brew-libre</string>
+    <string name="package_name">uy.morkx.brewlibre</string>
+    <string name="custom_url_scheme">uy.morkx.brewlibre</string>
+</resources>
