@@ -8,6 +8,7 @@
 <li>Mash and decoction, refractometer (Terrill / Novotný), carbonation with sugar or kegging.</li>
 <li>Commercial systems (BrewZilla, Grainfather, Anvil Foundry…) with automatic rescaling.</li>
 <li>Shopping list, printing and BeerXML import/export.</li>
+<li>Bottle label designer with brewing data and allergens; customisable shapes, frames, geometric figures, typefaces and colours.</li>
 <li>2026 preset recipes.</li>
 </ul>
 <p>No ads, no trackers and no data collection.</p>

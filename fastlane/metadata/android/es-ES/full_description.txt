@@ -8,6 +8,7 @@
 <li>Macerado y decocción, refractómetro (Terrill / Novotný), carbonatación con azúcar o en barril.</li>
 <li>Equipos comerciales (BrewZilla, Grainfather, Anvil Foundry…) con reescalado automático.</li>
 <li>Lista de compras, impresión e importación/exportación BeerXML.</li>
+<li>Diseñador de etiquetas para botellas, con los datos de elaboración y alérgenos; formas, marcos, figuras geométricas, tipografías y colores personalizables.</li>
 <li>Recetas prediseñadas 2026.</li>
 </ul>
 <p>Sin publicidad, sin rastreadores y sin recolección de datos.</p>

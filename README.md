@@ -15,6 +15,7 @@ Recetario cervecero libre para cerveceros caseros: una app web instalable (PWA),
 - Macerado y decocción, refractómetro (Terrill / Novotný), carbonatación con azúcar o en barril.
 - Equipos comerciales (BrewZilla, Grainfather, Anvil Foundry…) con reescalado automático.
 - Lista de compras, impresión e importación/exportación BeerXML.
+- Diseñador de etiquetas para botellas: frente y contraetiqueta con los datos de elaboración (ABV, IBU, OG/FG, color, maltas, lúpulos, levadura, proceso, lote, fechas y alérgenos detectados en la receta). Se personaliza con 12 formas de contorno, 7 estilos de marco, 17 figuras geométricas combinables (y combinaciones ya armadas), 17 tipografías libres, paletas y colores propios, y logo. Se imprime en A4 con líneas de corte o se exporta en PNG a 300 ppp y SVG.
 - Recetas prediseñadas 2026.
 
 ## Recetas clon
@@ -56,6 +57,7 @@ Las descripciones, el ícono y las capturas para tiendas F-Droid/IzzyOnDroid est
 | `sw.js` | Service worker: funcionamiento sin conexión |
 | `icons/` | Íconos de la app |
 | `recetas/` | Recetas para importar |
+| `fonts/` | Tipografías libres del diseñador de etiquetas, con sus licencias |
 | `android/` | Proyecto Android (Capacitor) |
 | `fastlane/` | Descripción, ícono y capturas para tiendas de apps |
 | `build-apk.sh` | Compila y firma la APK en Arch Linux |
@@ -71,6 +73,8 @@ Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta
 Brew-libre se basa en la planilla de cálculo cervecero **Beer_calc v5.6** (autor original no identificado; si sos el autor, escribime para darte el crédito correspondiente). De ella provienen las fórmulas de cálculo, las bases de ingredientes originales y la receta de ejemplo «Jambo Beer». La idea de convertirla en una app libre, la selección de funciones y el criterio cervecero son de Sebastián Valenzuela, que se apoyó también en su experiencia con apps de elaboración privativas.
 
 El código fue escrito con asistencia de IA (Claude, de Anthropic).
+
+Las tipografías del diseñador de etiquetas son libres (SIL Open Font License, y Apache 2.0 en el caso de Roboto Slab); el detalle y los textos de licencia están en [`fonts/`](fonts/README.md).
 
 ## Licencia
 

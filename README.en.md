@@ -15,6 +15,7 @@ A free brewing recipe book for homebrewers: an installable web app (PWA) in Engl
 - Mash and decoction, refractometer correction (Terrill / Novotný), carbonation with priming sugar or in a keg.
 - Commercial equipment profiles (BrewZilla, Grainfather, Anvil Foundry…) with automatic recipe rescaling.
 - Shopping list, printing, and BeerXML import/export.
+- Bottle label designer: front and back labels with the brewing data (ABV, IBU, OG/FG, colour, malts, hops, yeast, process, batch, dates and allergens detected from the recipe). Customise it with 12 outline shapes, 7 frame styles, 17 combinable geometric shapes (plus ready-made combinations), 17 free typefaces, palettes and your own colours, and a logo. Print on A4 with cut lines or export as 300 dpi PNG and SVG.
 - Ready-made 2026 recipes.
 
 The interface follows your browser's language (Spanish or English); you can switch it anytime with the **EN / ES** button at the top or in Preferences.
@@ -58,6 +59,7 @@ Descriptions, icon and screenshots for F-Droid/IzzyOnDroid stores are in `fastla
 | `sw.js` | Service worker: offline use |
 | `icons/` | App icons |
 | `recetas/` | Recipes to import |
+| `fonts/` | Free typefaces for the label designer, with their licenses |
 | `android/` | Android project (Capacitor) |
 | `fastlane/` | Description, icon and screenshots for app stores |
 | `build-apk.sh` | Builds and signs the APK on Arch Linux |
@@ -73,6 +75,8 @@ Settings → Pages → Source: "Deploy from a branch" → branch `main`, folder 
 Brew-libre is based on the **Beer_calc v5.6** brewing spreadsheet (original author unknown; if you are the author, write to me so I can credit you properly). The calculation formulas, the original ingredient databases and the example recipe "Jambo Beer" come from it. The idea of turning it into a free app, the choice of features and the brewing know-how are by Sebastián Valenzuela, who also drew on his experience with proprietary brewing apps.
 
 The code was written with AI assistance (Claude, by Anthropic).
+
+The label designer's typefaces are free (SIL Open Font License, and Apache 2.0 for Roboto Slab); details and license texts are in [`fonts/`](fonts/README.md).
 
 ## License
 

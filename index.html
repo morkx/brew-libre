@@ -227,9 +227,61 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:0}
 .warn-line{font-size:12.5px;padding:6px 9px;border-radius:var(--r);background:var(--warn-soft);color:var(--warn)}
 .warn-line.bad{background:var(--bad-soft);color:var(--bad)}
 .eqform{border:1px solid var(--accent);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--surface-2)}
+
+/* diseñador de etiquetas */
+.lbl-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:20px;align-items:start}
+@media (max-width:1100px){.lbl-wrap{grid-template-columns:minmax(0,1fr)}.lbl-prev{position:static!important;order:-1;max-height:none;overflow:visible}.lbl-prev .lbl-card svg{max-height:none;width:100%}}
+.lbl-ctl{display:flex;flex-direction:column;gap:10px;min-width:0}
+.lbl-prev{position:sticky;top:var(--lblTop,120px);max-height:calc(100vh - var(--lblTop,120px) - 10px);overflow:auto;display:flex;flex-direction:column;gap:12px;min-width:0;padding-bottom:4px}
+.lbl-prev .lbl-card svg{max-height:calc((100vh - var(--lblTop,120px) - 110px) / 2);width:auto;max-width:100%}
+.lbl-sec{border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.lbl-sec>summary{cursor:pointer;padding:10px 12px;font-family:var(--f-display);font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:16px}
+.lbl-secb{padding:4px 12px 14px;display:flex;flex-direction:column;gap:12px}
+.lbl-tpls{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.lbl-tpl{border:1px solid var(--line);background:var(--surface-2);border-radius:var(--r);padding:6px;cursor:pointer;display:flex;flex-direction:column;gap:4px;align-items:center;font-size:11.5px;min-width:0}
+.lbl-tpl:hover{border-color:var(--accent)}
+.lbl-tpl span{width:100%;display:block}
+.lbl-tpl svg{width:100%;height:auto;display:block}
+.lbl-tpl b{font-weight:600;text-align:center}
+.lbl-picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}
+.lbl-picks.sm{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+.lbl-pick{display:flex;flex-direction:column;align-items:center;gap:3px;border:1px solid var(--line);background:var(--surface-2);border-radius:var(--r);padding:6px 4px;cursor:pointer;font-size:11px;color:var(--fg);text-align:center;line-height:1.15}
+.lbl-pick:hover{border-color:var(--muted)}
+.lbl-pick svg{color:var(--fg)}
+.lbl-pick[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
+.lbl-pick[aria-pressed=true] svg{color:var(--accent)}
+.lbl-comps{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lbl-comps .lbl{width:100%}
+.lbl-layers{display:flex;flex-direction:column;gap:8px}
+.lbl-layer{border:1px solid var(--line);border-radius:var(--r);padding:8px;background:var(--surface-2);display:flex;flex-direction:column;gap:6px}
+.lbl-lhead,.lbl-lrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lbl-lhead select{flex:1;min-width:120px}
+.lbl-lbtns{display:flex;gap:2px;margin-left:auto}
+.lbl-lbtns .btn[disabled]{opacity:.35;cursor:default}
+.lbl-licon{display:inline-flex}
+.lbl-layer select{padding:5px 7px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.lbl-rngs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px 14px}
+.lbl-rng{display:grid;grid-template-columns:auto minmax(0,1fr) 50px;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.lbl-rng input{width:100%;min-width:0;accent-color:var(--accent)}
+.lbl-rng output{font-family:var(--f-mono);font-size:11.5px;text-align:right;color:var(--fg)}
+.lbl-pals{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px}
+.lbl-pal{display:flex;height:26px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;padding:0;cursor:pointer}
+.lbl-pal:hover{outline:2px solid var(--accent);outline-offset:1px}
+.lbl-pal i{flex:1}
+.lbl-cols{display:flex;flex-wrap:wrap;gap:8px 16px}
+.lbl-col{display:flex;align-items:center;gap:6px;font-size:13px}
+.lbl-sec input[type=color]{width:40px;height:30px;padding:2px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);flex:none}
+.lbl-checks{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+.lbl-checks b{width:100%;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.lbl-sample{font-size:17px;line-height:1.25;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lbl-cards{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-start;background:repeating-conic-gradient(var(--surface-2) 0 25%, var(--surface) 0 50%) 0 0/18px 18px;border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.lbl-card{margin:0;flex:1 1 220px;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.lbl-card svg{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.28))}
+.lbl-card figcaption{font-size:11.5px;color:var(--muted)}
+.lbl-actions{display:flex;flex-direction:column;gap:10px}
 @media print{
   body{background:#fff;color:#000}
-  .bar,.layout{display:none!important}
+  .bar,.layout,.toast{display:none!important}
   #printSheet{display:block;font:11pt/1.4 var(--f-body);color:#000}
   #printSheet h1{font-family:var(--f-display);text-transform:uppercase;margin:0 0 4px}
   #printSheet table{font-size:10pt;margin:6px 0 12px}
@@ -385,7 +437,7 @@ const EN_EXACT = {
 'Sí, eliminar':'Yes, delete','No':'No','Sí':'Yes','Elegí o creá una receta':'Pick or create a recipe',
 'Las recetas se guardan en un archivo de recetario (.json) en tu computadora con «Guardar». Podés abrirlo de nuevo con «Abrir…» o arrastrándolo a la ventana.':'Recipes are saved to a recipe book file (.json) on your computer with “Save”. Reopen it with “Open…” or by dragging it onto the window.',
 // tabs
-'Receta':'Recipe','Macerado':'Mash','Agua':'Water','Fermentación':'Fermentation','Refractómetro':'Refractometer','Escalar':'Scale','Notas':'Notes','Acerca de...':'About...',
+'Receta':'Recipe','Macerado':'Mash','Agua':'Water','Fermentación':'Fermentation','Refractómetro':'Refractometer','Escalar':'Scale','Notas':'Notes','Etiqueta':'Label','Acerca de...':'About...',
 // batch & equipment
 'Lote y equipo':'Batch and equipment','Volúmenes en litros':'Volumes in liters',
 'Equipo de macerado y hervor':'Mash and boil system','Fermentador':'Fermenter','Sin elegir (valores a mano)':'None (manual values)',
@@ -1108,7 +1160,7 @@ function _renderSheet(){
       `<div style="grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap"><button class="btn small" data-act="dup">Duplicar</button><button class="btn small" data-act="exportOne">Exportar esta receta (.json)</button><span id="delBox"><button class="btn small danger" data-act="del">Eliminar</button></span></div>`}
   </section>
   <section class="panel">
-    <div class="tabs" role="tablist">${[['receta','Receta'],['macerado','Macerado'],['agua','Agua'],['analisis','Análisis de agua'],['ferm','Fermentación'],['compras','Compras'],['refra','Refractómetro'],['escala','Escalar'],['notas','Notas'],['acerca','Acerca de...']].map(([k,l])=>`<button class="tab" role="tab" data-tab="${k}" aria-selected="${tab===k}">${l}</button>`).join('')}</div>
+    <div class="tabs" role="tablist">${[['receta','Receta'],['macerado','Macerado'],['agua','Agua'],['analisis','Análisis de agua'],['ferm','Fermentación'],['compras','Compras'],['refra','Refractómetro'],['escala','Escalar'],['notas','Notas'],['etiqueta','Etiqueta'],['acerca','Acerca de...']].map(([k,l])=>`<button class="tab" role="tab" data-tab="${k}" aria-selected="${tab===k}">${l}</button>`).join('')}</div>
     <div class="tabbody" id="tabbody">${renderTab()}</div>
   </section>`;
 }
@@ -1117,6 +1169,747 @@ function groupStyles(sel){
   DB.styles.forEach(s=>{ const g=s.guide==='BJCP 2021'? 'BJCP 2021 · '+s.cat : 'AHA / BA (de la planilla)'; (groups[g]=groups[g]||[]).push(s); });
   return Object.entries(groups).map(([g,list])=>`<optgroup label="${esc(g)}">${list.map(s=>`<option value="${esc(s.id)}" ${s.id===sel?'selected':''}>${s.code!=='AHA'?esc(s.code)+' ':''}${esc(s.name)}</option>`).join('')}</optgroup>`).join('');
 }
+/* ====================== DISEÑADOR DE ETIQUETAS ====================== */
+/* Etiqueta de botella (frente y contraetiqueta) dibujada en SVG, en milímetros.
+   Se arma con: contorno de la etiqueta + fondo + capas de figuras geométricas combinables
+   + marco + logo + textos (con datos de la receta). Todo se guarda en receta.label. */
+const LT = (es,en) => EN() ? en : es;
+const lnf = (v,d=1) => { const s=fx(v,d); return EN()? s : s.replace('.',','); };
+const lGrav = g => (g==null||!isFinite(g)) ? '–' : prefs.grav==='SG' ? lnf(g,3) : lnf(gConv(g),1)+' '+gUnit();
+const lCol = srm => lnf(cConv(srm), prefs.color==='EBC'?0:1)+' '+cUnit();
+const lAbv = (og,fg) => prefs.abv==='std' ? (og-fg)*131.25 : (76.08*(og-fg)/(1.775-og))*(fg/0.794);
+
+const LBL_FONTS = [
+  {id:'shoulders', fam:'BL Big Shoulders', w:800, fb:"'Arial Narrow',Impact,sans-serif", n:'Big Shoulders', cat:'cond'},
+  {id:'bebas', fam:'BL Bebas Neue', w:400, fb:"Impact,'Arial Narrow',sans-serif", n:'Bebas Neue', cat:'cond'},
+  {id:'oswald', fam:'BL Oswald', w:600, fb:"'Arial Narrow',sans-serif", n:'Oswald', cat:'cond'},
+  {id:'josefin', fam:'BL Josefin Sans', w:600, fb:"'Century Gothic',Futura,sans-serif", n:'Josefin Sans', cat:'geo'},
+  {id:'comfortaa', fam:'BL Comfortaa', w:700, fb:"'Arial Rounded MT Bold',sans-serif", n:'Comfortaa', cat:'geo'},
+  {id:'pubsans', fam:'BL Public Sans', w:400, wb:700, fb:"system-ui,Arial,sans-serif", n:'Public Sans', cat:'geo'},
+  {id:'playfair', fam:'BL Playfair Display', w:700, fb:"Georgia,serif", n:'Playfair Display', cat:'serif'},
+  {id:'cinzel', fam:'BL Cinzel', w:700, fb:"'Trajan Pro',Georgia,serif", n:'Cinzel', cat:'serif'},
+  {id:'abril', fam:'BL Abril Fatface', w:400, fb:"Didot,Georgia,serif", n:'Abril Fatface', cat:'serif'},
+  {id:'slab', fam:'BL Roboto Slab', w:400, wb:700, fb:"Rockwell,Georgia,serif", n:'Roboto Slab', cat:'slab'},
+  {id:'alfa', fam:'BL Alfa Slab One', w:400, fb:"Rockwell,Georgia,serif", n:'Alfa Slab One', cat:'slab'},
+  {id:'rye', fam:'BL Rye', w:400, fb:"Georgia,serif", n:'Rye', cat:'vint'},
+  {id:'fraktur', fam:'BL UnifrakturMaguntia', w:400, fb:"'Old English Text MT',serif", n:'UnifrakturMaguntia', cat:'vint'},
+  {id:'lobster', fam:'BL Lobster', w:400, fb:"'Brush Script MT',cursive", n:'Lobster', cat:'script'},
+  {id:'pacifico', fam:'BL Pacifico', w:400, fb:"cursive", n:'Pacifico', cat:'script'},
+  {id:'vibes', fam:'BL Great Vibes', w:400, fb:"cursive", n:'Great Vibes', cat:'script'},
+  {id:'mono', fam:'BL IBM Plex Mono', w:400, fb:"ui-monospace,monospace", n:'IBM Plex Mono', cat:'mono'},
+];
+const LBL_FONT_CATS = [['cond','Condensadas','Condensed'],['geo','Geométricas y redondeadas','Geometric & rounded'],['serif','Serif','Serif'],['slab','Slab y de cartel','Slab & poster'],['vint','Vintage y gótica','Vintage & blackletter'],['script','Manuscritas','Script'],['mono','Monoespaciada','Monospace']];
+const lblFont = id => LBL_FONTS.find(f=>f.id===id) || LBL_FONTS[5];
+const lblFam = f => `'${f.fam}',${f.fb}`;
+
+const LBL_SIZES = {
+  b330:{w:90, h:70, vol:330, es:'Botella 330 ml · 90 × 70 mm', en:'330 ml bottle · 90 × 70 mm'},
+  b500:{w:100, h:80, vol:500, es:'Botella 500 ml · 100 × 80 mm', en:'500 ml bottle · 100 × 80 mm'},
+  b750:{w:120, h:90, vol:750, es:'Botella 750 ml · 120 × 90 mm', en:'750 ml bottle · 120 × 90 mm'},
+  v330:{w:70, h:95, vol:330, es:'Vertical · 70 × 95 mm', en:'Portrait · 70 × 95 mm'},
+  r70:{w:70, h:70, vol:330, round:true, es:'Redonda 70 mm', en:'Round 70 mm'},
+  r90:{w:90, h:90, vol:500, round:true, es:'Redonda 90 mm', en:'Round 90 mm'},
+  custom:{es:'A medida', en:'Custom size'},
+};
+const LBL_SHAPES = [['rect','Rectángulo','Rectangle'],['rounded','Esquinas redondeadas','Rounded corners'],['notch','Esquinas cóncavas','Notched corners'],['chamfer','Esquinas cortadas','Cut corners'],['oct','Octógono','Octagon'],['hex','Hexágono','Hexagon'],['oval','Óvalo','Oval'],['circle','Círculo','Circle'],['shield','Escudo','Shield'],['arch','Arco','Arch'],['scallop','Festoneado','Scalloped'],['seal','Sello dentado','Serrated seal']];
+const LBL_ROUNDISH = ['oval','circle','scallop','seal'];
+const LBL_FRAMES = [['none','Sin marco','No frame'],['single','Línea simple','Single line'],['double','Línea doble','Double line'],['thickthin','Gruesa y fina','Thick and thin'],['triple','Triple','Triple'],['dashed','Guiones','Dashed'],['dotted','Puntos','Dotted'],['edge','Borde exterior','Outer edge']];
+const LBL_DIVS = [['none','Ninguno','None'],['line','Línea','Line'],['diamond','Línea con rombo','Line with diamond'],['dots','Tres puntos','Three dots'],['stars','Tres estrellas','Three stars'],['wave','Onda','Wave']];
+const LBL_DECOS = [['circle','Círculo','Circle'],['ring','Anillo','Ring'],['rings','Anillos concéntricos','Concentric rings'],['square','Cuadrado','Square'],['diamond','Rombo','Diamond'],['triangle','Triángulo','Triangle'],['hexagon','Hexágono','Hexagon'],['star','Estrella','Star'],['burst','Rayos de sol','Sunburst'],['arc','Semicírculo','Half circle'],['band','Franja','Band'],['stripes','Rayas','Stripes'],['waves','Ondas','Waves'],['chevron','Chevrones','Chevrons'],['dots','Puntos','Dots'],['hop','Lúpulo','Hop cone'],['barley','Espiga','Barley ear']];
+const LBL_DECO_N = {rings:5, star:5, burst:20, stripes:12, waves:4, chevron:4, dots:12};
+const LBL_ROLES = [['accent','Acento','Accent'],['ink','Texto','Text'],['beer','Color de la cerveza','Beer colour'],['bg2','Fondo 2','Background 2'],['white','Blanco','White'],['black','Negro','Black'],['custom','Personalizado','Custom']];
+const LBL_PAL = [
+  ['Crema y cobre','Cream & copper','#f4ead5','#e8d7b4','#2a1408','#8e4518'],
+  ['Kraft','Kraft','#d8c3a0','#c4a77a','#33241a','#8e2b1d'],
+  ['Noche y oro','Night & gold','#1d2433','#2b3550','#f1e6c8','#c9a54c'],
+  ['Stout','Stout','#141110','#2a201a','#efe4d2','#c47a3c'],
+  ['Lúpulo','Hop green','#eef3e2','#cfe0b0','#1f2a1c','#4f8a24'],
+  ['Trigo','Wheat','#fff6d8','#f6dc8c','#4a3412','#c8901c'],
+  ['Tropical','Tropical','#ffd166','#ef8354','#3a1c32','#3a1c32'],
+  ['Bauhaus','Bauhaus','#f2efe6','#e4ddcc','#151515','#d4372c'],
+  ['Pizarra y menta','Slate & mint','#263238','#37474f','#eceff1','#64d8b4'],
+  ['Vino','Burgundy','#3b0d18','#5a1a28','#f6e7d8','#e0a458'],
+  ['Marino','Navy','#0f2c4c','#173f6b','#f1f5f9','#f2b705'],
+  ['Blanco y negro','Black & white','#ffffff','#eeeeee','#111111','#111111'],
+];
+const LBL_STYLE_KEYS = ['pad','shape','radius','frame','frameW','frameInset','frameRole','frameHex','bg','bg2','grad','ink','accent','beerAccent','fTitle','fSub','fBody','titleCase','titleLs','titleArc','titleScale','div','shapes'];
+const LBL_TPL = {
+  clasica:{n:['Clásica','Classic'], pad:0, shape:'rounded', radius:5, frame:'double', frameW:0.45, frameInset:2.2, frameRole:'accent', bg:'#f4ead5', bg2:'#e6d2aa', grad:'radial', ink:'#2a1408', accent:'#8e4518', beerAccent:false, fTitle:'abril', fSub:'cinzel', fBody:'pubsans', titleCase:'none', titleLs:0, titleArc:false, titleScale:1, div:'diamond', shapes:[]},
+  vintage:{n:['Vintage del oeste','Western vintage'], pad:0, shape:'notch', radius:7, frame:'dashed', frameW:0.4, frameInset:3, frameRole:'ink', bg:'#dcc7a1', bg2:'#c4a576', grad:'v', ink:'#3b2a1a', accent:'#8e2b1d', beerAccent:false, fTitle:'rye', fSub:'oswald', fBody:'slab', titleCase:'upper', titleLs:0.03, titleArc:true, titleScale:1, div:'stars', shapes:[{t:'burst',x:50,y:50,s:140,rot:0,op:9,c:'accent',st:'solid',n:24}]},
+  moderna:{n:['Moderna','Modern'], pad:4.5, shape:'rect', radius:0, frame:'none', frameW:0.5, frameInset:2, frameRole:'ink', bg:'#ffffff', bg2:'#f1f1f1', grad:'none', ink:'#1b1b1b', accent:'#1b1b1b', beerAccent:false, fTitle:'bebas', fSub:'oswald', fBody:'pubsans', titleCase:'upper', titleLs:0.04, titleArc:false, titleScale:1.1, div:'none', shapes:[{t:'band',x:50,y:2.5,s:5,rot:0,op:100,c:'beer',st:'solid'},{t:'band',x:50,y:97.5,s:5,rot:0,op:100,c:'beer',st:'solid'}]},
+  deco:{n:['Art déco','Art deco'], pad:0, shape:'oct', radius:6, frame:'triple', frameW:0.3, frameInset:2, frameRole:'accent', bg:'#1d2433', bg2:'#2b3550', grad:'v', ink:'#f1e6c8', accent:'#c9a54c', beerAccent:false, fTitle:'josefin', fSub:'josefin', fBody:'pubsans', titleCase:'upper', titleLs:0.1, titleArc:false, titleScale:1, div:'diamond', shapes:[{t:'rings',x:50,y:104,s:118,rot:0,op:35,c:'accent',st:'outline',n:7,sw:0.3},{t:'burst',x:50,y:104,s:160,rot:0,op:7,c:'accent',st:'solid',n:18}]},
+  bauhaus:{n:['Bauhaus','Bauhaus'], pad:1.5, shape:'rect', radius:0, frame:'none', frameW:0.5, frameInset:2, frameRole:'ink', bg:'#f2efe6', bg2:'#e4ddcc', grad:'none', ink:'#151515', accent:'#d4372c', beerAccent:false, fTitle:'shoulders', fSub:'josefin', fBody:'pubsans', titleCase:'upper', titleLs:0.02, titleArc:false, titleScale:1.1, div:'none', shapes:[{t:'circle',x:3,y:6,s:26,rot:0,op:95,c:'accent',st:'solid'},{t:'square',x:98,y:95,s:20,rot:15,op:92,c:'custom',hex:'#2c4a8a',st:'solid'},{t:'triangle',x:95,y:7,s:15,rot:0,op:95,c:'custom',hex:'#f2b705',st:'solid'},{t:'ring',x:4,y:94,s:13,rot:0,op:90,c:'ink',st:'outline',sw:1.1}]},
+  gotica:{n:['Abadía gótica','Gothic abbey'], pad:0, shape:'shield', radius:0, frame:'double', frameW:0.45, frameInset:2.4, frameRole:'accent', bg:'#f3ecdc', bg2:'#e2d3b0', grad:'v', ink:'#2b1a10', accent:'#7a1f1f', beerAccent:false, fTitle:'fraktur', fSub:'cinzel', fBody:'slab', titleCase:'none', titleLs:0, titleArc:false, titleScale:1, div:'line', shapes:[{t:'star',x:50,y:84,s:7,rot:0,op:90,c:'accent',st:'solid',n:5}]},
+  oscura:{n:['Oscura','Dark'], pad:0, shape:'oval', radius:0, frame:'single', frameW:0.55, frameInset:2.4, frameRole:'accent', bg:'#2a201a', bg2:'#110d0b', grad:'radial', ink:'#efe4d2', accent:'#c47a3c', beerAccent:false, fTitle:'playfair', fSub:'cinzel', fBody:'pubsans', titleCase:'none', titleLs:0, titleArc:false, titleScale:1, div:'dots', shapes:[{t:'ring',x:50,y:50,s:72,rot:0,op:22,c:'accent',st:'outline',sw:0.35}]},
+  tropical:{n:['Tropical','Tropical'], pad:3, shape:'rounded', radius:8, frame:'none', frameW:0.5, frameInset:2, frameRole:'ink', bg:'#ffd166', bg2:'#ef8354', grad:'v', ink:'#3a1c32', accent:'#3a1c32', beerAccent:false, fTitle:'pacifico', fSub:'comfortaa', fBody:'pubsans', titleCase:'none', titleLs:0, titleArc:false, titleScale:1, div:'wave', shapes:[{t:'circle',x:82,y:26,s:40,rot:0,op:45,c:'custom',hex:'#fff3b0',st:'solid'},{t:'waves',x:50,y:93,s:100,rot:0,op:75,c:'custom',hex:'#2a9d8f',st:'solid',n:5}]},
+  minimal:{n:['Minimalista','Minimal'], pad:0, shape:'rect', radius:0, frame:'single', frameW:0.25, frameInset:3, frameRole:'ink', bg:'#ffffff', bg2:'#f4f4f4', grad:'none', ink:'#111111', accent:'#111111', beerAccent:false, fTitle:'josefin', fSub:'pubsans', fBody:'pubsans', titleCase:'upper', titleLs:0.18, titleArc:false, titleScale:0.85, div:'line', shapes:[]},
+  sello:{n:['Sello cervecero','Brewery seal'], pad:0, shape:'seal', radius:0, frame:'double', frameW:0.4, frameInset:2.6, frameRole:'accent', bg:'#f6efe0', bg2:'#e9dcc0', grad:'radial', ink:'#1f2a24', accent:'#2f5d3a', beerAccent:false, fTitle:'alfa', fSub:'oswald', fBody:'slab', titleCase:'upper', titleLs:0.02, titleArc:false, titleScale:1, div:'stars', shapes:[{t:'hop',x:10,y:50,s:16,rot:-12,op:85,c:'accent',st:'solid'},{t:'barley',x:90.5,y:50,s:21,rot:10,op:85,c:'accent',st:'solid'}]},
+};
+const LBL_COMP = {
+  sol:[['Sol naciente','Rising sun'], [{t:'burst',x:50,y:100,s:150,op:15,c:'accent',n:28},{t:'circle',x:50,y:100,s:40,op:28,c:'accent'}]],
+  abanico:[['Abanico déco','Deco fan'], [{t:'rings',x:50,y:102,s:110,op:40,c:'accent',st:'outline',n:7,sw:0.3},{t:'arc',x:50,y:102,s:30,op:30,c:'accent'}]],
+  bauhaus:[['Bauhaus','Bauhaus'], [{t:'circle',x:12,y:20,s:32,op:85,c:'accent'},{t:'square',x:90,y:82,s:24,rot:12,op:80,c:'beer'},{t:'triangle',x:88,y:16,s:20,op:85,c:'ink'}]],
+  triangulos:[['Triángulos','Triangles'], [{t:'triangle',x:7,y:14,s:16,rot:15,op:30,c:'accent'},{t:'triangle',x:93,y:86,s:20,rot:200,op:30,c:'accent'},{t:'diamond',x:93,y:14,s:9,op:45,c:'beer'},{t:'diamond',x:7,y:86,s:7,op:45,c:'beer'}]],
+  olas:[['Ondas de cerveza','Beer waves'], [{t:'waves',x:50,y:84,s:100,op:40,c:'beer',st:'solid',n:7},{t:'waves',x:50,y:90,s:100,op:90,c:'beer',st:'solid',n:5}]],
+  rayas:[['Rayas diagonales','Diagonal stripes'], [{t:'stripes',x:50,y:50,s:35,rot:35,op:8,c:'accent',n:14}]],
+  estrellas:[['Tres estrellas','Three stars'], [{t:'star',x:38,y:11,s:5,op:90,c:'accent'},{t:'star',x:50,y:9,s:7,op:90,c:'accent'},{t:'star',x:62,y:11,s:5,op:90,c:'accent'}]],
+  cereal:[['Lúpulo y espiga','Hop and barley'], [{t:'hop',x:12,y:50,s:20,rot:-12,op:80,c:'accent'},{t:'barley',x:88,y:50,s:26,rot:10,op:80,c:'accent'}]],
+  puntos:[['Lluvia de puntos','Dot pattern'], [{t:'dots',x:50,y:50,s:115,op:10,c:'accent',n:16}]],
+  esquinas:[['Rombos en las esquinas','Corner diamonds'], [{t:'diamond',x:6,y:8,s:5,op:90,c:'accent'},{t:'diamond',x:94,y:8,s:5,op:90,c:'accent'},{t:'diamond',x:6,y:92,s:5,op:90,c:'accent'},{t:'diamond',x:94,y:92,s:5,op:90,c:'accent'}]],
+  chevrones:[['Chevrones','Chevrons'], [{t:'chevron',x:50,y:90,s:55,op:22,c:'accent',n:4}]],
+  hexagonos:[['Panal','Honeycomb'], [{t:'hexagon',x:10,y:22,s:14,op:30,c:'accent',st:'outline',sw:0.5},{t:'hexagon',x:17,y:38,s:14,op:30,c:'accent',st:'outline',sw:0.5},{t:'hexagon',x:90,y:62,s:14,op:30,c:'accent',st:'outline',sw:0.5},{t:'hexagon',x:83,y:78,s:14,op:30,c:'accent',st:'outline',sw:0.5}]],
+};
+function lblDeco(t, o={}){ return Object.assign({t, x:50, y:50, s:30, rot:0, op:100, c:'accent', hex:'#a8541f', st:(t==='ring'||t==='rings')?'outline':'solid', n:LBL_DECO_N[t]||0, sw:0.6}, o); }
+function lblDefault(r){
+  const L = Object.assign({size:'b330', w:90, h:70, mode:'dual', align:'left', decoBack:'soft',
+    name:'', sub:'', brewery:'', tagline:'', vol:330, desc:'', legend:'',
+    logo:'', logoAR:1, logoPos:'top', logoSize:28, logoOp:15,
+    show:{abv:true, ibu:true, ogfg:true, color:true, malts:true, hops:true, yeast:true, misc:true, mash:false, ferm:true, carb:true, serve:true, batch:true, dates:true, allergens:true, desc:true, legend:true},
+    measured:true, batch:'', bottled:'', bestMonths:6, serve:'', allergensExtra:'', copies:0, cut:true, frameHex:'#000000'},
+    clone(LBL_TPL.clasica));
+  delete L.n; L.shapes=L.shapes.map(o=>lblDeco(o.t,o)); return L;
+}
+function lblCur(){
+  const r=cur; const d=lblDefault(r);
+  if(!r.label){ r.label=d; return r.label; }
+  const L=r.label; for(const k in d) if(L[k]===undefined) L[k]=d[k];
+  for(const k in d.show) if(L.show[k]===undefined) L.show[k]=d.show[k];
+  return L;
+}
+
+/* ---------- datos de la receta para la etiqueta ---------- */
+const LBL_ALG = {barley:['cebada (gluten)','barley (gluten)'], wheat:['trigo (gluten)','wheat (gluten)'], rye:['centeno (gluten)','rye (gluten)'], oats:['avena (gluten)','oats (gluten)'], milk:['leche (lactosa)','milk (lactose)'], nuts:['frutos secos','nuts']};
+function lblAllergens(r){
+  const set=new Set();
+  const notBarley=/rice|arroz|corn|ma[ií]z|sorghum|sorgo|potato|papa|lactos|maltodextrin|juice|jugo|hulls|c[aá]scara|honey(?! ?malt)|miel|sugar|az[uú]car|syrup|jarabe|candi|dextros|sucros|molasses|melaza|maple/;
+  for(const f of r.fermentables||[]){
+    const n=(f.name||'').toLowerCase(), t=f.type||'grano';
+    if(/lactos|milk|leche/.test(n)){ set.add('milk'); continue; }
+    const wheat=/wheat|trigo|weizen|spelt|espelta|triticale/.test(n), rye=/\brye\b|centeno|roggen/.test(n), oat=/\boat|avena|hafer/.test(n);
+    if(wheat) set.add('wheat'); if(rye) set.add('rye'); if(oat) set.add('oats');
+    if(wheat||rye||oat){ if(t==='extracto') set.add('barley'); }
+    else if((t==='grano'||t==='extracto'||t==='adjunto') && !notBarley.test(n)) set.add('barley');
+  }
+  for(const m of r.misc||[]){ const n=(m.name||'').toLowerCase();
+    if(/lactos|leche|milk/.test(n)) set.add('milk');
+    if(/nuez|nueces|man[ií]\b|cacahuete|almendra|avellana|pistach|peanut|almond|hazelnut|walnut|pecan|anacardo|cashew/.test(n)) set.add('nuts');
+    if(/avena|\boat/.test(n)) set.add('oats'); if(/trigo|wheat/.test(n)) set.add('wheat'); }
+  return ['barley','wheat','rye','oats','milk','nuts'].filter(k=>set.has(k)).map(k=>LBL_ALG[k][EN()?1:0]);
+}
+function lblMeasured(r,c){
+  const Lg=r.log||{}, wcf=+Lg.wcf||1;
+  const pre=Lg.preBrix? brixToSG(+Lg.preBrix/wcf):null, og0=Lg.ogBrix? brixToSG(+Lg.ogBrix/wcf):null;
+  const preVol=+Lg.preVol||c.pre, postVol=+Lg.postVol||c.post;
+  const og = og0 || (pre? 1+(pre-1)*preVol/postVol : null);
+  const ogBr = og? sgToBrix(og):null;
+  const fgT = (Lg.fgBrix && og)? terrillFG(+(Lg.ogBrix||ogBr*wcf)/wcf, +Lg.fgBrix/wcf) : null;
+  const hyd = Lg.hydro? hydroCorr(+Lg.hydro, +Lg.hydroT||20, +Lg.hydroCal||20) : null;
+  return {og, fg: hyd||fgT};
+}
+function lblDate(s){ if(!s) return ''; const m=String(s).match(/^(\d{4})-(\d{2})-(\d{2})/); return m? `${m[3]}/${m[2]}/${m[1]}` : String(s); }
+function lblAddMonths(s,n){ const m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/); if(!m||!(n>0)) return ''; const d=new Date(+m[1], +m[2]-1+(+n), +m[3]); return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`; }
+function lblYeastName(n){ if(!n) return ''; const p=String(n).split(' - '); let s=p.length>1? p.slice(1).join(' - ')+' ('+p[0]+')' : p[0]; return s.replace(/\((\d+)\.0\)/,'$1').replace(/\s+\)/,')'); }
+function lblData(r,L){
+  const c=calc(r), s=STY[r.style]||{}, d={};
+  d.name=(L.name||r.name||'').trim(); d.sub=(L.sub||s.name||'').trim(); d.brewery=(L.brewery||r.brewer||'').trim(); d.tagline=(L.tagline||'').trim();
+  d.og=c.og; d.fg=c.fg; d.abv=c.abv; d.ibu=c.ibu; d.srm=c.srm; d.measured=false;
+  if(L.measured!==false){ const m=lblMeasured(r,c); if(m.og||m.fg){ d.og=m.og||c.og; d.fg=m.fg||c.fg; d.abv=lAbv(d.og,d.fg); d.measured=true; d.mOg=m.og; d.mFg=m.fg; } }
+  d.beerHex=srmHex(d.srm);
+  const grains=(r.fermentables||[]).filter(f=>(+f.kg||0)>0), tot=grains.reduce((a,f)=>a+(+f.kg||0),0)||1;
+  d.malts=grains.filter(f=>['grano','adjunto','extracto'].includes(f.type||'grano')).map(f=>`${f.name} ${lnf((+f.kg||0)/tot*100,0)} %`);
+  const others=grains.filter(f=>!['grano','adjunto','extracto'].includes(f.type||'grano')).map(f=>f.name);
+  const hops=[], dry=new Set(); (r.hops||[]).forEach(h=>{ if(!h.name) return; if(!hops.includes(h.name)) hops.push(h.name); if(h.use==='Dry hop') dry.add(h.name); });
+  d.hops=hops.map(n=>dry.has(n)? `${n} (${LT('también en dry hop','also dry hop')})` : n);
+  if(hops.length && dry.size===hops.length) d.hops=hops.map(n=>n), d.dryAll=true;
+  d.yeast=lblYeastName(r.yeast&&r.yeast.name);
+  d.misc=[...others, ...(r.misc||[]).map(m=>m.name).filter(Boolean)];
+  d.mash=(r.mash||[]).map(m=>`${lnf(+m.temp||0,0)} °C ${lnf(+m.time||0,0)} min`).join(' · ');
+  const Y=YEAST[r.yeast&&r.yeast.name]; d.ferm = (Y && +Y.tmin && +Y.tmax) ? `${lnf(+Y.tmin,0)}–${lnf(+Y.tmax,0)} °C` : '';
+  d.carb = r.carb && +r.carb.vols ? `${lnf(+r.carb.vols,1)} vol CO₂` : '';
+  d.serve = (L.serve||'').trim() || (d.abv>=8 || d.srm>=30 ? '10–13 °C' : d.srm>=14 ? '7–10 °C' : '4–7 °C');
+  d.brew=lblDate(r.log&&r.log.date); d.bottled=lblDate(L.bottled); d.best=lblAddMonths(L.bottled||(r.log&&r.log.date), +L.bestMonths);
+  d.batch=(L.batch||'').trim();
+  d.allergens=[...lblAllergens(r), ...String(L.allergensExtra||'').split(/[,;]/).map(x=>x.trim()).filter(Boolean)];
+  d.vol=+L.vol||0; d.desc=(L.desc||'').trim();
+  d.legend=(L.legend||'').trim() || LT('Beber con moderación. Prohibida su venta a menores de 18 años.','Drink responsibly. Not for sale to minors.');
+  return d;
+}
+
+/* ---------- medición de texto (en mm) ---------- */
+const lblCtx = document.createElement('canvas').getContext('2d');
+const lblMC = new Map();
+function lblW1(text, fid, bold, italic){ // ancho a 1 mm de tamaño
+  const k=fid+'|'+(bold?1:0)+(italic?1:0)+'|'+text; let v=lblMC.get(k); if(v!=null) return v;
+  const f=lblFont(fid), w=bold? (f.wb||700) : f.w;
+  lblCtx.font=`${italic?'italic ':''}${w} 100px ${lblFam(f)}`; v=lblCtx.measureText(text).width/100;
+  if(lblMC.size>20000) lblMC.clear(); lblMC.set(k,v); return v;
+}
+const lblWT = (text,fid,size,ls=0,bold=false,italic=false) => lblW1(text,fid,bold,italic)*size + ls*size*Math.max(0,[...text].length-1);
+
+/* ---------- geometría ---------- */
+const f2 = v => (Math.round(v*100)/100).toString();
+function lblOutline(L, i=0){
+  const W=+L.w, H=+L.h, R=Math.max(0,+L.radius||0), sh=L.shape||'rect';
+  const x0=i, y0=i, x1=W-i, y1=H-i, w=x1-x0, h=y1-y0; if(w<=0.6||h<=0.6) return '';
+  const rect=`M${f2(x0)},${f2(y0)} H${f2(x1)} V${f2(y1)} H${f2(x0)} Z`;
+  const ell=(cx,cy,rx,ry)=>`M${f2(cx-rx)},${f2(cy)} A${f2(rx)},${f2(ry)} 0 1 0 ${f2(cx+rx)},${f2(cy)} A${f2(rx)},${f2(ry)} 0 1 0 ${f2(cx-rx)},${f2(cy)} Z`;
+  const poly=pts=>'M'+pts.map(p=>f2(p[0])+','+f2(p[1])).join(' L')+' Z';
+  switch(sh){
+    case 'rounded': { const r=Math.min(Math.max(0,R-i), w/2, h/2); if(r<0.05) return rect;
+      return `M${f2(x0+r)},${f2(y0)} H${f2(x1-r)} A${f2(r)},${f2(r)} 0 0 1 ${f2(x1)},${f2(y0+r)} V${f2(y1-r)} A${f2(r)},${f2(r)} 0 0 1 ${f2(x1-r)},${f2(y1)} H${f2(x0+r)} A${f2(r)},${f2(r)} 0 0 1 ${f2(x0)},${f2(y1-r)} V${f2(y0+r)} A${f2(r)},${f2(r)} 0 0 1 ${f2(x0+r)},${f2(y0)} Z`; }
+    case 'notch': { const q=Math.min(R+i, W/2-0.5, H/2-0.5); if(q<=i+0.05) return rect; const a=Math.sqrt(q*q-i*i);
+      return `M${f2(a)},${f2(y0)} H${f2(W-a)} A${f2(q)},${f2(q)} 0 0 0 ${f2(x1)},${f2(a)} V${f2(H-a)} A${f2(q)},${f2(q)} 0 0 0 ${f2(W-a)},${f2(y1)} H${f2(a)} A${f2(q)},${f2(q)} 0 0 0 ${f2(x0)},${f2(H-a)} V${f2(a)} A${f2(q)},${f2(q)} 0 0 0 ${f2(a)},${f2(y0)} Z`; }
+    case 'chamfer': case 'oct': { const c0= sh==='oct'? Math.min(W,H)*0.29 : Math.min(R, W/2, H/2); const d=Math.min(c0+i*0.4142, w/2+i, h/2+i); if(d<=i+0.05) return rect;
+      return poly([[d,y0],[W-d,y0],[x1,d],[x1,H-d],[W-d,y1],[d,y1],[x0,H-d],[x0,d]]); }
+    case 'hex': { const c=Math.min(W*0.25, H*0.5*0.58)*(h/H); return poly([[x0+c,y0],[x1-c,y0],[x1,y0+h/2],[x1-c,y1],[x0+c,y1],[x0,y0+h/2]]); }
+    case 'oval': return ell(W/2,H/2,w/2,h/2);
+    case 'circle': { const r=Math.min(w,h)/2; return ell(W/2,H/2,r,r); }
+    case 'shield': return `M${f2(x0)},${f2(y0)} H${f2(x1)} V${f2(y0+h*0.52)} C${f2(x1)},${f2(y0+h*0.8)} ${f2(x0+w*0.66)},${f2(y0+h*0.93)} ${f2(x0+w/2)},${f2(y1)} C${f2(x0+w*0.34)},${f2(y0+h*0.93)} ${f2(x0)},${f2(y0+h*0.8)} ${f2(x0)},${f2(y0+h*0.52)} Z`;
+    case 'arch': { const ah=Math.min(w/2, h*0.42); return `M${f2(x0)},${f2(y1)} V${f2(y0+ah)} A${f2(w/2)},${f2(ah)} 0 0 1 ${f2(x1)},${f2(y0+ah)} V${f2(y1)} Z`; }
+    case 'scallop': case 'seal': {
+      const round = Math.abs(W-H) < 0.12*Math.max(W,H), rx=(round?Math.min(w,h):w)/2, ry=(round?Math.min(w,h):h)/2, cx=W/2, cy=H/2;
+      const per=Math.PI*(W+H)/2, pts=[];
+      if(sh==='scallop'){ const k=Math.max(10,Math.round(per/6.5)), a=Math.min(rx,ry)*0.05, N=k*16;
+        for(let j=0;j<N;j++){ const t=j/N*2*Math.PI, s=Math.sqrt(Math.abs(Math.sin(k*t/2))); pts.push([cx+(rx-a+a*s)*Math.cos(t), cy+(ry-a+a*s)*Math.sin(t)]); } }
+      else { const k=Math.max(16,Math.round(per/3.2)), dpt=Math.min(rx,ry)*0.055;
+        for(let j=0;j<k*2;j++){ const t=j/(k*2)*2*Math.PI, q=j%2? dpt:0; pts.push([cx+(rx-q)*Math.cos(t), cy+(ry-q)*Math.sin(t)]); } }
+      return poly(pts); }
+    default: return rect;
+  }
+}
+function lblFrameLines(L){
+  const fi=Math.max(0,+L.frameInset||0), fw=Math.max(0.1,+L.frameW||0.5), gap=Math.max(0.7,fw*2);
+  switch(L.frame){
+    case 'edge': return [{i:fw/2,w:fw}];
+    case 'single': return [{i:fi+fw/2,w:fw}];
+    case 'dashed': return [{i:fi+fw/2,w:fw,dash:`${f2(fw*4)} ${f2(fw*2.6)}`}];
+    case 'dotted': return [{i:fi+fw/2,w:fw*1.3,dash:`0 ${f2(fw*2.8)}`,cap:'round'}];
+    case 'double': return [{i:fi+fw/2,w:fw},{i:fi+fw*1.5+gap,w:fw}];
+    case 'thickthin': { const t=fw*2.2, n=fw*0.7; return [{i:fi+t/2,w:t},{i:fi+t+gap+n/2,w:n}]; }
+    case 'triple': return [0,1,2].map(k=>({i:fi+fw/2+k*(fw+gap*0.8),w:fw}));
+    default: return [];
+  }
+}
+const lblFrameExt = L => lblFrameLines(L).reduce((m,l)=>Math.max(m,l.i+l.w/2), 0);
+function lblIsRing(L){ return ['circle','seal','scallop'].includes(L.shape) && Math.abs(L.w-L.h) < 0.12*Math.max(L.w,L.h); }
+function lblSafe(L, back){
+  const W=+L.w, H=+L.h, sh=L.shape, R=+L.radius||0, fe=lblFrameExt(L)+(L.frame==='none'?2.2:1.6)+Math.max(0,+L.pad||0);
+  let x=fe, y=fe, w=W-2*fe, h=H-2*fe;
+  if(sh==='rounded'){ const p=Math.max(0,R-fe)*0.3; x+=p; w-=2*p; }
+  if(sh==='notch'){ const p=Math.max(0,R-fe*0.5)*0.55; x+=p; w-=2*p; }
+  if(sh==='chamfer'||sh==='oct'){ const c=sh==='oct'? Math.min(W,H)*0.29 : R, p=c*0.42; x+=p; w-=2*p; y+=p*0.25; h-=p*0.5; }
+  if(sh==='hex'){ const p=Math.min(W*0.25, H*0.29)*0.95; x+=p; w-=2*p; }
+  if(LBL_ROUNDISH.includes(sh)){ const round=Math.abs(W-H)<0.12*Math.max(W,H) || sh==='circle';
+    const extra=(sh==='seal'||sh==='scallop')? Math.min(W,H)*0.05 : 0;
+    const rx=(round?Math.min(W,H):W)/2-fe-extra, ry=(round?Math.min(W,H):H)/2-fe-extra;
+    w=2*rx*(back?0.8:0.79); h=2*ry*(back?0.68:0.61); x=W/2-w/2; y=H/2-h/2; }
+  if(sh==='shield'){ h-=H*0.2; x+=W*0.03; w-=W*0.06; }
+  if(sh==='arch'){ const ah=Math.min(W/2-fe, (H-2*fe)*0.42); y+=ah*0.42; h-=ah*0.42; x+=W*0.02; w-=W*0.04; }
+  return {x, y, w:Math.max(5,w), h:Math.max(5,h)};
+}
+
+/* ---------- figuras decorativas ---------- */
+function lblDecoSvg(dc, L, col, sepCol){
+  const W=+L.w, H=+L.h, M=Math.max(W,H), S=Math.max(0.3,(+dc.s||10)/100*M), r=S/2;
+  const n=Math.max(1,Math.round(+dc.n||LBL_DECO_N[dc.t]||1)), out=dc.st==='outline', sw=Math.max(0.1,+dc.sw||0.6);
+  const paint = out ? `fill="none" stroke="${col}" stroke-width="${f2(sw)}" stroke-linejoin="round"` : `fill="${col}"`;
+  const poly = pts => `<polygon points="${pts.map(p=>f2(p[0])+','+f2(p[1])).join(' ')}" ${paint}/>`;
+  const reg = (k,R,a0=-90) => Array.from({length:k},(_,j)=>{ const a=(a0+j*360/k)*Math.PI/180; return [R*Math.cos(a),R*Math.sin(a)]; });
+  const BIG=M*3; let b='';
+  switch(dc.t){
+    case 'circle': b=`<circle r="${f2(r)}" ${paint}/>`; break;
+    case 'ring': b=`<circle r="${f2(r)}" fill="none" stroke="${col}" stroke-width="${f2(sw)}"/>`; break;
+    case 'rings': for(let j=1;j<=n;j++) b+=`<circle r="${f2(r*j/n)}" fill="none" stroke="${col}" stroke-width="${f2(sw)}"/>`; break;
+    case 'square': b=`<rect x="${f2(-r)}" y="${f2(-r)}" width="${f2(S)}" height="${f2(S)}" ${paint}/>`; break;
+    case 'diamond': b=poly([[0,-r],[r*0.75,0],[0,r],[-r*0.75,0]]); break;
+    case 'triangle': b=poly(reg(3,r)); break;
+    case 'hexagon': b=poly(reg(6,r,0)); break;
+    case 'star': { const k=Math.max(3,n), pts=[]; for(let j=0;j<k*2;j++){ const a=(-90+j*180/k)*Math.PI/180, q=j%2? r*0.42 : r; pts.push([q*Math.cos(a),q*Math.sin(a)]); } b=poly(pts); break; }
+    case 'burst': { const k=Math.max(4,n); for(let j=0;j<k;j++){ const a1=j*2*Math.PI/k, a2=(j+0.5)*2*Math.PI/k; b+=out? `<line x1="0" y1="0" x2="${f2(r*Math.cos(a1))}" y2="${f2(r*Math.sin(a1))}" stroke="${col}" stroke-width="${f2(sw)}"/>` : `<polygon points="0,0 ${f2(r*Math.cos(a1))},${f2(r*Math.sin(a1))} ${f2(r*Math.cos(a2))},${f2(r*Math.sin(a2))}" fill="${col}"/>`; } break; }
+    case 'arc': b=`<path d="M${f2(-r)},0 A${f2(r)},${f2(r)} 0 0 1 ${f2(r)},0 Z" ${paint}/>`; break;
+    case 'band': { const t=(+dc.s||10)/100*H; b=`<rect x="${f2(-BIG/2)}" y="${f2(-t/2)}" width="${f2(BIG)}" height="${f2(t)}" ${paint}/>`; break; }
+    case 'stripes': { const k=Math.max(2,n), span=M*1.6, p=span/k, t=Math.min(0.95,(+dc.s||30)/100)*p;
+      for(let j=0;j<k;j++){ const y=-span/2+j*p; b+=`<rect x="${f2(-BIG/2)}" y="${f2(y)}" width="${f2(BIG)}" height="${f2(t)}" ${paint}/>`; } break; }
+    case 'waves': { const lam=S/Math.max(1,n), A=Math.max(0.4,lam*0.16), x0=-BIG/2, steps=Math.ceil(BIG/lam)*12; let d=`M${f2(x0)},0`;
+      for(let j=1;j<=steps;j++){ const x=x0+j*BIG/steps; d+=` L${f2(x)},${f2(A*Math.sin((x-x0)/lam*2*Math.PI))}`; }
+      if(out){ b=[0,1,2].map(k=>`<path d="${d}" transform="translate(0 ${f2(k*A*3)})" fill="none" stroke="${col}" stroke-width="${f2(sw)}"/>`).join(''); }
+      else b=`<path d="${d} L${f2(BIG/2)},${f2(BIG)} L${f2(x0)},${f2(BIG)} Z" fill="${col}"/>`; break; }
+    case 'chevron': { const k=Math.max(1,n), hgt=S*0.28, gap=S*0.16, wdt=out? sw : S*0.065;
+      for(let j=0;j<k;j++){ const y=(j-(k-1)/2)*gap; b+=`<polyline points="${f2(-r)},${f2(y+hgt/2)} 0,${f2(y-hgt/2)} ${f2(r)},${f2(y+hgt/2)}" fill="none" stroke="${col}" stroke-width="${f2(wdt)}" stroke-linejoin="miter"/>`; } break; }
+    case 'dots': { const k=Math.max(2,n), p=S/k, dr=p*0.18;
+      for(let a=0;a<k;a++) for(let c2=0;c2<k;c2++){ const x=-r+p/2+c2*p, y=-r+p/2+a*p; b+=out? `<circle cx="${f2(x)}" cy="${f2(y)}" r="${f2(dr)}" fill="none" stroke="${col}" stroke-width="${f2(sw*0.5)}"/>` : `<circle cx="${f2(x)}" cy="${f2(y)}" r="${f2(dr)}" fill="${col}"/>`; } break; }
+    case 'hop': { // cono de lúpulo geométrico: escamas en filas, tallo y hoja
+      const rows=[[2,-0.30],[3,-0.16],[3,-0.02],[3,0.12],[2,0.26],[1,0.38]], sc=S*0.15, sep=out?'':`stroke="${sepCol}" stroke-width="${f2(S*0.012)}"`;
+      b+=`<path d="M0,${f2(-S*0.36)} Q${f2(S*0.04)},${f2(-S*0.46)} ${f2(S*0.02)},${f2(-S*0.5)}" fill="none" stroke="${col}" stroke-width="${f2(Math.max(sw,S*0.025))}" stroke-linecap="round"/>`;
+      b+=`<ellipse cx="${f2(S*0.15)}" cy="${f2(-S*0.43)}" rx="${f2(S*0.12)}" ry="${f2(S*0.055)}" transform="rotate(-25 ${f2(S*0.15)} ${f2(-S*0.43)})" ${paint}/>`;
+      rows.forEach(([k,yy])=>{ for(let j=0;j<k;j++){ const x=(j-(k-1)/2)*sc*0.92; b+=`<path d="M${f2(x)},${f2(yy*S-sc*0.55)} C${f2(x+sc*0.6)},${f2(yy*S-sc*0.2)} ${f2(x+sc*0.45)},${f2(yy*S+sc*0.5)} ${f2(x)},${f2(yy*S+sc*0.62)} C${f2(x-sc*0.45)},${f2(yy*S+sc*0.5)} ${f2(x-sc*0.6)},${f2(yy*S-sc*0.2)} ${f2(x)},${f2(yy*S-sc*0.55)} Z" ${out?paint:`fill="${col}" ${sep}`}/>`; } });
+      break; }
+    case 'barley': { // espiga: tallo, granos en pares y barbas
+      const g=S*0.075; b+=`<line x1="0" y1="${f2(S*0.5)}" x2="0" y2="${f2(-S*0.3)}" stroke="${col}" stroke-width="${f2(Math.max(sw,S*0.02))}" stroke-linecap="round"/>`;
+      for(let j=0;j<5;j++){ const y=S*0.18-j*S*0.105; [-1,1].forEach(sd=>{ const cx=sd*g*0.8, cy=y;
+        b+=`<ellipse cx="${f2(cx)}" cy="${f2(cy)}" rx="${f2(g*0.55)}" ry="${f2(g)}" transform="rotate(${sd*28} ${f2(cx)} ${f2(cy)})" ${paint}/>`;
+        b+=`<line x1="${f2(cx+sd*g*0.3)}" y1="${f2(cy-g*0.8)}" x2="${f2(cx+sd*g*1.6)}" y2="${f2(cy-g*3)}" stroke="${col}" stroke-width="${f2(Math.max(0.1,S*0.006))}"/>`; }); }
+      b+=`<ellipse cx="0" cy="${f2(-S*0.36)}" rx="${f2(g*0.5)}" ry="${f2(g*0.95)}" ${paint}/><line x1="0" y1="${f2(-S*0.44)}" x2="0" y2="${f2(-S*0.56)}" stroke="${col}" stroke-width="${f2(Math.max(0.1,S*0.006))}"/>`;
+      break; }
+  }
+  const cx=(+dc.x||0)/100*W, cy=(+dc.y||0)/100*H, op=Math.max(0,Math.min(100,dc.op==null?100:+dc.op))/100;
+  return `<g transform="translate(${f2(cx)} ${f2(cy)}) rotate(${f2(+dc.rot||0)})" opacity="${f2(op)}">${b}</g>`;
+}
+function lblRole(L, role, hex, d){
+  switch(role){ case 'ink': return L.ink; case 'beer': return d.beerHex; case 'bg2': return L.bg2||L.bg; case 'white': return '#ffffff'; case 'black': return '#000000';
+    case 'custom': return hex||'#000000'; case 'frame': return lblRole(L, L.frameRole==='frame'?'accent':L.frameRole, L.frameHex, d);
+    default: return L.beerAccent ? d.beerHex : L.accent; }
+}
+
+/* ---------- textos: corte en líneas y dibujo ---------- */
+// runs: [{t, b:negrita, i:itálica, c:color, sw:color de muestra}]
+function lblTokens(runs){ const words=[], cur=[]; let sp=null;
+  const flush=()=>{ if(cur.length){ words.push({sp, parts:cur.splice(0)}); sp=null; } };
+  for(const r of runs){ if(r.sw){ cur.push(r); continue; }
+    for(const piece of String(r.t).split(/( +)/)){ if(!piece) continue; if(/^ +$/.test(piece)){ flush(); sp=Object.assign({},r,{t:' '}); } else cur.push(Object.assign({},r,{t:piece})); } }
+  flush(); return words; }
+const lblPW = (p,fid,ls) => p.sw ? 1.05 : lblW1(p.t,fid,p.b,p.i)+ls*Math.max(0,[...p.t].length);
+function lblWrap(runs, fid, maxW1, ls=0){ // anchos a tamaño 1
+  const words=lblTokens(runs), lines=[]; let line=[], w=0;
+  for(const wd of words){ const ww=wd.parts.reduce((a,p)=>a+lblPW(p,fid,ls),0), spw=wd.sp? lblPW(wd.sp,fid,ls):0;
+    if(!line.length){ line=[...wd.parts]; w=ww; }
+    else if(w+spw+ww<=maxW1){ if(wd.sp) line.push(wd.sp); line.push(...wd.parts); w+=spw+ww; }
+    else { lines.push({parts:line,w}); line=[...wd.parts]; w=ww; } }
+  if(line.length) lines.push({parts:line,w}); return lines; }
+function lblLineSvg(line, x, y, s, it, ink){ // x: inicio (izquierda)
+  const f=lblFont(it.f), ls=+it.ls||0; let cx=x, out='', buf=null;
+  const emit=()=>{ if(!buf) return; out+=`<text x="${f2(buf.x)}" y="${f2(y)}" font-family="${esc(lblFam(f))}" font-size="${f2(s)}" font-weight="${buf.b?(f.wb||700):f.w}"${buf.i?' font-style="italic"':''} fill="${buf.c||ink}"${ls?` letter-spacing="${f2(ls*s)}"`:''} xml:space="preserve">${esc(buf.t)}</text>`; buf=null; };
+  for(const p of line.parts){ const pw=lblPW(p,it.f,ls)*s;
+    if(p.sw){ emit(); out+=`<rect x="${f2(cx+0.1*s)}" y="${f2(y-0.68*s)}" width="${f2(0.8*s)}" height="${f2(0.8*s)}" rx="${f2(0.15*s)}" fill="${p.sw}" stroke="${ink}" stroke-opacity="0.35" stroke-width="${f2(Math.max(0.08,s*0.04))}"/>`; cx+=pw; continue; }
+    if(buf && buf.b===p.b && buf.i===p.i && buf.c===p.c){ buf.t+=p.t; } else { emit(); buf={x:cx,t:p.t,b:p.b,i:p.i,c:p.c}; }
+    cx+=pw; }
+  emit(); return out; }
+
+/* Ítems apilados: {k:'p', runs, f, rel, lh, max(líneas), ls, align}; {k:'name'}; {k:'div'}; {k:'logo'} */
+function lblMeasure(it, B, box, L){
+  const maxW=box.w;
+  if(it.k==='logo'){ let h=box.h*Math.min(45,+L.logoSize||28)/100, w=h*(+L.logoAR||1); if(w>maxW){ w=maxW; h=w/(+L.logoAR||1); } return {h,w}; }
+  if(it.k==='div'){ return {h:B*0.55, w:Math.min(maxW*0.55, B*7)}; }
+  if(it.k==='name'){
+    const ls=+it.ls||0; let s=Math.min(it.rel*B, box.h*0.46*(it.cap||1));
+    const w1=lblWT(it.text,it.f,1,ls);
+    if(it.arc){ const sag=Math.min(box.w*0.12, s*0.9); const cap=maxW*0.98; if(w1*s>cap) s=cap/w1; return {s, lines:[it.text], h:s*1.05+sag, sag}; }
+    let s1=Math.min(s, maxW/w1), best={s:s1, lines:[it.text]};
+    const words=it.text.split(' ');
+    if(words.length>1 && s1<s*0.82){ let bw=Infinity, bl=null;
+      for(let j=1;j<words.length;j++){ const a=words.slice(0,j).join(' '), c2=words.slice(j).join(' '); const mw=Math.max(lblWT(a,it.f,1,ls), lblWT(c2,it.f,1,ls)); if(mw<bw){ bw=mw; bl=[a,c2]; } }
+      const s2=Math.min(s, maxW/bw, box.h*0.3); if(s2>s1*1.12) best={s:s2, lines:bl}; }
+    return {s:best.s, lines:best.lines, h:best.lines.length*best.s*(best.lines.length>1?1.02:1.08)};
+  }
+  // párrafo
+  const lh=it.lh||1.22, ls=+it.ls||0; let s=it.rel*B, lines=lblWrap(it.runs, it.f, maxW/s, ls);
+  if(it.max){ let g=0; while(lines.length>it.max && g<25){ s*=0.93; lines=lblWrap(it.runs,it.f,maxW/s,ls); g++; } }
+  const mw=Math.max(...lines.map(l=>l.w)); if(mw*s>maxW) s=maxW/mw;
+  return {s, lines, h:lines.length*s*lh};
+}
+function lblFlow(items, footer, box, L, opt){
+  const gapK=opt.gap||0.36, run=B=>{ const ms=items.map(it=>lblMeasure(it,B,box,L)); const fm=footer? lblMeasure(footer,B,box,L):null;
+    const tot=ms.reduce((a,m)=>a+m.h,0)+gapK*B*Math.max(0,ms.length-1)+(fm? fm.h+gapK*B*1.2:0); return {ms,fm,tot}; };
+  let lo=opt.minB||0.4, hi=opt.maxB||box.h/2, res=run(lo);
+  if(res.tot<=box.h){ for(let k=0;k<22;k++){ const mid=(lo+hi)/2, r2=run(mid); if(r2.tot<=box.h){ lo=mid; res=r2; } else hi=mid; } }
+  return {B:lo, ...res, overflow: res.tot>box.h+0.05};
+}
+function lblDivSvg(L, cx, cy, w, B, col){
+  const s=B, t=Math.max(0.15,B*0.07);
+  switch(L.div){
+    case 'line': return `<line x1="${f2(cx-w/2)}" y1="${f2(cy)}" x2="${f2(cx+w/2)}" y2="${f2(cy)}" stroke="${col}" stroke-width="${f2(t)}"/>`;
+    case 'diamond': { const d=s*0.32; return `<line x1="${f2(cx-w/2)}" y1="${f2(cy)}" x2="${f2(cx-d*1.8)}" y2="${f2(cy)}" stroke="${col}" stroke-width="${f2(t)}"/><line x1="${f2(cx+d*1.8)}" y1="${f2(cy)}" x2="${f2(cx+w/2)}" y2="${f2(cy)}" stroke="${col}" stroke-width="${f2(t)}"/><polygon points="${f2(cx)},${f2(cy-d)} ${f2(cx+d)},${f2(cy)} ${f2(cx)},${f2(cy+d)} ${f2(cx-d)},${f2(cy)}" fill="${col}"/>`; }
+    case 'dots': return [-1,0,1].map(k=>`<circle cx="${f2(cx+k*s*0.8)}" cy="${f2(cy)}" r="${f2(s*0.13)}" fill="${col}"/>`).join('');
+    case 'stars': return [-1,0,1].map(k=>{ const R=s*(k?0.22:0.3), x=cx+k*s*0.85, pts=[]; for(let j=0;j<10;j++){ const a=(-90+j*36)*Math.PI/180, q=j%2?R*0.42:R; pts.push(f2(x+q*Math.cos(a))+','+f2(cy+q*Math.sin(a))); } return `<polygon points="${pts.join(' ')}" fill="${col}"/>`; }).join('');
+    case 'wave': { const A=s*0.12, n=4, x0=cx-w/2; let d=`M${f2(x0)},${f2(cy)}`; for(let j=1;j<=48;j++){ const x=x0+j*w/48; d+=` L${f2(x)},${f2(cy+A*Math.sin(j/48*n*2*Math.PI))}`; } return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${f2(t*1.3)}" stroke-linecap="round"/>`; }
+    default: return '';
+  }
+}
+function lblPlace(fl, items, footer, box, L, c, id){
+  const out=[]; const cx=box.x+box.w/2, gap=(fl.B)*0.36;
+  const draw=(it,m,y)=>{
+    if(it.k==='logo'){ out.push(`<image href="${L.logo}" xlink:href="${L.logo}" x="${f2(cx-m.w/2)}" y="${f2(y)}" width="${f2(m.w)}" height="${f2(m.h)}" preserveAspectRatio="xMidYMid meet"/>`); return; }
+    if(it.k==='div'){ out.push(lblDivSvg(L, cx, y+m.h/2, m.w, fl.B, c.accent)); return; }
+    if(it.k==='name'){ const f=lblFont(it.f), ls=+it.ls||0, s=m.s;
+      if(it.arc){ const pid=id+'arc', x0=box.x+box.w*0.01, x1=box.x+box.w*0.99, yb=y+m.h;
+        out.push(`<path id="${pid}" d="M${f2(x0)},${f2(yb)} Q${f2(cx)},${f2(yb-2*m.sag)} ${f2(x1)},${f2(yb)}" fill="none"/>`);
+        out.push(`<text font-family="${esc(lblFam(f))}" font-size="${f2(s)}" font-weight="${f.w}" fill="${it.color}"${ls?` letter-spacing="${f2(ls*s)}"`:''}><textPath href="#${pid}" xlink:href="#${pid}" startOffset="50%" text-anchor="middle">${esc(m.lines[0])}</textPath></text>`); return; }
+      m.lines.forEach((ln,j)=>{ const lh=m.lines.length>1?1.02:1.08; out.push(`<text x="${f2(cx+ls*s/2)}" y="${f2(y+s*(0.84+j*lh))}" font-family="${esc(lblFam(f))}" font-size="${f2(s)}" font-weight="${f.w}" fill="${it.color}" text-anchor="middle"${ls?` letter-spacing="${f2(ls*s)}"`:''}>${esc(ln)}</text>`); }); return; }
+    const lh=it.lh||1.22, al=it.align||'center';
+    m.lines.forEach((ln,j)=>{ const w=ln.w*m.s, x= al==='left'? box.x : cx-w/2; out.push(lblLineSvg(ln, x, y+m.s*(0.8+j*lh), m.s, it, c.ink)); });
+  };
+  const fh = fl.fm ? fl.fm.h + gap*1.2 : 0;
+  const groupH = fl.tot - fh; let y = box.y + Math.max(0,(box.h - fh - groupH)/2);
+  items.forEach((it,j)=>{ draw(it, fl.ms[j], y); y+=fl.ms[j].h+gap; });
+  if(footer) draw(footer, fl.fm, box.y+box.h-fl.fm.h);
+  return out.join('');
+}
+
+/* ---------- etiqueta completa ---------- */
+let lblUid=0, lblWarns=[];
+function lblStatsRuns(L,d,c,back){
+  const S=L.show, it=[];
+  const add=(k,v)=>it.push([{t:k+' ',b:true,c:c.accent},{t:v}]);
+  if(S.abv) add('ABV', lnf(d.abv,1)+' %');
+  if(S.ibu) add('IBU', lnf(d.ibu,0));
+  if(S.ogfg){ add('OG', lGrav(d.og)); if(back) add('FG', lGrav(d.fg)); }
+  if(S.color) it.push([{t:LT('Color','Colour')+' ',b:true,c:c.accent},{sw:d.beerHex},{t:lCol(d.srm)}]);
+  const runs=[]; it.forEach((x,j)=>{ if(j) runs.push({t:'  ·  ',c:c.accent}); runs.push(...x); }); return runs;
+}
+function lblFront(L,d,c,id){
+  const W=+L.w, H=+L.h, items=[], tc= s => L.titleCase==='upper'? s.toLocaleUpperCase(lang) : s;
+  const name={k:'name', text:tc(d.name||LT('Mi cerveza','My beer')), f:L.fTitle, rel:1.75*(+L.titleScale||1), ls:+L.titleLs||0, color:c.ink, arc:!!L.titleArc};
+  const statsR=lblStatsRuns(L,d,c,false);
+  const vol = d.vol ? `${lnf(d.vol,0)} ml` : '', abvT = L.show.abv ? `${lnf(d.abv,1)} % vol.` : '';
+  const footTxt=[vol,abvT].filter(Boolean).join('  ·  ');
+  const single = L.mode!=='dual';
+  const detail=[]; if(single){ if(L.show.batch&&d.batch) detail.push(LT('Lote','Batch')+' '+d.batch); if(L.show.dates&&d.best) detail.push(LT('Consumir antes de','Best before')+' '+d.best); if(L.show.allergens&&d.allergens.length) detail.push(LT('Contiene: ','Contains: ')+d.allergens.join(', ')); }
+  let out='';
+  if(lblIsRing(L)){
+    const R0=Math.min(W,H)/2-lblFrameExt(L)-0.6-Math.max(0,+L.pad||0), band=R0*0.25, cx=W/2, cy=H/2, rs0=band*0.5;
+    const top=(d.brewery||d.sub||'').toLocaleUpperCase(lang), bot=(d.brewery? d.sub : footTxt).toLocaleUpperCase(lang);
+    const ring=(txt,isTop)=>{ if(!txt) return ''; let rs=rs0; const r=isTop? R0-band/2-0.36*rs : R0-band/2+0.36*rs; const cap=Math.PI*r*0.78, w=lblWT(txt,L.fSub,1,0.12); if(w*rs>cap) rs=cap/w; const r2=isTop? R0-band/2-0.36*rs : R0-band/2+0.36*rs;
+      const pid=id+(isTop?'t':'b'), f=lblFont(L.fSub);
+      return `<path id="${pid}" d="M${f2(cx-r2)},${f2(cy)} A${f2(r2)},${f2(r2)} 0 0 ${isTop?1:0} ${f2(cx+r2)},${f2(cy)}" fill="none"/><text font-family="${esc(lblFam(f))}" font-size="${f2(rs)}" font-weight="${f.w}" fill="${c.accent}" letter-spacing="${f2(0.12*rs)}"><textPath href="#${pid}" xlink:href="#${pid}" startOffset="50%" text-anchor="middle">${esc(txt)}</textPath></text>`; };
+    out+=ring(top,true)+ring(bot,false);
+    out+=`<circle cx="${f2(cx)}" cy="${f2(cy)}" r="${f2(R0-band)}" fill="none" stroke="${c.accent}" stroke-width="${f2(Math.max(0.25,R0*0.012))}"/>`;
+    [-1,1].forEach(sd=>{ const x=cx+sd*(R0-band/2), q=rs0*0.32, pts=[]; for(let j=0;j<10;j++){ const a=(-90+j*36)*Math.PI/180, rr=j%2?q*0.42:q; pts.push(f2(x+rr*Math.cos(a))+','+f2(cy+rr*Math.sin(a))); } out+=`<polygon points="${pts.join(' ')}" fill="${c.accent}"/>`; });
+    const Ri=R0-band-0.8, box={x:cx-Ri*0.8, y:cy-Ri*0.66, w:Ri*1.6, h:Ri*1.32};
+    if(L.logo && L.logoPos==='top') items.push({k:'logo'});
+    items.push(name); if(L.div!=='none') items.push({k:'div'});
+    if(statsR.length) items.push({k:'p', runs:statsR, f:L.fBody, rel:0.42, max:2, lh:1.3});
+    if(d.tagline) items.push({k:'p', runs:[{t:d.tagline,i:true}], f:L.fBody, rel:0.44, max:2});
+    if(d.brewery && footTxt) items.push({k:'p', runs:[{t:footTxt,b:true}], f:L.fSub, rel:0.42, max:1, ls:0.06});
+    if(detail.length) items.push({k:'p', runs:[{t:detail.join(' · ')}], f:L.fBody, rel:0.3, max:3});
+    const fl=lblFlow(items,null,box,L,{maxB:Math.min(box.h/3, Math.max(3,Math.min(box.w,box.h)*0.16))}); if(fl.B<0.9) lblWarns.push(LT('El frente tiene mucho texto: la letra quedó muy chica.','The front has too much text: the type is very small.'));
+    return out+lblPlace(fl,items,null,box,L,c,id);
+  }
+  const box=lblSafe(L);
+  if(L.logo && L.logoPos==='top') items.push({k:'logo'});
+  if(d.brewery) items.push({k:'p', runs:[{t:d.brewery.toLocaleUpperCase(lang),c:c.accent}], f:L.fSub, rel:0.42, max:1, ls:0.16});
+  items.push(name);
+  if(L.div!=='none') items.push({k:'div'});
+  if(d.sub) items.push({k:'p', runs:[{t:d.sub,c:c.accent}], f:L.fSub, rel:0.6, max:1, ls:0.04});
+  if(statsR.length) items.push({k:'p', runs:statsR, f:L.fBody, rel:0.42, max:2, lh:1.32});
+  if(d.tagline) items.push({k:'p', runs:[{t:d.tagline,i:true}], f:L.fBody, rel:0.44, max:2});
+  if(detail.length) items.push({k:'p', runs:[{t:detail.join(' · ')}], f:L.fBody, rel:0.3, max:3});
+  const footer = footTxt ? {k:'p', runs:[{t:footTxt,b:true}], f:L.fSub, rel:0.42, max:1, ls:0.06} : null;
+  const fl=lblFlow(items,footer,box,L,{maxB:Math.min(box.h/3, Math.max(4,Math.min(box.w,box.h)*0.11))});
+  if(fl.overflow || fl.B<0.9) lblWarns.push(LT('El frente tiene mucho texto: la letra quedó muy chica. Probá pasar datos a la contraetiqueta o achicar el logo.','The front has too much text: the type is very small. Try moving data to the back label or shrinking the logo.'));
+  return lblPlace(fl,items,footer,box,L,c,id);
+}
+function lblBack(L,d,c,id){
+  const box=lblSafe(L,true), S=L.show, al = lblIsRing(L)||LBL_ROUNDISH.includes(L.shape)||L.shape==='shield' ? 'center' : (L.align||'left');
+  const items=[], P=(label,text,o={})=>{ if(!text) return; items.push(Object.assign({k:'p', runs: label? [{t:label+' ',b:true,c:c.accent},{t:text}] : [{t:text}], f:L.fBody, rel:1, align:al, lh:1.2}, o)); };
+  const tc = s => L.titleCase==='upper'? s.toLocaleUpperCase(lang) : s;
+  items.push({k:'name', text:tc(d.name||LT('Mi cerveza','My beer')), f:L.fTitle, rel:1.55, ls:+L.titleLs||0, color:c.ink, cap:0.4});
+  const subl=[d.brewery, d.sub].filter(Boolean).join(' · ');
+  if(subl) items.push({k:'p', runs:[{t:subl,c:c.accent}], f:L.fSub, rel:0.85, max:2, ls:0.03});
+  if(L.div!=='none') items.push({k:'div'});
+  if(S.desc && d.desc) d.desc.split(/\n\s*\n/).map(x=>x.replace(/\s*\n\s*/g,' ').trim()).filter(Boolean).forEach(x=>items.push({k:'p', runs:[{t:x,i:true}], f:L.fBody, rel:1, align:al, lh:1.2}));
+  if(S.malts && d.malts.length) P(LT('Maltas:','Malts:'), d.malts.join(', ')+'.');
+  if(S.hops && d.hops.length) P(LT('Lúpulos:','Hops:'), d.hops.join(', ')+(d.dryAll? ' ('+LT('dry hop','dry hop')+')':'')+'.');
+  if(S.yeast && d.yeast) P(LT('Levadura:','Yeast:'), d.yeast+'.');
+  if(S.misc && d.misc.length) P(LT('Otros:','Other:'), d.misc.join(', ')+'.');
+  const proc=[]; if(S.mash&&d.mash) proc.push(LT('macerado ','mash ')+d.mash); if(S.ferm&&d.ferm) proc.push(LT('fermentada a ','fermented at ')+d.ferm); if(S.carb&&d.carb) proc.push(LT('carbonatada a ','carbonated to ')+d.carb);
+  if(proc.length){ const t=proc.join('; '); P(LT('Elaboración:','Brewing:'), t.charAt(0).toUpperCase()+t.slice(1)+'.'); }
+  const st=lblStatsRuns(L,d,c,true); if(st.length) items.push({k:'p', runs:st, f:L.fBody, rel:1, align:al, lh:1.3});
+  if(S.serve && d.serve) P(LT('Servir a','Serve at'), d.serve+'.');
+  const dt=[]; if(S.batch&&d.batch) dt.push(LT('Lote ','Batch ')+d.batch); if(S.dates){ if(d.brew) dt.push(LT('elaborada el ','brewed ')+d.brew); if(d.bottled) dt.push(LT('envasada el ','bottled ')+d.bottled); if(d.best) dt.push(LT('consumir preferentemente antes del ','best before ')+d.best); }
+  if(dt.length){ const t=dt.join(' · '); P('', t.charAt(0).toUpperCase()+t.slice(1)+'.'); }
+  if(S.allergens && d.allergens.length) items.push({k:'p', runs:[{t:LT('Contiene:','Contains:')+' ',b:true},{t:d.allergens.join(', ')+'.',b:true}], f:L.fBody, rel:1, align:al, lh:1.2});
+  if(S.legend && d.legend) items.push({k:'p', runs:[{t:d.legend,i:true}], f:L.fBody, rel:0.85, align:al, lh:1.18});
+  const vol = d.vol ? `${lnf(d.vol,0)} ml` : '', ft=[vol, `${lnf(d.abv,1)} % vol.`].filter(Boolean).join('  ·  ');
+  const footer={k:'p', runs:[{t:ft,b:true}], f:L.fSub, rel:1.15, max:1, ls:0.05};
+  const fl=lblFlow(items,footer,box,L,{minB:1.15, maxB:3.4, gap:0.42});
+  if(fl.overflow) lblWarns.push(LT('La contraetiqueta no alcanza para todos los datos: desactivá algunos en «Datos», acortá la descripción o elegí un tamaño más grande.','The back label cannot fit all the data: turn some off under “Data”, shorten the description or pick a bigger size.'));
+  return lblPlace(fl,items,footer,box,L,c,id);
+}
+function lblSvg(r, L, side='front', opt={}){
+  const id='lb'+(++lblUid)+side[0], W=+L.w, H=+L.h, d=opt.d||lblData(r,L);
+  const c={ink:L.ink, accent:lblRole(L,'accent',null,d)};
+  const back=side==='back', outline=lblOutline(L,0);
+  let defs=`<clipPath id="${id}c"><path d="${outline}"/></clipPath>`, fill=L.bg;
+  if(L.grad && L.grad!=='none'){ const g2=L.bg2||L.bg;
+    defs+= L.grad==='radial' ? `<radialGradient id="${id}g" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="${L.bg}"/><stop offset="1" stop-color="${g2}"/></radialGradient>`
+      : `<linearGradient id="${id}g" x1="0" y1="0" x2="${L.grad==='h'?1:0}" y2="${L.grad==='h'?0:1}"><stop offset="0" stop-color="${L.bg}"/><stop offset="1" stop-color="${g2}"/></linearGradient>`;
+    fill=`url(#${id}g)`; }
+  let body=`<path d="${outline}" fill="${fill}"/>`;
+  const decoK = back ? (L.decoBack==='none'?0 : L.decoBack==='same'?1 : 0.3) : 1;
+  if(decoK>0) for(const dc of L.shapes||[]){ const dd=Object.assign({},dc,{op:(dc.op==null?100:+dc.op)*decoK}); body+=lblDecoSvg(dd, L, lblRole(L,dc.c,dc.hex,d), L.bg); }
+  if(!back && L.logo && L.logoPos==='bg'){ const sz=Math.min(W,H)*Math.min(100,+L.logoSize||28)/100*2.2, ar=+L.logoAR||1, w=ar>=1? sz : sz*ar, h=ar>=1? sz/ar : sz;
+    body+=`<image href="${L.logo}" xlink:href="${L.logo}" x="${f2(W/2-w/2)}" y="${f2(H/2-h/2)}" width="${f2(w)}" height="${f2(h)}" opacity="${f2((+L.logoOp||15)/100)}" preserveAspectRatio="xMidYMid meet"/>`; }
+  const fcol=lblRole(L,'frame',null,d);
+  let frames=lblFrameLines(L).map(fl=>`<path d="${lblOutline(L,fl.i)}" fill="none" stroke="${fcol}" stroke-width="${f2(fl.w)}"${fl.dash?` stroke-dasharray="${fl.dash}"`:''}${fl.cap?` stroke-linecap="${fl.cap}"`:''}/>`).join('');
+  const text = back ? lblBack(L,d,c,id) : lblFront(L,d,c,id);
+  let style='';
+  if(opt.embed && window.LBL_FONT_DATA){ const used=new Set([L.fTitle,L.fSub,L.fBody]); const faces=[];
+    for(const fid of used){ const f=lblFont(fid); for(const w of [f.w, f.wb].filter(Boolean)){ const b64=window.LBL_FONT_DATA[f.fam+'|'+w]; if(b64) faces.push(`@font-face{font-family:'${f.fam}';font-weight:${w};src:url(data:font/woff2;base64,${b64}) format('woff2');}`); } }
+    style=`<style>${faces.join('')}</style>`; }
+  const cut = opt.cut ? `<path d="${outline}" fill="none" stroke="#9a9a9a" stroke-width="0.15"/>` : '';
+  const size = opt.px ? `width="${Math.round(opt.px)}" height="${Math.round(opt.px*H/W)}"` : opt.mm ? `width="${W}mm" height="${H}mm"` : '';
+  return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${W} ${H}" ${size} role="img" aria-label="${esc((back?LT('Contraetiqueta de ','Back label of '):LT('Etiqueta de ','Label of '))+(d.name||''))}">${style}<defs>${defs}</defs><g clip-path="url(#${id}c)">${body}</g>${frames}<g clip-path="url(#${id}c)">${text}</g>${cut}</svg>`;
+}
+
+/* ---------- fuentes ---------- */
+let lblFontsP=null, lblFontsOk=false;
+function lblLoadFonts(){
+  if(lblFontsP) return lblFontsP;
+  lblFontsP=new Promise(res=>{
+    const done=()=>{ Promise.resolve(window.LBL_FONTS_READY).catch(()=>{}).then(()=>{ lblFontsOk=!!window.LBL_FONT_DATA; lblMC.clear(); res(); }); };
+    if(window.LBL_FONT_DATA){ done(); return; }
+    const s=document.createElement('script'); s.src='fonts/label-fonts.js'; s.onload=done; s.onerror=()=>res(); document.head.appendChild(s);
+  });
+  return lblFontsP;
+}
+
+/* ---------- pestaña ---------- */
+const lblOpen={tpl:true};
+const lblOpt = (arr, sel) => arr.map(([v,es,en])=>`<option value="${v}" ${v===sel?'selected':''}>${esc(EN()?en:es)}</option>`).join('');
+const lblId = p => 'lb-'+p.replace(/\./g,'-');
+function lblRange(path, v, min, max, step, label, unit=''){
+  return `<label class="lbl-rng"><span>${label}</span><input type="range" id="${lblId(path)}" data-lb="${path}" data-lbn min="${min}" max="${max}" step="${step}" value="${v??0}"><output>${v??0}${unit}</output></label>`; }
+function lblNum(path, v, label, step='any', ph=''){ return `<div class="field"><label for="${lblId(path)}">${label}</label><input type="text" inputmode="decimal" id="${lblId(path)}" data-lb="${path}" data-lbn value="${v??''}" placeholder="${esc(ph)}"></div>`; }
+function lblTxt(path, v, label, ph=''){ return `<div class="field"><label for="${lblId(path)}">${label}</label><input type="text" id="${lblId(path)}" data-lb="${path}" value="${esc(v||'')}" placeholder="${esc(ph)}"></div>`; }
+function lblSel(path, v, label, opts, rer=true){ return `<div class="field"><label for="${lblId(path)}">${label}</label><select id="${lblId(path)}" data-lb="${path}" ${rer?'data-lbr':''}>${opts}</select></div>`; }
+function lblColor(path, v, label){ return `<label class="lbl-col"><input type="color" id="${lblId(path)}" data-lb="${path}" value="${esc(v||'#000000')}"><span>${label}</span></label>`; }
+function lblChk(path, v, label, rer=false){ return `<label class="check"><input type="checkbox" id="${lblId(path)}" data-lb="${path}" ${v?'checked':''} ${rer?'data-lbr':''}> ${label}</label>`; }
+function lblFontSel(path, v, label){
+  const opts=LBL_FONT_CATS.map(([k,es,en])=>`<optgroup label="${esc(EN()?en:es)}">${LBL_FONTS.filter(f=>f.cat===k).map(f=>`<option value="${f.id}" ${f.id===v?'selected':''}>${esc(f.n)}</option>`).join('')}</optgroup>`).join('');
+  const f=lblFont(v);
+  return `<div class="field"><label for="${lblId(path)}">${label}</label><select id="${lblId(path)}" data-lb="${path}" data-lbr>${opts}</select><span class="lbl-sample" data-noi18n style="font-family:${esc(lblFam(f))};font-weight:${f.w}">Aa Cerveza 1234</span></div>`; }
+function lblMiniShape(sh){ const L={w:30,h:22,shape:sh,radius:5}; return `<svg viewBox="-1 -1 32 24" width="32" height="24" aria-hidden="true"><path d="${lblOutline(L,0)}" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="1"/></svg>`; }
+function lblMiniDeco(t){ const L={w:24,h:24}; const dc=lblDeco(t,{s:t==='band'?30:t==='stripes'?40:t==='waves'?90:t==='dots'?80:84, n:t==='rings'?3:t==='stripes'?5:t==='waves'?2:t==='dots'?4:t==='burst'?12:LBL_DECO_N[t], sw:1.4, y:t==='waves'?45:t==='arc'?70:50, st:(t==='ring'||t==='rings')?'outline':'solid'});
+  return `<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><defs><clipPath id="lbm${t}"><rect width="24" height="24" rx="3"/></clipPath></defs><g clip-path="url(#lbm${t})">${lblDecoSvg(dc,L,'currentColor','transparent')}</g></svg>`; }
+function lblRender(){
+  const r=cur, L=lblCur(), d=lblData(r,L), sz=LBL_SIZES[L.size]||LBL_SIZES.custom;
+  if(!lblFontsP) lblLoadFonts().then(()=>{ if(tab==='etiqueta' && cur) lblRerender(); });
+  requestAnimationFrame(lblStickyTop);
+  const sec=(key,title,html)=>`<details class="lbl-sec" data-lbsec="${key}" ${lblOpen[key]?'open':''}><summary>${title}</summary><div class="lbl-secb">${html}</div></details>`;
+  const tpls=Object.entries(LBL_TPL).map(([k,t])=>{ const L2=Object.assign(clone(L), clone(t), {logo:'', mode:'dual'}); L2.shapes=L2.shapes.map(o=>lblDeco(o.t,o)); if(sz.round && !LBL_ROUNDISH.includes(L2.shape)) L2.shape='circle';
+    return `<button class="lbl-tpl" data-lba="tpl" data-v="${k}" title="${esc(EN()?t.n[1]:t.n[0])}"><span data-noi18n>${lblSvg(r,L2,'front',{d})}</span><b>${esc(EN()?t.n[1]:t.n[0])}</b></button>`; }).join('');
+  const shapeBtns=LBL_SHAPES.map(([v,es,en])=>`<button class="lbl-pick" data-lba="shape" data-v="${v}" aria-pressed="${L.shape===v}" title="${esc(EN()?en:es)}">${lblMiniShape(v)}<span>${esc(EN()?en:es)}</span></button>`).join('');
+  const decoBtns=LBL_DECOS.map(([v,es,en])=>`<button class="lbl-pick sm" data-lba="add" data-v="${v}" title="${esc(EN()?en:es)}">${lblMiniDeco(v)}<span>${esc(EN()?en:es)}</span></button>`).join('');
+  const compBtns=Object.entries(LBL_COMP).map(([k,[n]])=>`<button class="btn small" data-lba="comp" data-v="${k}">+ ${esc(EN()?n[1]:n[0])}</button>`).join('');
+  const layers=(L.shapes||[]).map((s,i)=>{ const p=`shapes.${i}`, usesN=LBL_DECO_N[s.t]!=null, outl=s.st==='outline'||s.t==='ring'||s.t==='rings';
+    return `<div class="lbl-layer">
+      <div class="lbl-lhead"><span class="lbl-licon" style="color:${esc(lblRole(L,s.c,s.hex,d))}">${lblMiniDeco(s.t)}</span>
+        <select data-lb="${p}.t" id="${lblId(p+'.t')}" data-lbr aria-label="${LT('Figura','Shape')}">${lblOpt(LBL_DECOS,s.t)}</select>
+        <span class="lbl-lbtns"><button class="btn icon ghost" data-lba="up" data-v="${i}" title="${LT('Subir (más al frente)','Bring forward')}" ${i===L.shapes.length-1?'disabled':''}>↑</button><button class="btn icon ghost" data-lba="down" data-v="${i}" title="${LT('Bajar (más al fondo)','Send backward')}" ${i===0?'disabled':''}>↓</button><button class="btn icon ghost" data-lba="dup" data-v="${i}" title="${LT('Duplicar','Duplicate')}">⧉</button><button class="btn icon ghost danger" data-lba="del" data-v="${i}" title="${LT('Quitar','Remove')}">✕</button></span></div>
+      <div class="lbl-lrow">
+        <select data-lb="${p}.c" id="${lblId(p+'.c')}" data-lbr aria-label="${LT('Color','Colour')}">${lblOpt(LBL_ROLES,s.c)}</select>
+        <input type="color" data-lb="${p}.hex" id="${lblId(p+'.hex')}" value="${esc(s.c==='custom'?(s.hex||'#000000'):lblRole(L,s.c,s.hex,d))}" aria-label="${LT('Color personalizado','Custom colour')}">
+        ${['ring','rings','band','stripes'].includes(s.t)?'':`<select data-lb="${p}.st" id="${lblId(p+'.st')}" data-lbr aria-label="${LT('Estilo','Style')}">${lblOpt([['solid','Relleno','Filled'],['outline','Contorno','Outline']],s.st)}</select>`}
+      </div>
+      <div class="lbl-rngs">
+        ${lblRange(p+'.x',s.x,-20,120,1,'X','%')}${lblRange(p+'.y',s.y,-20,120,1,'Y','%')}
+        ${lblRange(p+'.s',s.s,1,s.t==='band'?100:200,1,s.t==='band'?LT('Grosor','Thickness'):s.t==='stripes'?LT('Ancho de raya','Stripe width'):LT('Tamaño','Size'),'%')}
+        ${lblRange(p+'.rot',s.rot,-180,180,1,LT('Giro','Rotate'),'°')}${lblRange(p+'.op',s.op,0,100,1,LT('Opacidad','Opacity'),'%')}
+        ${usesN?lblRange(p+'.n',s.n,s.t==='star'?3:2,s.t==='burst'?60:s.t==='dots'?40:30,1,s.t==='star'?LT('Puntas','Points'):s.t==='waves'?LT('Ondas','Waves'):LT('Cantidad','Count')):''}
+        ${outl||s.t==='burst'&&s.st==='outline'?lblRange(p+'.sw',s.sw,0.1,4,0.1,LT('Línea','Line'),' mm'):''}
+      </div></div>`; }).reverse().join('');
+  const pal=LBL_PAL.map(([es,en,b1,b2,ink,ac],i)=>`<button class="lbl-pal" data-lba="pal" data-v="${i}" title="${esc(EN()?en:es)}"><i style="background:${b1}"></i><i style="background:${b2}"></i><i style="background:${ink}"></i><i style="background:${ac}"></i></button>`).join('');
+  const S=L.show, ck=(k,es,en)=>lblChk('show.'+k, S[k], LT(es,en));
+  const meas=d.measured ? LT(`Se usan tus lecturas reales (${[d.mOg&&'OG '+lGrav(d.mOg), d.mFg&&'FG '+lGrav(d.mFg)].filter(Boolean).join(' · ')}) → ${lnf(d.abv,1)} % ABV.`,`Using your real readings (${[d.mOg&&'OG '+lGrav(d.mOg), d.mFg&&'FG '+lGrav(d.mFg)].filter(Boolean).join(' · ')}) → ${lnf(d.abv,1)} % ABV.`)
+    : L.measured===false ? LT('Se usan los valores estimados de la receta.','The recipe’s estimated values are used.') : LT('Todavía no hay lecturas en la pestaña Refractómetro: se usan los valores estimados de la receta.','No readings in the Refractometer tab yet: the recipe’s estimated values are used.');
+  const per=lblPerPage(L);
+  return `<div class="lbl-wrap">
+  <div class="lbl-ctl">
+    ${sec('tpl',LT('Plantilla y tamaño','Template and size'),`
+      <div class="lbl-tpls">${tpls}</div>
+      <p class="info" style="margin:0">${LT('La plantilla cambia forma, marco, figuras, letras y colores; tus textos y datos quedan como están. Después podés ajustar todo abajo.','A template changes shape, frame, shapes, type and colours; your texts and data stay as they are. You can then fine-tune everything below.')}</p>
+      <div class="grid">
+        ${lblSel('size',L.size,LT('Tamaño','Size'),Object.entries(LBL_SIZES).map(([k,v])=>`<option value="${k}" ${k===L.size?'selected':''}>${esc(EN()?v.en:v.es)}</option>`).join(''))}
+        ${L.size==='custom'? lblNum('w',L.w,LT('Ancho (mm)','Width (mm)'))+lblNum('h',L.h,LT('Alto (mm)','Height (mm)')) : ''}
+        ${lblSel('mode',L.mode,LT('Caras','Sides'),lblOpt([['dual','Frente y contraetiqueta','Front and back label'],['single','Una sola etiqueta','Single label']],L.mode))}
+      </div>`)}
+    ${sec('txt',LT('Textos','Texts'),`
+      <div class="grid">
+        ${lblTxt('name',L.name,LT('Nombre de la cerveza','Beer name'),r.name)}
+        ${lblTxt('sub',L.sub,LT('Subtítulo / estilo','Subtitle / style'),(STY[r.style]||{}).name||'')}
+        ${lblTxt('brewery',L.brewery,LT('Cervecería','Brewery'),r.brewer||LT('Tu cervecería','Your brewery'))}
+        ${lblTxt('tagline',L.tagline,LT('Frase corta','Tagline'),LT('Ej.: Cítrica y refrescante','E.g. Citrusy and refreshing'))}
+        ${lblNum('vol',L.vol,LT('Contenido (ml)','Contents (ml)'),'1')}
+      </div>
+      <div class="field"><label for="lb-desc">${LT('Descripción (contraetiqueta)','Description (back label)')}</label><textarea id="lb-desc" data-lb="desc" style="min-height:70px" placeholder="${esc(LT('Cómo es, cómo se hizo, con qué acompañarla…','What it is like, how it was made, food pairing…'))}">${esc(L.desc||'')}</textarea></div>
+      <div class="field"><label for="lb-legend">${LT('Leyenda legal','Legal notice')}</label><input type="text" id="lb-legend" data-lb="legend" value="${esc(L.legend||'')}" placeholder="${esc(d.legend)}"></div>`)}
+    ${sec('shape',LT('Forma y contorno','Shape and outline'),`
+      <div class="lbl-picks">${shapeBtns}</div>
+      <div class="lbl-rngs">
+        ${lblRange('pad',L.pad||0,0,12,0.5,LT('Margen interior','Inner margin'),' mm')}
+        ${['rounded','notch','chamfer'].includes(L.shape)?lblRange('radius',L.radius,0,Math.round(Math.min(L.w,L.h)/2),0.5,L.shape==='chamfer'?LT('Corte de esquina','Corner cut'):LT('Radio de esquina','Corner radius'),' mm'):''}
+      </div>
+      <div class="grid">
+        ${lblSel('frame',L.frame,LT('Marco','Frame'),lblOpt(LBL_FRAMES,L.frame))}
+        ${L.frame!=='none'?lblSel('frameRole',L.frameRole,LT('Color del marco','Frame colour'),lblOpt(LBL_ROLES,L.frameRole)):''}
+        ${L.frame!=='none'&&L.frameRole==='custom'?`<div class="field"><label for="lb-frameHex">${LT('Color','Colour')}</label><input type="color" id="lb-frameHex" data-lb="frameHex" value="${esc(L.frameHex||'#000000')}"></div>`:''}
+        ${lblSel('div',L.div,LT('Separador bajo el nombre','Divider under the name'),lblOpt(LBL_DIVS,L.div))}
+      </div>
+      ${L.frame!=='none'?`<div class="lbl-rngs">${lblRange('frameW',L.frameW,0.1,2,0.05,LT('Grosor del marco','Frame thickness'),' mm')}${L.frame!=='edge'?lblRange('frameInset',L.frameInset,0,8,0.1,LT('Separación del borde','Distance from edge'),' mm'):''}</div>`:''}`)}
+    ${sec('deco',LT('Figuras geométricas','Geometric shapes'),`
+      <p class="info" style="margin:0">${LT('Tocá una figura para agregarla, o una combinación ya armada. Cada figura se puede mover, agrandar, girar, cambiar de color y de opacidad; las de arriba de la lista quedan al frente.','Tap a shape to add it, or a ready-made combination. Each shape can be moved, resized, rotated and recoloured; the ones at the top of the list sit in front.')}</p>
+      <div class="lbl-picks sm">${decoBtns}</div>
+      <div class="lbl-comps"><span class="lbl">${LT('Combinaciones','Combinations')}</span>${compBtns}</div>
+      ${L.shapes.length?`<div class="lbl-layers">${layers}</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn small danger" data-lba="clear">${LT('Quitar todas las figuras','Remove all shapes')}</button>${L.mode==='dual'?lblSel('decoBack',L.decoBack,LT('En la contraetiqueta','On the back label'),lblOpt([['soft','Suaves, para que se lea el texto','Faded, so the text reads well'],['same','Iguales que en el frente','Same as the front'],['none','Sin figuras','No shapes']],L.decoBack),false):''}</div>`:`<p class="empty">${LT('Todavía no hay figuras.','No shapes yet.')}</p>`}`)}
+    ${sec('type',LT('Tipografía','Typography'),`
+      <div class="grid">
+        ${lblFontSel('fTitle',L.fTitle,LT('Letra del nombre','Name typeface'))}
+        ${lblFontSel('fSub',L.fSub,LT('Letra de subtítulos','Subtitle typeface'))}
+        ${lblFontSel('fBody',L.fBody,LT('Letra de los datos','Data typeface'))}
+        ${lblSel('titleCase',L.titleCase,LT('Nombre en','Name in'),lblOpt([['none','Como está escrito','As written'],['upper','MAYÚSCULAS','CAPITALS']],L.titleCase),false)}
+      </div>
+      <div class="lbl-rngs">${lblRange('titleScale',L.titleScale,0.5,1.6,0.05,LT('Tamaño del nombre','Name size'),'×')}${lblRange('titleLs',L.titleLs,-0.05,0.4,0.01,LT('Espaciado de letras','Letter spacing'))}</div>
+      ${lblChk('titleArc',L.titleArc,LT('Nombre en arco','Arched name'))}
+      ${!lblFontsOk?`<p class="info" style="margin:0">${LT('Las letras se cargan desde la carpeta de la app; si abriste el archivo HTML suelto, se ven con letras parecidas del sistema.','Typefaces load from the app folder; if you opened the HTML file on its own, similar system fonts are used.')}</p>`:''}`)}
+    ${sec('col',LT('Colores','Colours'),`
+      <div class="lbl-pals">${pal}</div>
+      <div class="lbl-cols">
+        ${lblColor('bg',L.bg,LT('Fondo','Background'))}${lblColor('bg2',L.bg2,LT('Fondo 2','Background 2'))}${lblColor('ink',L.ink,LT('Texto','Text'))}${lblColor('accent',L.accent,LT('Acento','Accent'))}
+      </div>
+      <div class="grid">${lblSel('grad',L.grad,LT('Fondo','Background'),lblOpt([['none','Liso','Solid'],['v','Degradado vertical','Vertical gradient'],['h','Degradado horizontal','Horizontal gradient'],['radial','Degradado radial','Radial gradient']],L.grad),false)}</div>
+      ${lblChk('beerAccent',L.beerAccent,LT(`Usar el color de la cerveza como acento (${lCol(d.srm)})`,`Use the beer colour as accent (${lCol(d.srm)})`),true)}`)}
+    ${sec('data',LT('Datos de elaboración','Brewing data'),`
+      <p class="info" style="margin:0">${meas}</p>
+      ${lblChk('measured',L.measured!==false,LT('Usar las lecturas reales del refractómetro o densímetro','Use the real refractometer or hydrometer readings'),true)}
+      <div class="lbl-checks"><b>${LT('En el frente','On the front')}</b>${ck('abv','Alcohol (ABV)','Alcohol (ABV)')}${ck('ibu','Amargor (IBU)','Bitterness (IBU)')}${ck('ogfg','Densidad (OG y FG)','Gravity (OG and FG)')}${ck('color','Color','Colour')}</div>
+      <div class="lbl-checks"><b>${L.mode==='dual'?LT('En la contraetiqueta','On the back label'):LT('Al pie del frente','At the bottom of the front')}</b>
+        ${L.mode==='dual'?ck('malts','Maltas con %','Malts with %')+ck('hops','Lúpulos','Hops')+ck('yeast','Levadura','Yeast')+ck('misc','Otros ingredientes','Other ingredients')+ck('mash','Macerado','Mash')+ck('ferm','Temperatura de fermentación','Fermentation temperature')+ck('carb','Carbonatación','Carbonation')+ck('serve','Temperatura de servicio','Serving temperature')+ck('desc','Descripción','Description')+ck('legend','Leyenda legal','Legal notice'):''}
+        ${ck('batch','Número de lote','Batch number')}${ck('dates','Fechas y consumo preferente','Dates and best before')}${ck('allergens','Alérgenos','Allergens')}</div>
+      <div class="grid">
+        ${lblTxt('batch',L.batch,LT('Lote','Batch'),'L-001')}
+        <div class="field"><label for="lb-bottled">${LT('Fecha de envasado','Bottling date')}</label><input type="date" id="lb-bottled" data-lb="bottled" value="${esc(L.bottled||'')}"></div>
+        ${lblNum('bestMonths',L.bestMonths,LT('Consumo preferente (meses)','Best before (months)'),'1','6')}
+        ${L.mode==='dual'?lblTxt('serve',L.serve,LT('Servir a','Serve at'),d.serve.replace(' ',' ')):''}
+        ${lblTxt('allergensExtra',L.allergensExtra,LT('Otros alérgenos','Other allergens'),LT('Ej.: sulfitos','E.g. sulphites'))}
+      </div>
+      <p class="info" style="margin:0">${LT('La fecha de cocción sale de la pestaña Refractómetro','The brew date comes from the Refractometer tab')}${d.brew?` (${esc(d.brew)})`:LT(' (todavía vacía)',' (still empty)')}. ${LT('El consumo preferente se cuenta desde el envasado.','Best before counts from bottling.')} ${d.allergens.length?LT('Alérgenos detectados en la receta: ','Allergens found in the recipe: ')+esc(d.allergens.join(', '))+'.':LT('No se detectaron alérgenos en los ingredientes.','No allergens detected in the ingredients.')}</p>`)}
+    ${sec('logo',LT('Logo o imagen','Logo or image'),`
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><label class="btn small" for="lbl-logo" style="cursor:pointer">${L.logo?LT('Cambiar imagen…','Change image…'):LT('Elegir imagen…','Choose image…')}</label><input type="file" id="lbl-logo" accept="image/*" hidden>${L.logo?`<button class="btn small danger" data-lba="logoDel">${LT('Quitar','Remove')}</button>`:''}</div>
+      ${L.logo?`<div class="grid">${lblSel('logoPos',L.logoPos,LT('Ubicación','Position'),lblOpt([['top','Arriba del nombre','Above the name'],['bg','De fondo','As background'],['none','No mostrar','Hidden']],L.logoPos))}</div>
+      <div class="lbl-rngs">${lblRange('logoSize',L.logoSize,5,L.logoPos==='bg'?100:45,1,LT('Tamaño','Size'),'%')}${L.logoPos==='bg'?lblRange('logoOp',L.logoOp,3,100,1,LT('Opacidad','Opacity'),'%'):''}</div>`:''}
+      <p class="info" style="margin:0">${LT('La imagen se guarda dentro del recetario (.json). Un PNG con fondo transparente queda mejor.','The image is saved inside the recipe book (.json). A PNG with a transparent background works best.')}</p>`)}
+  </div>
+  <div class="lbl-prev">
+    <div class="lbl-cards" id="lblPrev" data-noi18n>${lblPreviewHTML(r,L,d)}</div>
+    <div id="lblWarn" class="warns">${lblWarnHTML()}</div>
+    <div class="lbl-actions">
+      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+        ${lblNum('copies',L.copies||'',L.mode==='dual'?LT('Botellas a imprimir','Bottles to print'):LT('Etiquetas a imprimir','Labels to print'),'1',String(per.n))}
+      </div>
+      ${lblChk('cut',L.cut!==false,LT('Líneas de corte','Cut lines'))}
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn primary" data-lba="print">${LT('Imprimir en A4','Print on A4')}</button>
+        <button class="btn" data-lba="png" data-v="front">${L.mode==='dual'?LT('PNG del frente','Front PNG'):'PNG'}</button>
+        ${L.mode==='dual'?`<button class="btn" data-lba="png" data-v="back">${LT('PNG de la contraetiqueta','Back PNG')}</button>`:''}
+        <button class="btn" data-lba="svg" data-v="front">${L.mode==='dual'?LT('SVG del frente','Front SVG'):'SVG'}</button>
+        ${L.mode==='dual'?`<button class="btn" data-lba="svg" data-v="back">${LT('SVG de la contraetiqueta','Back SVG')}</button>`:''}
+      </div>
+      <p class="info" style="margin:0">${LT(`Una hoja A4 lleva ${per.n} ${L.mode==='dual'?(per.n===1?'botella (frente y contraetiqueta)':'botellas (frente y contraetiqueta)'):(per.n===1?'etiqueta':'etiquetas')} de este tamaño. El PNG sale a 300 ppp, listo para imprenta; el SVG se puede editar en Inkscape.`,`An A4 sheet holds ${per.n} ${L.mode==='dual'?(per.n===1?'bottle (front and back label)':'bottles (front and back label)'):(per.n===1?'label':'labels')} of this size. The PNG is 300 dpi, print-ready; the SVG can be edited in Inkscape.`)}</p>
+    </div>
+  </div>
+</div>`;
+}
+function lblPreviewHTML(r,L,d){
+  lblWarns=[]; d=d||lblData(r,L);
+  const one=side=>`<figure class="lbl-card" style="flex-basis:${Math.round(L.w*2.6)}px;max-width:${Math.round(L.w*3.8)}px">${lblSvg(r,L,side,{d})}<figcaption>${side==='back'?LT('Contraetiqueta','Back label'):L.mode==='dual'?LT('Frente','Front'):LT('Etiqueta','Label')} · ${lnf(L.w,0)} × ${lnf(L.h,0)} mm</figcaption></figure>`;
+  return one('front') + (L.mode==='dual'? one('back') : '');
+}
+function lblWarnHTML(){ return [...new Set(lblWarns)].map(w=>`<div class="warn-line">${esc(w)}</div>`).join(''); }
+function lblStickyTop(){ const w=document.querySelector('.lbl-wrap'), t=document.querySelector('#sheet .tabs'); if(!w||!t) return; const top=Math.max(0, t.getBoundingClientRect().height + (parseFloat(getComputedStyle(t).top)||0)) + 12; w.style.setProperty('--lblTop', Math.round(top)+'px'); }
+window.addEventListener('resize', ()=>{ if(tab==='etiqueta') lblStickyTop(); });
+function lblPaint(){ const p=$('#lblPrev'); if(!p||!cur) return; const L=lblCur(); p.innerHTML=lblPreviewHTML(cur,L); const w=$('#lblWarn'); if(w) w.innerHTML=lblWarnHTML(); }
+function lblRerender(){ if(tab!=='etiqueta'||!cur) return; const k=focusKey(); $('#tabbody').innerHTML=renderTab(); tidyHelp($('#tabbody')); restoreFocus(k); }
+function lblEdit(fn, rer=true){ const wp=editable(); const L=lblCur(); fn(L); cur.updated=new Date().toISOString(); setDirty(); if(wp){ renderAll(); return; } if(rer) lblRerender(); else lblPaint(); }
+function lblApplySize(L){ const z=LBL_SIZES[L.size]; if(z && z.w){ L.w=z.w; L.h=z.h; if(z.vol) L.vol=z.vol; if(z.round && !LBL_ROUNDISH.includes(L.shape)) L.shape='circle'; if(!z.round && L.shape==='circle') L.shape='rounded'; } }
+function lblPerPage(L){
+  const PW=194, PH=281, g=3, w=+L.w||90, h=+L.h||70, dual=L.mode==='dual';
+  let uw=w, uh=h, stack=false; if(dual){ if(2*w+2<=PW && Math.floor((PW+g)/(2*w+2+g))*Math.floor((PH+g)/(h+g)) >= Math.floor((PW+g)/(w+g))*Math.floor((PH+g)/(2*h+2+g))) uw=2*w+2; else { uh=2*h+2; stack=true; } }
+  const cols=Math.max(0,Math.floor((PW+g)/(uw+g))), rows=Math.max(0,Math.floor((PH+g)/(uh+g)));
+  return {n:cols*rows, cols, rows, stack};
+}
+function lblPrintHTML(){
+  const r=cur, L=lblCur(), d=lblData(r,L), per=lblPerPage(L);
+  if(!per.n) return `<p>${esc(LT('La etiqueta es más grande que una hoja A4.','The label is larger than an A4 sheet.'))}</p>`;
+  const n=Math.max(1, Math.round(+L.copies||per.n)), pages=Math.ceil(n/per.n), cut=L.cut!==false;
+  const unit = () => L.mode==='dual' ? `<div class="lblunit" style="flex-direction:${per.stack?'column':'row'}">${lblSvg(r,L,'front',{d,mm:true,cut})}${lblSvg(r,L,'back',{d,mm:true,cut})}</div>` : `<div class="lblunit">${lblSvg(r,L,'front',{d,mm:true,cut})}</div>`;
+  let html=`<style>@page{size:A4;margin:8mm} #printSheet .lblpage{display:flex;flex-wrap:wrap;gap:3mm;align-content:flex-start;width:194mm;height:280mm;overflow:hidden;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact} #printSheet .lblpage:last-child{break-after:auto;page-break-after:auto} #printSheet .lblunit{display:flex;gap:2mm} #printSheet svg{display:block;flex:none}</style>`;
+  let left=n; for(let p=0;p<pages;p++){ const k=Math.min(per.n,left); left-=k; html+=`<div class="lblpage">${Array.from({length:k},unit).join('')}</div>`; }
+  return html;
+}
+async function lblExport(kind, side){
+  await lblLoadFonts();
+  const r=cur, L=lblCur();
+  const base=safe(L.name||r.name)+(L.mode==='dual'? (side==='back'? LT('-contraetiqueta','-back') : LT('-frente','-front')) : LT('-etiqueta','-label'));
+  if(kind==='svg'){ download(lblSvg(r,L,side,{embed:true, mm:true}), base+'.svg', 'image/svg+xml'); toast(LT('Descargando ','Downloading ')+base+'.svg'); return; }
+  const px=Math.round(L.w/25.4*300), svg=lblSvg(r,L,side,{embed:true, px});
+  const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+  try{
+    const img=new Image(); img.src=url; await img.decode(); await new Promise(res=>setTimeout(res,80));
+    const cv=document.createElement('canvas'); cv.width=px; cv.height=Math.round(px*L.h/L.w); const ctx=cv.getContext('2d');
+    ctx.drawImage(img,0,0,cv.width,cv.height); await new Promise(res=>setTimeout(res,80)); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(img,0,0,cv.width,cv.height);
+    const blob=await new Promise(res=>cv.toBlob(res,'image/png'));
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=base+'.png'; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500);
+    toast(LT('Descargando ','Downloading ')+base+'.png');
+  }catch(e){ toast(LT('No se pudo crear el PNG: ','Could not create the PNG: ')+e.message); }
+  finally{ URL.revokeObjectURL(url); }
+}
+function lblReadLogo(file){
+  if(!file) return; const rd=new FileReader();
+  rd.onload=()=>{ const img=new Image(); img.onload=()=>{ const max=900, k=Math.min(1, max/Math.max(img.naturalWidth||max, img.naturalHeight||max));
+      const w=Math.max(1,Math.round((img.naturalWidth||max)*k)), h=Math.max(1,Math.round((img.naturalHeight||max)*k)), cv=document.createElement('canvas'); cv.width=w; cv.height=h; cv.getContext('2d').drawImage(img,0,0,w,h);
+      const png = /png|svg|gif|webp/.test(file.type), data = png ? cv.toDataURL('image/png') : cv.toDataURL('image/jpeg',0.88);
+      lblEdit(L=>{ L.logo=data; L.logoAR=w/h; if(L.logoPos==='none') L.logoPos='top'; }); };
+    img.onerror=()=>toast(LT('No se pudo leer la imagen','Could not read the image')); img.src=rd.result; };
+  rd.readAsDataURL(file);
+}
+function lblSetFromEl(t){
+  const path=t.dataset.lb; let v;
+  if(t.type==='checkbox') v=t.checked; else if(t.dataset.lbn!==undefined){ v=pnum(t.value); if(!isFinite(v)) v=null; } else v=t.value;
+  const wp=editable(); const L=lblCur();
+  setPath(L,path,v);
+  if(path==='size') lblApplySize(L);
+  if((path==='w'||path==='h') && v!=null) setPath(L,path,Math.max(20,Math.min(280,v)));
+  if(/^shapes\.\d+\.hex$/.test(path)) setPath(L,path.replace(/hex$/,'c'),'custom');
+  if(/^shapes\.\d+\.t$/.test(path)){ const s=getPath(L,path.replace(/\.t$/,'')); if(LBL_DECO_N[v]!=null && !s.n) s.n=LBL_DECO_N[v]; if(v==='ring'||v==='rings') s.st='outline'; }
+  cur.updated=new Date().toISOString(); setDirty();
+  return wp;
+}
+document.addEventListener('input', e=>{
+  const t=e.target; if(!cur || !t.dataset || t.dataset.lb===undefined) return;
+  if(t.tagName==='SELECT' || t.type==='checkbox' || t.type==='file') return;
+  const wp=lblSetFromEl(t);
+  if(t.type==='range'){ const o=t.parentElement.querySelector('output'); if(o){ const u=o.textContent.replace(/^[-\d.,]+/,''); o.textContent=t.value+u; } }
+  if(wp){ renderAll(); return; }
+  if(t.dataset.lb==='copies'){ return; }
+  lblPaint();
+});
+document.addEventListener('change', e=>{
+  const t=e.target; if(!cur) return;
+  if(t.id==='lbl-logo'){ lblReadLogo(t.files&&t.files[0]); t.value=''; return; }
+  if(!t.dataset || t.dataset.lb===undefined) return;
+  if(t.tagName==='SELECT' || t.type==='checkbox'){ const wp=lblSetFromEl(t); if(wp){ renderAll(); return; } if(t.dataset.lbr!==undefined || ['mode','size','frame','shape'].includes(t.dataset.lb)) lblRerender(); else lblPaint(); return; }
+  if(t.type==='color' && /^shapes\.\d+\.hex$/.test(t.dataset.lb)) lblRerender();
+  if(['w','h'].includes(t.dataset.lb)) lblRerender();
+});
+document.addEventListener('toggle', e=>{ const d=e.target; if(d && d.dataset && d.dataset.lbsec) lblOpen[d.dataset.lbsec]=d.open; }, true);
+document.addEventListener('click', e=>{
+  const b=e.target.closest('[data-lba]'); if(!b || !cur) return;
+  const a=b.dataset.lba, v=b.dataset.v, i=+v;
+  if(a==='print'){ lblLoadFonts().then(()=>{ printMode='label'; buildPrint(); window.print(); setTimeout(()=>{ printMode='recipe'; },800); }); return; }
+  if(a==='png'||a==='svg'){ lblExport(a, v||'front'); return; }
+  if(a==='tpl') return lblEdit(L=>{ const t=clone(LBL_TPL[v]); delete t.n; Object.assign(L,t); L.shapes=L.shapes.map(o=>lblDeco(o.t,o)); const z=LBL_SIZES[L.size]; if((z&&z.round || Math.abs(L.w-L.h)<0.12*Math.max(L.w,L.h)) && !LBL_ROUNDISH.includes(L.shape)) L.shape='circle'; });
+  if(a==='pal') return lblEdit(L=>{ const p=LBL_PAL[i]; L.bg=p[2]; L.bg2=p[3]; L.ink=p[4]; L.accent=p[5]; L.beerAccent=false; });
+  if(a==='shape') return lblEdit(L=>{ L.shape=v; if(['rounded','notch','chamfer'].includes(v) && !(+L.radius>0)) L.radius=5; });
+  if(a==='add') return lblEdit(L=>{ const n=L.shapes.length; L.shapes.push(lblDeco(v,{x:[50,25,75,30,70][n%5], y:[50,30,70,70,30][n%5], s:v==='band'?14:v==='stripes'?35:v==='waves'?100:v==='dots'?60:v==='burst'?120:25, op:v==='burst'||v==='stripes'||v==='dots'?15:60})); lblOpen.deco=true; });
+  if(a==='comp') return lblEdit(L=>{ LBL_COMP[v][1].forEach(o=>L.shapes.push(lblDeco(o.t,o))); lblOpen.deco=true; });
+  if(a==='up') return lblEdit(L=>{ if(i<L.shapes.length-1){ const s=L.shapes; [s[i],s[i+1]]=[s[i+1],s[i]]; } });
+  if(a==='down') return lblEdit(L=>{ if(i>0){ const s=L.shapes; [s[i],s[i-1]]=[s[i-1],s[i]]; } });
+  if(a==='dup') return lblEdit(L=>{ const c=clone(L.shapes[i]); c.x=Math.min(110,(+c.x||0)+6); c.y=Math.min(110,(+c.y||0)+6); L.shapes.splice(i+1,0,c); });
+  if(a==='del') return lblEdit(L=>{ L.shapes.splice(i,1); });
+  if(a==='clear') return lblEdit(L=>{ L.shapes=[]; });
+  if(a==='logoDel') return lblEdit(L=>{ L.logo=''; L.logoAR=1; });
+});
+
 /* ====================== ANÁLISIS DE AGUA ====================== */
 /* Pasa los datos de un informe de laboratorio (cada parámetro en su unidad) a los seis iones
    que usa la app (mg/L): Ca, Mg, Na, Cl, SO4 y HCO3. Todo se convierte primero a meq/L. */
@@ -1617,6 +2410,7 @@ function renderTab(){
       <p class="info">Levadura seca: sobres según la dosis del fabricante (50–80 g/hL en ales, 100–150 g/hL en lagers). Líquida: 0,75 (ale) o 1,5 (lager) millones de células por ml y °Plato, unos 100 mil millones por sobre. Las sales suman macerado y lavado.</p>
     </div>`;
   }
+  if(tab==='etiqueta') return lblRender();
   if(tab==='notas'){
     return `<div class="sec"><div class="sechead"><h3>Notas</h3></div>
       <div class="field"><label for="f-notes">Notas de la receta, cata y cambios</label><textarea id="f-notes" data-f="notes" style="min-height:240px">${esc(r.notes)}</textarea></div>
@@ -2026,6 +2820,7 @@ function fromBeerXML(text){
 
 /* ====================== PRINT ====================== */
 function buildPrint(){
+  if(printMode==='label'){ $('#printSheet').innerHTML=lblPrintHTML(); return; }
   if(!cur) return;
   if(printMode==='shop'){ $('#printSheet').innerHTML=`<pre style="font:12pt/1.5 var(--f-mono);white-space:pre-wrap">${esc(shopText(cur,calc(cur)))}</pre>`; return; } const r=cur, c=calc(r), s=STY[r.style]||{};
   $('#printSheet').innerHTML=`<h1>${esc(r.name)}</h1><div>${esc(s.code||'')} ${esc(s.name||'')} · ${esc(r.brewer||'')} · ${esc(r.method)} · ${fx(r.batch.volume,1)} L · eficiencia ${fx(r.batch.eff,0)} %</div>

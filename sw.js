@@ -1,6 +1,6 @@
 /* Brew-libre service worker: caches the app so it works offline.
    Bump VERSION whenever index.html changes so installed copies update. */
-const VERSION = 'brew-libre-v3';
+const VERSION = 'brew-libre-v4';
 const CORE = [
   './',
   './index.html',
@@ -9,7 +9,8 @@ const CORE = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './fonts/label-fonts.js'
 ];
 
 self.addEventListener('install', e => {
