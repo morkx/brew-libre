@@ -1,0 +1,57 @@
+# Configuración para publicar Brew-libre en Netlify.
+# Netlify publica solo la carpeta www/, que arma «npm run build» con los
+# archivos de la app web (sin el proyecto Android ni los scripts).
+
+[build]
+  command = "npm run build"
+  publish = "www"
+
+[build.environment]
+  # Solo hacen falta las dependencias de producción; las herramientas de
+  # Capacitor para compilar la APK no se usan en Netlify.
+  NPM_FLAGS = "--omit=dev"
+  NODE_VERSION = "22"
+
+# Seguridad básica para todo el sitio
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# La app y el service worker se revisan siempre, para que las actualizaciones
+# lleguen enseguida a quienes la tienen instalada.
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "no-cache"
+
+# Íconos, tipografías y recetas cambian poco
+[[headers]]
+  for = "/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

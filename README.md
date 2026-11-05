@@ -61,10 +61,34 @@ Las descripciones, el ícono y las capturas para tiendas F-Droid/IzzyOnDroid est
 | `android/` | Proyecto Android (Capacitor) |
 | `fastlane/` | Descripción, ícono y capturas para tiendas de apps |
 | `build-apk.sh` | Compila y firma la APK en Arch Linux |
+| `netlify.toml` | Configuración para publicar en Netlify |
 
 Al cambiar `index.html`, subí el número de `VERSION` en `sw.js` para que las copias instaladas se actualicen.
 
-## Publicar en GitHub Pages
+## Publicar
+
+La app es un sitio estático: cualquier servidor con **https** sirve, y con https se puede instalar como app y funciona sin conexión.
+
+### En Netlify (recomendado)
+
+El repo ya trae `netlify.toml`, que le dice a Netlify cómo armar y publicar la app. Al publicar se arma la carpeta `www/` solo con los archivos de la app web; el proyecto Android y los scripts no se suben.
+
+**Conectando el repositorio** (se actualiza solo con cada `git push`):
+
+1. Entrá a [app.netlify.com](https://app.netlify.com) con tu cuenta de GitHub.
+2. **Add new site → Import an existing project → GitHub** y elegí `morkx/brew-libre`.
+3. Dejá los valores que Netlify toma del `netlify.toml` (build `npm run build`, carpeta `www`) y tocá **Deploy**.
+4. En **Site configuration → Change site name** podés elegir la dirección, por ejemplo `brew-libre.netlify.app`.
+
+**Sin conectar el repositorio** (Netlify Drop):
+
+```bash
+npm run build
+```
+
+y arrastrá la carpeta `www/` a [app.netlify.com/drop](https://app.netlify.com/drop). Para actualizar, repetí el `npm run build` y arrastrala de nuevo en la pestaña **Deploys** del sitio.
+
+### En GitHub Pages
 
 Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta `/ (root)`.
 

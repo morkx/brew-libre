@@ -63,10 +63,34 @@ Descriptions, icon and screenshots for F-Droid/IzzyOnDroid stores are in `fastla
 | `android/` | Android project (Capacitor) |
 | `fastlane/` | Description, icon and screenshots for app stores |
 | `build-apk.sh` | Builds and signs the APK on Arch Linux |
+| `netlify.toml` | Settings for publishing on Netlify |
 
 When you change `index.html`, bump `VERSION` in `sw.js` so installed copies update.
 
-## Publishing on GitHub Pages
+## Publishing
+
+The app is a static site: any **https** server works, and over https it can be installed as an app and works offline.
+
+### On Netlify (recommended)
+
+The repo includes `netlify.toml`, which tells Netlify how to build and publish the app. Publishing builds a `www/` folder with only the web app files; the Android project and scripts are not uploaded.
+
+**Connecting the repository** (updates automatically on every `git push`):
+
+1. Sign in at [app.netlify.com](https://app.netlify.com) with your GitHub account.
+2. **Add new site → Import an existing project → GitHub** and pick `morkx/brew-libre`.
+3. Keep the settings Netlify reads from `netlify.toml` (build `npm run build`, folder `www`) and press **Deploy**.
+4. Under **Site configuration → Change site name** you can choose the address, e.g. `brew-libre.netlify.app`.
+
+**Without connecting the repository** (Netlify Drop):
+
+```bash
+npm run build
+```
+
+then drag the `www/` folder onto [app.netlify.com/drop](https://app.netlify.com/drop). To update, run `npm run build` again and drag it onto the site's **Deploys** tab.
+
+### On GitHub Pages
 
 Settings → Pages → Source: "Deploy from a branch" → branch `main`, folder `/ (root)`.
 
