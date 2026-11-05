@@ -1,6 +1,6 @@
 /* Brew-libre service worker: caches the app so it works offline.
    Bump VERSION whenever index.html changes so installed copies update. */
-const VERSION = 'brew-libre-v4';
+const VERSION = 'brew-libre-v5';
 const CORE = [
   './',
   './index.html',
