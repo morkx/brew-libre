@@ -305,6 +305,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:0}
         <button class="btn ghost" id="bSaveAs">Guardar como…</button>
         <button class="btn ghost" id="bXml" title="Exportar la receta abierta como BeerXML">Exportar BeerXML</button>
         <button class="btn ghost" id="bPrint">Imprimir</button>
+        <button class="btn ghost" id="bProc" title="Todo el proceso de elaboración paso a paso, en una sola hoja A4">Imprimir instrucciones</button>
         <button class="btn ghost" id="bInstall" title="Instalar en Android, iPhone o PC, o descargar el archivo">Instalar / descargar</button>
       </div>
     </details>
@@ -419,7 +420,7 @@ const EN_EXACT = {
 // header / file
 'Recetario cervecero · métrico · datos 2026':'Homebrew recipe book · metric · 2026 data',
 'Sin archivo abierto':'No file open','Cambios sin guardar en archivo':'Unsaved changes',
-'Nuevo recetario':'New book','Importar recetas…':'Import recipes…','Agregar las recetas de otro archivo (por ejemplo, una base de recetas) al recetario abierto, sin reemplazarlo':'Add the recipes from another file (for example a recipe database) to the open book without replacing it','Abrir…':'Open…','Guardar':'Save','Guardar como…':'Save as…','Imprimir':'Print',
+'Nuevo recetario':'New book','Importar recetas…':'Import recipes…','Agregar las recetas de otro archivo (por ejemplo, una base de recetas) al recetario abierto, sin reemplazarlo':'Add the recipes from another file (for example a recipe database) to the open book without replacing it','Abrir…':'Open…','Guardar':'Save','Guardar como…':'Save as…','Imprimir':'Print','Imprimir instrucciones':'Print brew-day sheet','Todo el proceso de elaboración paso a paso, en una sola hoja A4':'The whole brewing process step by step, on a single A4 page',
 'Preferencias':'Preferences','Instalar / descargar':'Install / download','Descargar':'Download',
 'Empezar un recetario vacío':'Start an empty recipe book','Abrir un recetario .json o importar BeerXML':'Open a .json recipe book or import BeerXML',
 'Exportar la receta abierta como BeerXML':'Export the open recipe as BeerXML','Unidades y fórmulas':'Units and formulas',
@@ -2707,6 +2708,7 @@ $('#bSaveAs').onclick=()=>saveBook(true);
 $('#bOpen').onclick=openBook;
 $('#bXml').onclick=()=>{ if(!cur) return; download(toBeerXML(cur), safe(cur.name)+'.xml','text/xml'); };
 $('#bPrint').onclick=()=>{ buildPrint(); window.print(); };
+$('#bProc').onclick=()=>{ if(!cur) return; printMode='proc'; buildPrint(); window.print(); setTimeout(()=>{ printMode='recipe'; },800); };
 window.addEventListener('beforeprint', buildPrint);
 document.addEventListener('keydown', e=>{ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){ e.preventDefault(); saveBook(e.shiftKey); } });
 window.addEventListener('beforeunload', e=>{ if(dirty){ e.preventDefault(); e.returnValue=''; } });
@@ -2828,6 +2830,7 @@ function fromBeerXML(text){
 function buildPrint(){
   if(printMode==='label'){ $('#printSheet').innerHTML=lblPrintHTML(); return; }
   if(!cur) return;
+  if(printMode==='proc'){ $('#printSheet').innerHTML=procHTML(cur,calc(cur)); procFit(); return; }
   if(printMode==='shop'){ $('#printSheet').innerHTML=`<pre style="font:12pt/1.5 var(--f-mono);white-space:pre-wrap">${esc(shopText(cur,calc(cur)))}</pre>`; return; } const r=cur, c=calc(r), s=STY[r.style]||{};
   $('#printSheet').innerHTML=`<h1>${esc(r.name)}</h1><div>${esc(s.code||'')} ${esc(s.name||'')} · ${esc(r.brewer||'')} · ${esc(r.method)} · ${fx(r.batch.volume,1)} L · eficiencia ${fx(r.batch.eff,0)} %</div>
   <p><b>OG</b> ${gFmt(c.og)} · <b>FG</b> ${gFmt(c.fg)} · <b>ABV</b> ${fx(c.abv,1)} % · <b>IBU</b> ${fx(c.ibu,0)} (${IBU_NAMES[prefs.ibu]}) · <b>Color</b> ${cFmt(c.srm)} (${COLOR_NAMES[prefs.colorF]}) · <b>BU:GU</b> ${fx(c.bugu,2)}</p>
@@ -2843,6 +2846,129 @@ function buildPrint(){
   ${r.notes?`<p><b>Notas:</b> ${esc(r.notes)}</p>`:''}`;
 }
 
+/* ---------- hoja de elaboración: todo el proceso en una página A4 ---------- */
+function procHTML(r,c){
+  const b=r.batch, w=r.water, wc=c.water, s=STY[r.style]||{}, y=YEAST[r.yeast.name]||{};
+  const ext=r.method==='Extracto', biab=r.method==='BIAB', L=(v,d=1)=>fx(v,d)+' L';
+  const SN={gypsum:['Yeso','Gypsum'],cacl2:['Cloruro de calcio','Calcium chloride'],epsom:['Sal de Epsom','Epsom salt'],nacl:['Sal de mesa','Table salt'],soda:['Bicarbonato de sodio','Baking soda'],chalk:['Tiza','Chalk'],lime:['Cal apagada','Slaked lime']};
+  const saltList=o=>Object.entries(o).filter(([k,v])=>+v>0&&SN[k]).map(([k,v])=>`${fx(+v,1)} g ${LT(...SN[k]).toLowerCase()}`).join(', ');
+  const kgq=kg=>kg>=1?fx(kg,2)+' kg':fx(kg*1000,0)+' g';
+  const isDH=h=>h.use==='Dry hop', hopTxt=h=>`<b>${fx(+h.g,0)} g</b> ${esc(h.name)}${h.form==='Flor'?LT(' (flor)',' (leaf)'):''}`;
+  // otros ingredientes, ubicados según su "cuándo"
+  const miscAt=re=>r.misc.filter(m=>(m.name||'').trim()&&re.test(normTxt(m.when)));
+  const mMash=miscAt(/macer|mash|empaste/), mFerm=miscAt(/ferm|secund|madur|envas|botell|embotell|dry|bottl|packag/);
+  const mBoil=r.misc.filter(m=>(m.name||'').trim()&&!mMash.includes(m)&&!mFerm.includes(m));
+  const miscTxt=m=>`<b>${fx(+m.amount,1)} ${esc(m.unit)}</b> ${esc(m.name)}${m.when?` <i>(${esc(m.when)})</i>`:''}`;
+  const mashF=r.fermentables.filter(f=>+f.kg>0&&!f.steep&&(f.type==='grano'||f.type==='adjunto'||!f.type));
+  const steepF=r.fermentables.filter(f=>+f.kg>0&&f.steep&&(f.type==='grano'||f.type==='adjunto'||!f.type));
+  const extF=r.fermentables.filter(f=>+f.kg>0&&f.type==='extracto'), sugF=r.fermentables.filter(f=>+f.kg>0&&(f.type==='azúcar'||f.type==='no fermentable'));
+  const list=a=>a.map(f=>`${kgq(+f.kg)} ${esc(f.name)}`).join(' · ');
+  const yn=yeastNeed(r,c), pr=primingFor(r,c), pk=r.carb, pvol=pk.vol ?? Math.max(0,(+b.volume||0)-c.dryLoss-(+b.fermLoss||0));
+  const bottle=+pk.bottle||500, steps=[];
+  const step=(title,body)=>{ if(body) steps.push(`<li><h3><span class="bx"></span><span class="num"></span>${title}</h3>${body}</li>`); };
+
+  // 0. Día anterior
+  if(c.steepKg) step(LT('El día anterior (12–24 h antes)','The day before (12–24 h ahead)'),
+    `<p>${LT('Remojar en frío','Cold-steep')} ${list(steepF)} ${LT('en','in')} <b>${L(c.steepWater)}</b> ${LT('de agua fría, tapado. Se cuela durante el hervor (ver paso de hervor).','of cold water, covered. Strain it during the boil (see the boil step).')}</p>`);
+  // 1. Agua
+  { const parts=[];
+    if(ext) parts.push(`${LT('Agua total','Total water')}: <b>${L(c.totalWater)}</b>.`);
+    else if(biab) parts.push(`${LT('Agua total','Total water')}: <b>${L(c.totalWater)}</b> (${LT('todo va al macerado, sin lavado','all of it goes into the mash, no sparge')}).`);
+    else parts.push(`${LT('Agua total','Total water')}: <b>${L(c.totalWater)}</b> = ${LT('empaste','strike')} <b>${L(c.strike)}</b>${c.mashWater>c.strike+0.05?` + ${LT('infusiones','infusions')} ${L(c.mashWater-c.strike)}`:''} + ${LT('lavado','sparge')} <b>${L(c.sparge)}</b>${c.steepWater?` + ${LT('remojo en frío','cold steep')} ${L(c.steepWater)}`:''}.`);
+    if(+w.ro>0) parts.push(`${LT('De ese total','Of that total')}, <b>${fx(+w.ro,0)} %</b> ${LT('agua destilada / ósmosis','distilled / RO water')} (${L(c.totalWater*(+w.ro)/100)}).`);
+    const ms=saltList(w.salts); if(ms) parts.push(`${LT('Sales al agua de macerado','Salts into the mash water')}: ${ms}.`);
+    const ss=saltList(wc.spargeSalts||{}); if(ss && c.sparge>0) parts.push(`${LT('Sales al agua de lavado','Salts into the sparge water')}: ${ss}.`);
+    if(+w.lactic>0) parts.push(`${acidName(w)==='Ácido láctico'?LT('Ácido láctico 88 %','Lactic acid 88 %'):LT('Ácido cítrico','Citric acid')}: <b>${fx(+w.lactic,1)} ${acidUnit(w)}</b> ${LT('al macerado','into the mash')}.`);
+    step(LT('Preparar el agua','Prepare the water'), `<p>${parts.join(' ')}</p>`); }
+  // 2. Moler
+  if(mashF.length) step(LT('Moler el grano','Mill the grain'), `<p>${LT('Total','Total')} <b>${kgq(c.grainKg)}</b>: ${list(mashF)}.</p>`);
+  // 3. Empaste y macerado
+  if(c.grainKg){
+    const rows=r.mash.map((m,i)=>`<tr><td>${esc(tx(m.name))}</td><td class="n">${fx(+m.temp,0)} °C</td><td class="n">${fx(+m.time,0)} min</td><td>${i?esc(tx(c.steps[i])):LT('Mantener la temperatura','Hold the temperature')}</td></tr>`).join('');
+    const intro = biab
+      ? `${LT('Calentar','Heat')} <b>${L(c.strike)}</b> ${LT('a','to')} <b>${fx(c.strikeT,1)} °C</b>, ${LT('colocar la bolsa e incorporar el grano revolviendo, sin grumos.','put the bag in and stir in the grain, no dough balls.')}`
+      : ext ? `${LT('Remojar los granos especiales en','Steep the specialty grains in')} <b>${L(c.strike)}</b> ${LT('a','at')} <b>${fx(c.strikeT,1)} °C</b>.`
+      : `${LT('Calentar','Heat')} <b>${L(c.strike)}</b> ${LT('a','to')} <b>${fx(c.strikeT,1)} °C</b> ${LT('e incorporar el grano revolviendo, sin grumos','and stir in the grain, no dough balls')} (${fx(c.mashThick,1)} L/kg).`;
+    step(ext?LT('Remojar granos especiales','Steep specialty grains'):LT('Empaste y macerado','Mash in and mash'),
+      `<p>${intro}${wc.ph?` ${LT('pH estimado','Estimated pH')} <b>${fx(wc.ph,2)}</b> (${LT('medir a los 10–15 min; objetivo 5,2–5,6','check at 10–15 min; aim for 5.2–5.6')}).`:''}</p>
+      <table><tr><th>${LT('Paso','Step')}</th><th>${LT('Temp.','Temp.')}</th><th>${LT('Tiempo','Time')}</th><th>${LT('Cómo','How')}</th></tr>${rows}</table>
+      ${mMash.length?`<p>${LT('Agregar al macerado','Add to the mash')}: ${mMash.map(miscTxt).join(' · ')}</p>`:''}`);
+  }
+  // 4. Lavado / recolección
+  { const fwh=r.hops.filter(h=>h.use==='FWH'&&+h.g>0);
+    const pre=`<b>${L(c.pre)}</b> ${LT('en la olla','in the kettle')} (${LT('densidad pre-hervor','pre-boil gravity')} ≈ <b>${gFmt(c.ogPre)}</b>)`;
+    let body;
+    if(ext) body=`${LT('Completar hasta','Top up to')} ${pre}. ${extF.length?`${LT('Fuera del fuego, disolver','Off the heat, dissolve')} ${list(extF)}.`:''}`;
+    else if(biab) body=`${LT('Levantar la bolsa y dejar escurrir sin exprimir de más. Deberías tener','Lift the bag and let it drain without squeezing too hard. You should have')} ${pre}.`;
+    else body=`${LT('Recircular hasta que el mosto salga claro. Lavar con','Recirculate until the wort runs clear. Sparge with')} <b>${L(c.sparge)}</b> ${LT('a 76–78 °C y recolectar','at 76–78 °C and collect')} ${pre}.`;
+    if(fwh.length) body+=` ${LT('Antes de empezar a recolectar, poner en la olla (FWH)','Before collecting, put in the kettle (FWH)')}: ${fwh.map(hopTxt).join(', ')}.`;
+    step(ext?LT('Preparar el mosto','Prepare the wort'):biab?LT('Retirar la bolsa','Pull the bag'):LT('Recircular y lavar','Recirculate and sparge'), `<p>${body}</p>`); }
+  // 5. Hervor
+  { const bt=+b.boilTime||60, ev=[];
+    r.hops.filter(h=>h.use==='Hervor'&&+h.g>0).forEach(h=>ev.push([+h.time||0, hopTxt(h)]));
+    if(c.steepKg) ev.push([+b.steepAdd||0, `${LT('Líquido del remojo en frío, colado','Strained cold-steep liquid')} (~${L(c.steepLiq)})`]);
+    mBoil.forEach(m=>{ const t=(normTxt(m.when).match(/(\d+)\s*min/)||[])[1]; ev.push([t!=null?+t:-1, miscTxt(m)]); });
+    ev.sort((a,b)=>b[0]-a[0]);
+    const rows=ev.map(([t,txt])=>`<tr><td class="n"><span class="bx"></span>${t<0?'—':t+' min'}</td><td>${txt}</td></tr>`).join('');
+    step(`${LT('Hervor','Boil')} — ${bt} min`,
+      `<p>${LT('Llevar a hervor fuerte y destapado. El tiempo cuenta hacia atrás: cada adición va cuando faltan los minutos indicados.','Bring to a strong, uncovered boil. Times count down: each addition goes in when that many minutes remain.')}${sugF.length?` ${LT('Azúcares','Sugars')}: ${list(sugF)} (${LT('disolver en los últimos 10–15 min','dissolve in the last 10–15 min')}).`:''}</p>
+      ${rows?`<table><tr><th>${LT('Faltan','Remaining')}</th><th>${LT('Agregar','Add')}</th></tr>${rows}</table>`:''}`); }
+  // 6. Whirlpool
+  { const wp=r.hops.filter(h=>h.use==='Whirlpool'&&+h.g>0);
+    if(wp.length){ const byT={}; wp.forEach(h=>(byT[h.temp]=byT[h.temp]||[]).push(h));
+      step(LT('Apagar y whirlpool','Flame-out and whirlpool'), `<p>${Object.keys(byT).sort((a,b)=>b-a).map(t=>`${LT('Bajar a','Cool to')} <b>${fx(+t,0)} °C</b>: ${byT[t].map(h=>`${hopTxt(h)} ${LT('por','for')} ${fx(+h.time,0)} min`).join(', ')}.`).join(' ')} ${LT('Revolver en círculo y dejar decantar.','Stir in a circle and let it settle.')}</p>`); } }
+  // 7. Enfriar e inocular
+  { const tr=(y.tmin!=null&&y.tmax!=null)?`${fx(y.tmin,0)}–${fx(y.tmax,0)} °C`:null;
+    step(LT('Enfriar, medir e inocular','Chill, measure and pitch'),
+      `<p>${LT('Sanitizar fermentador y todo lo que toque el mosto frío. Enfriar','Sanitize the fermenter and everything that touches the cold wort. Chill')}${tr?` ${LT('a la temperatura de fermentación (rango de la levadura','to fermentation temperature (yeast range')} ${tr})`:''} ${LT('y trasvasar','and transfer')} <b>${L(+b.volume)}</b> ${LT('al fermentador','to the fermenter')} (${LT('post-hervor','post-boil')} ${L(c.post)}). ${LT('Medir la OG: objetivo','Measure OG: target')} <b>${gFmt(c.og)}</b>. ${LT('Airear bien y agregar','Aerate well and pitch')} <b>${esc(yn.qty)}</b> ${LT('de','of')} ${esc(r.yeast.name)} <i>(${esc(yn.note)})</i>.</p>`); }
+  // 8. Fermentación
+  { const dh=r.hops.filter(h=>isDH(h)&&+h.g>0), parts=[];
+    if((r.ferm.notes||'').trim()) parts.push(esc(r.ferm.notes).replace(/\n/g,'<br>'));
+    if(dh.length) parts.push(`${LT('Dry hop','Dry hop')}: ${dh.map(h=>`${hopTxt(h)} ${LT('durante','for')} ${fx(+h.time,0)} ${LT('días','days')}`).join(', ')}.`);
+    if(mFerm.length) parts.push(`${LT('Además','Also')}: ${mFerm.map(miscTxt).join(' · ')}.`);
+    parts.push(`${LT('FG esperada','Expected FG')} <b>${gFmt(c.fg)}</b> (${LT('atenuación','attenuation')} ${fx(c.att,0)} %): ${LT('confirmar con dos lecturas iguales separadas 2–3 días.','confirm with two equal readings 2–3 days apart.')}`);
+    step(LT('Fermentar','Ferment'), `<p>${parts.join(' ')}</p>`); }
+  // 9. Envasado
+  step(LT('Envasar y carbonatar','Package and carbonate'),
+    pr.g>0 ? `<p>${LT('Para','For')} <b>${fx(+pk.vols,1)} vol CO₂</b>: <b>${fx(pr.g,0)} g</b> ${LT('de','of')} ${esc(tx(pr.name)).toLowerCase()} ${LT('para','for')} ${L(pvol)} (${fx(pvol?pr.g/pvol:0,2)} g/L ≈ <b>${fx(pvol?pr.g/pvol*bottle/1000:0,1)} g</b> ${LT('por botella de','per')} ${bottle} ml${EN()?' bottle':''}). ${LT('Disolver en un poco de agua hervida, mezclar suave con la cerveza sin airear y embotellar. Dejar 2 semanas a 18–22 °C antes de enfriar.','Dissolve in a little boiled water, mix gently into the beer without splashing and bottle. Leave 2 weeks at 18–22 °C before chilling.')}</p>`
+    : `<p>${LT('Carbonatar a','Carbonate to')} <b>${fx(+pk.vols,1)} vol CO₂</b>.</p>`);
+
+  const reg=[[LT('Fecha','Date'),''],[LT('Pre-hervor','Pre-boil'),gFmt(c.ogPre)],[LT('OG','OG'),gFmt(c.og)],[LT('Vol. fermentador','Fermenter vol.'),L(+b.volume)],[LT('FG','FG'),gFmt(c.fg)],[LT('Envasado','Packaged'),'']];
+  return `<style>@page{size:A4;margin:9mm}
+  #printSheet .proc{font-family:var(--f-body);color:#000;background:#fff;line-height:1.32}
+  #printSheet .proc h1{font-size:1.75em;margin:0}
+  #printSheet .proc .sub{margin:1px 0 4px;color:#333}
+  #printSheet .proc .tg{display:flex;flex-wrap:wrap;gap:3px 12px;padding:4px 0;border-top:2px solid #000;border-bottom:1px solid #000;margin-bottom:6px}
+  #printSheet .proc ol{list-style:none;counter-reset:st;margin:0;padding:0;column-count:2;column-gap:7mm;column-rule:1px solid #ccc}
+  #printSheet .proc li{counter-increment:st;break-inside:avoid;page-break-inside:avoid;margin:0 0 6px}
+  #printSheet .proc h3{font-size:1.04em;margin:0 0 1px;font-family:var(--f-body);text-transform:none}
+  #printSheet .proc .num::before{content:counter(st) ". "}
+  #printSheet .proc p{margin:0 0 2px}
+  #printSheet .proc table{width:100%;border-collapse:collapse;font-size:.93em;margin:2px 0 3px}
+  #printSheet .proc th,#printSheet .proc td{font-family:inherit;letter-spacing:normal;border:1px solid #aaa;padding:1px 4px;text-align:left;vertical-align:top;background:none;color:#000}
+  #printSheet .proc th{background:#eee}
+  #printSheet .proc td.n{white-space:nowrap}
+  #printSheet .proc .bx{display:inline-block;width:.8em;height:.8em;border:1.3px solid #000;border-radius:2px;margin-right:4px;vertical-align:-1px;flex:none}
+  #printSheet .proc .reg{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:6px;border-top:2px solid #000;padding-top:4px}
+  #printSheet .proc .reg div{border:1px solid #888;padding:2px 4px;min-height:2.6em;font-size:.88em}
+  #printSheet .proc .reg small{color:#555}
+  #printSheet .proc .ft{margin-top:3px;font-size:.8em;color:#555}
+  </style><div class="proc">
+  <h1>${esc(r.name)}</h1>
+  <div class="sub">${LT('Hoja de elaboración','Brew-day sheet')} · ${esc(s.code||'')} ${esc(s.name||'')} · ${esc(tx(r.method))} · ${L(+b.volume)} · ${LT('eficiencia','efficiency')} ${fx(+b.eff,0)} %${r.brewer?' · '+esc(r.brewer):''}</div>
+  <div class="tg"><span><b>OG</b> ${gFmt(c.og)}</span><span><b>FG</b> ${gFmt(c.fg)}</span><span><b>ABV</b> ${fx(c.abv,1)} %</span><span><b>IBU</b> ${fx(c.ibu,0)}</span><span><b>${LT('Color','Color')}</b> ${cFmt(c.srm)}</span><span><b>${LT('Agua total','Total water')}</b> ${L(c.totalWater)}</span><span><b>${LT('Pre-hervor','Pre-boil')}</b> ${L(c.pre)}</span><span><b>${LT('Post-hervor','Post-boil')}</b> ${L(c.post)}</span></div>
+  <ol>${steps.join('')}</ol>
+  <div class="reg">${reg.map(([k,v])=>`<div><b>${k}</b>${v?` <small>(${LT('obj.','target')} ${v})</small>`:''}</div>`).join('')}</div>
+  <div class="ft">Brew-libre · ${new Date().toLocaleDateString(EN()?'en-GB':'es-UY')}</div></div>`;
+}
+/* achica la letra hasta que la hoja entre en una sola página A4 */
+function procFit(){
+  const el=$('#printSheet'), px=v=>v*96/25.4, maxH=px(297-18)-4, prev=el.style.cssText;
+  el.style.cssText=`display:block;position:absolute;left:-10000px;top:0;width:${px(210-18)}px;visibility:hidden`;
+  const p=el.querySelector('.proc'); let fs=11.5;
+  for(;fs>=6;fs-=0.25){ p.style.fontSize=fs+'pt'; if(el.scrollHeight<=maxH) break; }
+  el.style.cssText=prev;
+}
 /* keep side panels below the top bar, whatever its height */
 try{ new ResizeObserver(([e])=>document.documentElement.style.setProperty('--barH', Math.ceil(e.target.getBoundingClientRect().height)+'px')).observe($('.bar')); }catch(_){}
 /* ====================== ESPIGAS + BUSCADOR DE MALTAS ====================== */
