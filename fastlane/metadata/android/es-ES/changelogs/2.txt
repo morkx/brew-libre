@@ -1,0 +1,4 @@
+• Agua: ajuste de pH con pH objetivo, pH medido, ácido fosfórico y ácido para el agua de lavado.
+• Botón «Imprimir instrucciones»: la hoja de elaboración en una página A4.
+• Diseñador de etiquetas para botellas, con formas, figuras, tipografías y colores.
+• La versión de la app se ve en «Acerca de».
