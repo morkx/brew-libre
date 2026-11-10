@@ -385,10 +385,24 @@ const LB = 2.20462, GAL = 3.78541;
    A pH de macerado (~5,4) 1 ml de láctico 88 % ≈ 11,5 mEq y 1 g de cítrico monohidratado ≈ 9,2 mEq
    (el cítrico entrega ~1,9 de sus 3 protones a ese pH), así que 1 ml de láctico ≈ 1,25 g de cítrico. */
 const CITRIC_G_PER_LACTIC_ML = 1.25;
-const isCitric = w => w && w.acid==='citric';
-const acidLacticMl = w => { const a=+(w&&w.lactic)||0; return isCitric(w) ? a/CITRIC_G_PER_LACTIC_ML : a; };
-const acidUnit = w => isCitric(w) ? 'g' : 'ml';
-const acidName = w => isCitric(w) ? 'Ácido cítrico' : 'Ácido láctico';
+/* mEq que entrega 1 ml (o 1 g) de cada ácido a pH de macerado. Láctico y fosfórico según su concentración en % p/p:
+   la densidad se interpola de tablas; el fosfórico entrega su primer protón y una pizca del segundo (pKa2 ≈ 7,2). */
+const lerp = (x,pts) => { if(x<=pts[0][0]) return pts[0][1]; for(let i=1;i<pts.length;i++){ const [x1,y1]=pts[i-1],[x2,y2]=pts[i]; if(x<=x2) return y1+(y2-y1)*(x-x1)/(x2-x1); } return pts[pts.length-1][1]; };
+const ACIDS = {
+  lactic:    {n:'Ácido láctico',   unit:'ml', conc:88, meq:c=>lerp(c,[[0,1],[50,1.12],[80,1.19],[88,1.21],[90,1.215]])*c*10/90.08},
+  phosphoric:{n:'Ácido fosfórico', unit:'ml', conc:85, meq:c=>lerp(c,[[0,1],[10,1.053],[25,1.146],[50,1.335],[75,1.574],[85,1.685],[90,1.746]])*c*10/97.99*1.02},
+  citric:    {n:'Ácido cítrico',   unit:'g',  conc:null, meq:()=>ACIDS.lactic.meq(88)/CITRIC_G_PER_LACTIC_ML},
+};
+const LACTIC88_MEQ = ACIDS.lactic.meq(88);   // el modelo de la planilla está calibrado en ml de láctico 88 %
+const acidKey = w => (w && ACIDS[w.acid]) ? w.acid : 'lactic';
+const isCitric = w => acidKey(w)==='citric';
+const acidConc = w => { const A=ACIDS[acidKey(w)]; if(A.conc==null) return null; const c=pnum(w&&w.acidConc); return isFinite(c)&&c>0&&c<=100 ? c : A.conc; };
+const acidMeq = w => ACIDS[acidKey(w)].meq(acidConc(w));
+const acidLacticMl = (w, amt) => (amt ?? (+(w&&w.lactic)||0)) * acidMeq(w) / LACTIC88_MEQ;
+const acidFromLacticMl = (w, ml) => ml * LACTIC88_MEQ / acidMeq(w);
+const acidUnit = w => ACIDS[acidKey(w)].unit;
+const acidName = w => ACIDS[acidKey(w)].n;
+const acidFull = w => acidName(w) + (acidConc(w)!=null ? ` ${fx(acidConc(w),0)} %` : '');
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fx = (v,d=1) => (v==null||!isFinite(v)) ? '–' : Number(v).toFixed(d);
@@ -508,7 +522,7 @@ const EN_EXACT = {
 'Si tu informe da sulfato como azufre (SO₄-S), multiplicalo por 3.':'If your report gives sulfate as sulfur (SO₄-S), multiply it by 3.',
 'Sales y ácidos':'Salts and acids','gramos al agua de macerado':'grams to the mash water','Sal':'Salt','Macerado (g)':'Mash (g)','Sparge (g)':'Sparge (g)',
 'Yeso':'Gypsum','Cloruro de calcio':'Calcium chloride','Sal de Epsom':'Epsom salt','Sal de mesa':'Table salt','Bicarbonato de sodio':'Baking soda','Tiza':'Chalk','Cal apagada':'Slaked lime',
-'Ácido láctico 88 % (ml)':'Lactic acid 88 % (ml)','Ácido láctico':'Lactic acid',
+'Ácido láctico 88 % (ml)':'Lactic acid 88 % (ml)','Ácido láctico':'Lactic acid','Ácido fosfórico':'Phosphoric acid',
 'Ácido cítrico (g)':'Citric acid (g)',
 'Análisis de agua':'Water report','Datos del análisis':'Lab report data','Cargá cada valor como viene en el informe y elegí su unidad':'Enter each value as it appears in the report and pick its unit',
 'Lugar o nombre del agua':'Place or water name','Ej.: canilla de casa':'E.g.: home tap','Fecha del análisis':'Report date','Parámetro':'Parameter','Valor':'Value','Unidad del informe':'Unit in the report','Unidad':'Unit',
@@ -694,7 +708,8 @@ const EN_RX = [
 [/^Importadas (.*) receta\(s\) BeerXML$/, (m,a)=>`Imported ${a} BeerXML recipe(s)`],
 [/^Equipo aplicado: (.*?)( · cantidades reajustadas)?$/, (m,a,b)=>`Equipment applied: ${tx(a)}${b?' · amounts rescaled':''}`],
 [/^Guardado «(.*)» en tus equipos$/, (m,a)=>`Saved “${a}” to your equipment`],
-[/^Sales calculadas para «(.*?)»(?: y (.*?) (ml de ácido láctico|g de ácido cítrico) para pH 5,4)?(?: y (.*?) g de bicarbonato para subir el pH a 5,4)?$/, (m,a,b,u,c)=>`Salts calculated for “${tx(a)}”${b?` and ${b} ${u.startsWith('ml')?'ml of lactic acid':'g of citric acid'} for pH 5.4`:''}${c?` and ${c} g of baking soda to raise pH to 5.4`:''}`],
+[/^Sales calculadas para «(.*?)»(?: y (.*?) (ml de ácido láctico|ml de ácido fosfórico|g de ácido cítrico) para pH ([\d,]+))?(?: y (.*?) g de bicarbonato para subir el pH a ([\d,]+))?$/, (m,a,b,u,p,c,q)=>`Salts calculated for “${tx(a)}”${b?` and ${b} ${u==='ml de ácido láctico'?'ml of lactic acid':u==='ml de ácido fosfórico'?'ml of phosphoric acid':'g of citric acid'} for pH ${p.replace(',','.')}`:''}${c?` and ${c} g of baking soda to raise pH to ${q.replace(',','.')}`:''}`],
+[/^Ácido al macerado: (.*) (ml|g)$/, (m,a,u)=>`Mash acid: ${a} ${u}`],
 // preset blurbs & plans
 [/^La West Coast clara.*$/, ()=>'The pale, dry, bitter West Coast IPA came back strong in 2025-26. Clean pale base, little caramel malt, firm bitterness, and whirlpool + dry hop with Strata.'],
 [/^Las hazy siguen.*$/, ()=>'Hazies are still among the most requested. Oats and wheat for a silky body, almost all hops in a cool whirlpool and a Cryo dry hop for less loss.'],
@@ -913,7 +928,7 @@ function blankRecipe(){
   return {id:uid(), name:tx('Nueva receta'), brewer:'', style:'B21-18B', method:'All Grain', autoScale:true, equip:{system:null, fermenter:null}, created:new Date().toISOString(), updated:new Date().toISOString(),
     batch:defaultBatch(), fermentables:[], hops:[], misc:[], yeast:{name:'Fermentis - US-05 American Ale Yeast', att:null},
     mash:[{name:tx('Sacarificación'),temp:66,time:60,type:'directo'}],
-    water:{source:{ca:0,mg:0,na:0,cl:0,so4:0,hco3:0}, alkAs:'hco3', ro:0, salts:{gypsum:0,cacl2:0,epsom:0,nacl:0,soda:0,chalk:0,lime:0}, acid:'lactic', lactic:0, sparge:true, target:'Balanced', sourceName:''}, waterLab:blankLab(),
+    water:{source:{ca:0,mg:0,na:0,cl:0,so4:0,hco3:0}, alkAs:'hco3', ro:0, salts:{gypsum:0,cacl2:0,epsom:0,nacl:0,soda:0,chalk:0,lime:0}, acid:'lactic', acidConc:88, lactic:0, phTarget:5.4, phMeasured:null, spargeAcidOn:false, spargePh:5.6, sparge:true, target:'Balanced', sourceName:''}, waterLab:blankLab(),
     carb:{vols:2.4, temp:20, sugar:'sucrose', vol:null, bottle:500},
     ferm:{notes:''}, notes:'', log:{wcf:1.04, preBrix:null, preVol:null, ogBrix:null, postVol:null, fgBrix:null, hydro:null, hydroT:20, hydroCal:20, date:''}};
 }
@@ -1051,10 +1066,32 @@ function waterCalc(r,res){
   // alkalinity as CaCO3
   const alk = w.alkAs==='hco3' ? (+src.hco3||0)*50/61 : (+src.hco3||0);
   const acidOz = (res.acidG||0)/28.35, lbs = Math.max(0.1,res.grainKg*LB);
-  const EA = (1-ro)*alk + ((+s.chalk||0)*130 + (+s.soda||0)*157 - 176.1*acidLacticMl(w)*0.88*2 - 4160.4*acidOz*0.02*2.5 + (+s.lime||0)*357)/Gm;
-  const RA = EA - (mash.ca/1.4 + mash.mg/1.7);
+  const perMl = 176.1*0.88*2/Gm;                       // ppm CaCO3 que neutraliza 1 ml de láctico 88 %
+  const acidEA = perMl*acidLacticMl(w);
+  const EA0 = (1-ro)*alk + ((+s.chalk||0)*130 + (+s.soda||0)*157 - 4160.4*acidOz*0.02*2.5 + (+s.lime||0)*357)/Gm;
+  const EA = EA0 - acidEA;
+  const cam = mash.ca/1.4 + mash.mg/1.7, RA = EA - cam;
   out.EA=EA; out.RA=RA;
-  out.ph = res.grainKg? res.grainPh + (0.1085*Gm/lbs + 0.013)*RA/50 : null;
+  const kph = res.grainKg ? (0.1085*Gm/lbs + 0.013)/50 : null;  // pH por ppm de alcalinidad residual
+  out.phEst0 = kph!=null ? res.grainPh + kph*(EA0-cam) : null;  // estimado, sin el ácido líquido
+  const meas = pnum(w.phMeasured);
+  out.phMeasured = isFinite(meas) && meas>3 && meas<8 ? meas : null;
+  out.phBase = out.phMeasured ?? out.phEst0;
+  out.ph = out.phBase!=null ? out.phBase - kph*acidEA : null;
+  const tgt = pnum(w.phTarget);
+  out.phTarget = isFinite(tgt) && tgt>4 && tgt<7 ? tgt : 5.4;
+  out.acidNeed = out.phBase!=null && out.phBase>out.phTarget ? acidFromLacticMl(w, (out.phBase-out.phTarget)/(kph*perMl)) : 0;
+  out.phAlkali = out.phBase!=null && out.phBase<out.phTarget-0.05;
+  // agua de lavado: neutralizar la alcalinidad hasta el pH elegido (fracción de HCO3 que pasa a CO2, pKa1 = 6,35)
+  out.spargeAcid = 0;
+  const spT = pnum(w.spargePh); out.spargePh = isFinite(spT) && spT>4 && spT<7 ? spT : 5.6;
+  if(w.spargeAcidOn && Gs>0){
+    const alkS = Math.max(0, (1-ro)*alk + (w.sparge ? ((+s.soda||0)*157 + (+s.lime||0)*357)/Gm : 0));   // la tiza casi no se disuelve en el lavado
+    const frac = 1 - 1/(1+Math.pow(10, 6.35-out.spargePh));
+    const meq = (alkS/50*frac + Math.pow(10,-out.spargePh)*1000) * Gs*GAL;
+    out.spargeAcid = meq / acidMeq(w);
+    out.spargeAlk = alkS;
+  }
   out.ratio = total.so4>0 ? total.cl/total.so4 : null;
   out.so4cl = total.cl>0 ? total.so4/total.cl : null;
   return out;
@@ -1078,14 +1115,12 @@ function solveSalts(r, silent){
   }
   for(const k in s) s[k]=Math.round(s[k]*10)/10;
   w.salts=s; w.sparge=true; w.lactic=0;
-  let c2=calc(r), wc=c2.water;
-  // raise pH with baking soda only when the mash grist is acidic enough to need it
-  if(wc.ph && wc.ph<5.3 && c2.grainKg){ const k=(0.1085*Gm/(c2.grainKg*LB)+0.013);
-    s.soda=Math.round(((5.4-wc.ph)/k*50*Gm/157)*10)/10; c2=calc(r); wc=c2.water; }
-  if(wc.ph && wc.ph>5.45 && c2.grainKg){ const lbs=c2.grainKg*LB, k=(0.1085*Gm/lbs+0.013);
-    const ml=(wc.ph-5.4)/k*50*Gm/(176.1*0.88*2);
-    w.lactic=Math.round((isCitric(w)? ml*CITRIC_G_PER_LACTIC_ML : ml)*10)/10; }
-  if(!silent) toast('Sales calculadas para «'+w.target+'»'+(w.lactic?` y ${w.lactic} ${acidUnit(w)} de ${acidName(w).toLowerCase()} para pH 5,4`:'')+(s.soda?` y ${s.soda} g de bicarbonato para subir el pH a 5,4`:''));
+  let c2=calc(r), wc=c2.water; const T=wc.phTarget, Ts=fx(T,2).replace('.',',');
+  // raise pH with baking soda only when the mash grist is acidic enough to need it (estimated pH; a measured one includes the old salts)
+  if(wc.phEst0 && wc.phEst0<T-0.1 && c2.grainKg && wc.phMeasured==null){ const k=(0.1085*Gm/(c2.grainKg*LB)+0.013);
+    s.soda=Math.round(((T-wc.phEst0)/k*50*Gm/157)*10)/10; c2=calc(r); wc=c2.water; }
+  if(wc.acidNeed>0 && wc.phBase>T+0.05) w.lactic=Math.round(wc.acidNeed*10)/10;
+  if(!silent) toast('Sales calculadas para «'+w.target+'»'+(w.lactic?` y ${w.lactic} ${acidUnit(w)} de ${acidName(w).toLowerCase()} para pH ${Ts}`:'')+(s.soda?` y ${s.soda} g de bicarbonato para subir el pH a ${Ts}`:''));
 }
 
 /* carbonation */
@@ -2244,7 +2279,7 @@ function renderTab(){
     const ion=(k,l)=>`<div class="field"><label for="w-${k}">${l}</label><input id="w-${k}" type="text" inputmode="decimal" data-num step="1" data-f="water.source.${k}" value="${w.source[k]}"></div>`;
     const salt=(k,l,f)=>`<tr><td>${l} <span class="tag">${f}</span></td><td><input type="text" inputmode="decimal" data-num step="0.1" data-f="water.salts.${k}" value="${s[k]}" aria-label="${l}"></td><td class="n">${fx(wc.spargeSalts[k],1)}</td></tr>`;
     const ions=[['ca','Ca'],['mg','Mg'],['na','Na'],['cl','Cl'],['so4','SO₄'],['hco3','HCO₃']];
-    const phTag = wc.ph==null?'':(wc.ph<5.2||wc.ph>5.6? (wc.ph<5.0||wc.ph>5.8?'bad':'warn'):'ok');
+    const phR = wc.ph==null?null:Math.round(wc.ph*100)/100, phTag = phR==null?'':(phR<5.2||phR>5.6? (phR<5.0||phR>5.8?'bad':'warn'):'ok');
     return `
     <div class="two">
     <div class="sec"><div class="sechead"><h3>Agua de origen</h3><span class="hint">ppm = mg/L, del informe de tu agua</span></div>
@@ -2259,12 +2294,34 @@ function renderTab(){
     <div class="sec"><div class="sechead"><h3>Sales y ácidos</h3><span class="hint">gramos al agua de macerado</span></div>
       <div class="tblwrap"><table><thead><tr><th>Sal</th><th>Macerado (g)</th><th>Sparge (g)</th></tr></thead><tbody>
         ${salt('gypsum','Yeso','CaSO₄')}${salt('cacl2','Cloruro de calcio','CaCl₂')}${salt('epsom','Sal de Epsom','MgSO₄')}${salt('nacl','Sal de mesa','NaCl')}${salt('soda','Bicarbonato de sodio','NaHCO₃')}${salt('chalk','Tiza','CaCO₃')}${salt('lime','Cal apagada','Ca(OH)₂')}
-        <tr><td><select data-f="water.acid" aria-label="Tipo de ácido" style="min-width:0;width:auto"><option value="lactic" ${isCitric(w)?'':'selected'}>Ácido láctico 88 % (ml)</option><option value="citric" ${isCitric(w)?'selected':''}>Ácido cítrico (g)</option></select></td><td><input type="text" inputmode="decimal" data-num step="0.1" data-f="water.lactic" value="${w.lactic}" aria-label="${acidName(w)}"></td><td class="n">–</td></tr>
+        <tr><td>${LT(acidFull(w),acidFull(w).replace('Ácido láctico','Lactic acid').replace('Ácido fosfórico','Phosphoric acid').replace('Ácido cítrico','Citric acid'))} (${acidUnit(w)})</td><td><input type="text" inputmode="decimal" data-num step="0.1" data-f="water.lactic" value="${w.lactic}" aria-label="${acidName(w)}"></td><td class="n">${wc.spargeAcid>0?fx(wc.spargeAcid,1):'–'}</td></tr>
       </tbody></table></div>
       <label class="check"><input type="checkbox" data-f="water.sparge" ${w.sparge?'checked':''}> Tratar también el agua de lavado en la misma proporción</label>
       <p class="info">Malta acidificada en la receta: <b>${fx(c.acidG,0)} g</b> (se toma de la lista de maltas).</p>
-      ${isCitric(w)?`<p class="info">Ácido cítrico monohidratado (el común). 1 ml de láctico 88 % equivale a unos 1,25 g de cítrico. Disolvelo en un poco de agua antes de agregarlo; en dosis altas puede dejar un toque frutal.</p>`:''}
     </div>
+    </div>
+    <div class="sec"><div class="sechead"><h3>${LT('Ajuste de pH','pH adjustment')}</h3><span class="hint">${LT('ácido para llegar al pH objetivo','acid to reach the target pH')}</span></div>
+      <div class="grid">
+        <div class="field"><label for="w-pht">${LT('pH objetivo','Target pH')}</label><input id="w-pht" type="text" inputmode="decimal" data-num data-f="water.phTarget" value="${w.phTarget??5.4}"></div>
+        <div class="field"><label for="w-phm">${LT('pH medido sin ácido (opcional)','Measured pH without acid (optional)')}</label><input id="w-phm" type="text" inputmode="decimal" data-num data-f="water.phMeasured" value="${w.phMeasured??''}" placeholder="${LT('estimado','estimated')} ${fx(wc.phEst0,2)}"></div>
+        <div class="field"><label for="w-acid">${LT('Ácido','Acid')}</label><select id="w-acid" data-f="water.acid">${Object.entries(ACIDS).map(([k,A])=>`<option value="${k}" ${acidKey(w)===k?'selected':''}>${A.n}</option>`).join('')}</select></div>
+        ${acidConc(w)!=null?`<div class="field"><label for="w-acc">${LT('Concentración','Concentration')} (%)</label><input id="w-acc" type="text" inputmode="decimal" data-num data-f="water.acidConc" value="${acidConc(w)}"></div>`:''}
+      </div>
+      <div class="out">
+        <div class="kv"><div class="k">${LT('pH sin ácido','pH without acid')}</div><div class="v">${fx(wc.phBase,2)} <small>${wc.phMeasured!=null?LT('medido','measured'):LT('estimado','estimated')}</small></div></div>
+        <div class="kv hl"><div class="k">${LT('Ácido recomendado al macerado','Recommended mash acid')}</div><div class="v">${wc.phBase==null?'–':wc.phAlkali?LT('ninguno','none'):`${fx(wc.acidNeed,1)} ${acidUnit(w)}`}</div></div>
+        <div class="kv"><div class="k">${LT('Ácido al agua de lavado','Sparge water acid')}</div><div class="v">${w.spargeAcidOn&&c.sparge>0?`${fx(wc.spargeAcid,1)} ${acidUnit(w)}`:'–'}</div></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn small primary" data-act="acidApply">${LT('Usar el ácido recomendado','Use the recommended acid')}</button>${wc.phAlkali?`<span class="tag warn">${LT('el pH ya está por debajo del objetivo: no hace falta ácido','pH is already below target: no acid needed')}</span>`:''}</div>
+      <div class="grid" style="align-items:end">
+        <label class="check"><input type="checkbox" data-f="water.spargeAcidOn" ${w.spargeAcidOn?'checked':''}> ${LT('Acidificar el agua de lavado','Acidify the sparge water')}</label>
+        ${w.spargeAcidOn?`<div class="field"><label for="w-sph">${LT('pH del agua de lavado','Sparge water pH')}</label><input id="w-sph" type="text" inputmode="decimal" data-num data-f="water.spargePh" value="${w.spargePh??5.6}"></div>`:''}
+      </div>
+      <details class="help"><summary>${LT('¿Cómo se calcula?','How is it calculated?')}</summary>
+      <p class="info">${LT('Si cargás el pH medido (con las sales ya agregadas y sin ácido, a los 10–15 min del empaste, enfriando la muestra), se usa en lugar del estimado; la pendiente sale del mismo modelo de la planilla (granos, volumen de macerado y agua). El ácido se convierte por miliequivalentes: láctico y fosfórico según su concentración, cítrico monohidratado (1 ml de láctico 88 % ≈ 1,25 g). Para el lavado se neutraliza la alcalinidad del agua hasta el pH elegido (5,5–5,8 es lo usual); con agua muy blanda casi no hace falta. Con «Calcular sales y ácido» el pH medido no sirve si cambian las sales: volvé a medir.','If you enter the measured pH (with the salts already in and no acid, 10–15 min after mash-in, cooling the sample), it is used instead of the estimate; the slope comes from the same spreadsheet model (grain, mash volume and water). Acid is converted by milliequivalents: lactic and phosphoric by their concentration, citric monohydrate (1 ml of 88 % lactic ≈ 1.25 g). For the sparge, the water alkalinity is neutralized down to the chosen pH (5.5–5.8 is typical); very soft water barely needs any. With “Calculate salts and acid” a measured pH is no longer valid if the salts change: measure again.')}</p>
+      ${isCitric(w)?`<p class="info">Ácido cítrico monohidratado (el común). 1 ml de láctico 88 % equivale a unos 1,25 g de cítrico. Disolvelo en un poco de agua antes de agregarlo; en dosis altas puede dejar un toque frutal.</p>`:''}
+      ${acidKey(w)==='phosphoric'?`<p class="info">${LT('El fosfórico casi no aporta sabor. El de 85 % es corrosivo: usá guantes y medí con jeringa. Si comprás al 10 %, cambiá la concentración y la cantidad se multiplica por unos 14.','Phosphoric acid adds almost no flavor. 85 % is corrosive: use gloves and measure with a syringe. If you buy 10 %, change the concentration and the amount goes up about 14 times.')}</p>`:''}
+      </details>
     </div>
     <div class="sec"><div class="sechead"><h3>Perfil objetivo</h3></div>
       <div class="grid" style="grid-template-columns:minmax(0,2fr) auto;align-items:end">
@@ -2279,7 +2336,7 @@ function renderTab(){
       </tbody></table></div>
     </div>
     <div class="out">
-      <div class="kv hl"><div class="k">pH de macerado estimado</div><div class="v">${fx(wc.ph,2)} ${phTag?`<span class="tag ${phTag}">${phTag==='ok'?'en rango':'fuera de 5,2–5,6'}</span>`:''}</div></div>
+      <div class="kv hl"><div class="k">${wc.phMeasured!=null?LT('pH de macerado con el ácido','Mash pH with the acid'):'pH de macerado estimado'}</div><div class="v">${fx(wc.ph,2)} ${phTag?`<span class="tag ${phTag}">${phTag==='ok'?'en rango':'fuera de 5,2–5,6'}</span>`:''}</div></div>
       <div class="kv"><div class="k">Alcalinidad residual</div><div class="v">${fx(wc.RA,0)} <small>ppm CaCO₃</small></div></div>
       <div class="kv"><div class="k">Alcalinidad efectiva</div><div class="v">${fx(wc.EA,0)} <small>ppm CaCO₃</small></div></div>
       <div class="kv"><div class="k">Balance SO₄/Cl</div><div class="v" style="font-size:14px">${wc.so4cl==null?'–':wc.so4cl>2?'Muy seco / amargo':wc.so4cl>1.3?'Seco':wc.so4cl>=0.77?'Equilibrado':wc.so4cl>=0.5?'Lleno / maltoso':'Muy lleno'}</div></div>
@@ -2578,10 +2635,12 @@ document.addEventListener('input', e=>{
   let changedStructure=wasPreset;
   if(t.dataset.f){
     let v = t.type==='checkbox'? t.checked : t.dataset.num!==undefined ? (isFinite(pnum(t.value))?pnum(t.value):null) : t.value;
-    if(t.dataset.f==='water.acid'){ const was=isCitric(cur.water), now=v==='citric', a=+cur.water.lactic||0;
-      if(was!==now && a) cur.water.lactic=Math.round((now? a*CITRIC_G_PER_LACTIC_ML : a/CITRIC_G_PER_LACTIC_ML)*10)/10;
-      changedStructure=true; }
+    const acidEdit = t.dataset.f==='water.acid' || t.dataset.f==='water.acidConc';
+    const eq = acidEdit ? acidLacticMl(cur.water) : 0;
+    if(t.dataset.f==='water.acid' && v!==acidKey(cur.water)) cur.water.acidConc = ACIDS[v] ? ACIDS[v].conc : null;
     setPath(cur,t.dataset.f,v);
+    if(acidEdit){ if(eq) cur.water.lactic=Math.round(acidFromLacticMl(cur.water,eq)*10)/10; changedStructure=true; }
+    if(t.dataset.f==='water.spargeAcidOn') changedStructure=true;
     if(t.dataset.f.startsWith('water.source.')) cur.water.sourceName='';
     if(['style','method','yeast.name','water.target','autoScale'].includes(t.dataset.f)) changedStructure=true;
     if(t.dataset.f.startsWith('batch.') && cur.autoScale!==false && snap && v!=null && isFinite(v)){
@@ -2676,6 +2735,7 @@ document.addEventListener('click', async e=>{
     book.waters=book.waters.filter(w=>w!==x); setDirty(); refresh(true); }
   if(a==='wlClear'){ const wp=editable(); cur.waterLab=blankLab(); setDirty(); if(wp) renderAll(); else refresh(true); }
   if(a==='solve'){ const wp=editable(); solveSalts(cur); setDirty(); if(wp) renderAll(); else refresh(true); }
+  if(a==='acidApply'){ const wp=editable(); const wc=calc(cur).water; cur.water.lactic=Math.round((wc.acidNeed||0)*10)/10; setDirty(); if(wp) renderAll(); else refresh(true); toast(`Ácido al macerado: ${fx(cur.water.lactic,1)} ${acidUnit(cur.water)}`); }
   if(a==='useEff'){ const wp=editable(); cur.batch.eff=+t.dataset.v; setDirty(); if(wp) renderAll(); else refresh(true); toast('Eficiencia actualizada'); }
   if(a==='scale') scaleRecipe();
   if(a==='shopCopy'){ const txt=shopText(cur,calc(cur)); try{ await navigator.clipboard.writeText(txt); toast(EN()?'List copied':'Lista copiada'); }catch(_){ download(txt, safe(cur.name)+'-compras.txt','text/plain'); } }
@@ -2841,7 +2901,7 @@ function buildPrint(){
   <table><tr><th>Paso de macerado</th><th>°C</th><th>min</th><th>Cómo</th></tr>${r.mash.map((m,i)=>`<tr><td>${esc(m.name)}</td><td>${m.temp}</td><td>${m.time}</td><td>${esc(c.steps[i])}</td></tr>`).join('')}</table>
   ${c.steepKg?`<p><b>En frío (12–24 h antes):</b> ${fx(c.steepKg,2)} kg en ${fx(c.steepWater,1)} L de agua fría; colar y agregar ~${fx(c.steepLiq,1)} L faltando ${fx(r.batch.steepAdd,0)} min de hervor.</p>`:''}
   <p><b>Agua:</b> empaste ${fx(c.strike,1)} L a ${fx(c.strikeT,1)} °C · lavado ${fx(c.sparge,1)} L · pre-hervor ${fx(c.pre,1)} L · post-hervor ${fx(c.post,1)} L.
-  Sales (macerado): ${Object.entries(r.water.salts).filter(([k,v])=>v>0).map(([k,v])=>`${k} ${v} g`).join(', ')||'ninguna'}${r.water.lactic?`, ${acidName(r.water).toLowerCase()} ${r.water.lactic} ${acidUnit(r.water)}`:''}. pH estimado ${fx(c.water.ph,2)}.</p>
+  Sales (macerado): ${Object.entries(r.water.salts).filter(([k,v])=>v>0).map(([k,v])=>`${k} ${v} g`).join(', ')||'ninguna'}${r.water.lactic?`, ${acidFull(r.water).toLowerCase()} ${r.water.lactic} ${acidUnit(r.water)}`:''}${c.water.spargeAcid>0&&c.sparge>0?` · lavado: ${fx(c.water.spargeAcid,1)} ${acidUnit(r.water)}`:''}. pH estimado ${fx(c.water.ph,2)} (objetivo ${fx(c.water.phTarget,2)}).</p>
   <p><b>Fermentación:</b> ${esc(r.ferm.notes||'')}</p><p><b>Carbonatación:</b> ${fx(r.carb.vols,1)} vol CO₂.</p>
   ${r.notes?`<p><b>Notas:</b> ${esc(r.notes)}</p>`:''}`;
 }
@@ -2878,7 +2938,9 @@ function procHTML(r,c){
     if(+w.ro>0) parts.push(`${LT('De ese total','Of that total')}, <b>${fx(+w.ro,0)} %</b> ${LT('agua destilada / ósmosis','distilled / RO water')} (${L(c.totalWater*(+w.ro)/100)}).`);
     const ms=saltList(w.salts); if(ms) parts.push(`${LT('Sales al agua de macerado','Salts into the mash water')}: ${ms}.`);
     const ss=saltList(wc.spargeSalts||{}); if(ss && c.sparge>0) parts.push(`${LT('Sales al agua de lavado','Salts into the sparge water')}: ${ss}.`);
-    if(+w.lactic>0) parts.push(`${acidName(w)==='Ácido láctico'?LT('Ácido láctico 88 %','Lactic acid 88 %'):LT('Ácido cítrico','Citric acid')}: <b>${fx(+w.lactic,1)} ${acidUnit(w)}</b> ${LT('al macerado','into the mash')}.`);
+    const aN = LT(acidFull(w), acidFull(w).replace('Ácido láctico','Lactic acid').replace('Ácido fosfórico','Phosphoric acid').replace('Ácido cítrico','Citric acid'));
+    if(+w.lactic>0) parts.push(`${aN}: <b>${fx(+w.lactic,1)} ${acidUnit(w)}</b> ${LT('al macerado','into the mash')}.`);
+    if(wc.spargeAcid>0 && c.sparge>0) parts.push(`${aN}: <b>${fx(wc.spargeAcid,1)} ${acidUnit(w)}</b> ${LT('al agua de lavado','into the sparge water')} (pH ${fx(wc.spargePh,1)}).`);
     step(LT('Preparar el agua','Prepare the water'), `<p>${parts.join(' ')}</p>`); }
   // 2. Moler
   if(mashF.length) step(LT('Moler el grano','Mill the grain'), `<p>${LT('Total','Total')} <b>${kgq(c.grainKg)}</b>: ${list(mashF)}.</p>`);
@@ -2890,7 +2952,7 @@ function procHTML(r,c){
       : ext ? `${LT('Remojar los granos especiales en','Steep the specialty grains in')} <b>${L(c.strike)}</b> ${LT('a','at')} <b>${fx(c.strikeT,1)} °C</b>.`
       : `${LT('Calentar','Heat')} <b>${L(c.strike)}</b> ${LT('a','to')} <b>${fx(c.strikeT,1)} °C</b> ${LT('e incorporar el grano revolviendo, sin grumos','and stir in the grain, no dough balls')} (${fx(c.mashThick,1)} L/kg).`;
     step(ext?LT('Remojar granos especiales','Steep specialty grains'):LT('Empaste y macerado','Mash in and mash'),
-      `<p>${intro}${wc.ph?` ${LT('pH estimado','Estimated pH')} <b>${fx(wc.ph,2)}</b> (${LT('medir a los 10–15 min; objetivo 5,2–5,6','check at 10–15 min; aim for 5.2–5.6')}).`:''}</p>
+      `<p>${intro}${wc.ph?` ${LT('pH estimado','Estimated pH')} <b>${fx(wc.ph,2)}</b> (${LT('medir a los 10–15 min; objetivo','check at 10–15 min; target')} ${fx(wc.phTarget,2)}).`:''}</p>
       <table><tr><th>${LT('Paso','Step')}</th><th>${LT('Temp.','Temp.')}</th><th>${LT('Tiempo','Time')}</th><th>${LT('Cómo','How')}</th></tr>${rows}</table>
       ${mMash.length?`<p>${LT('Agregar al macerado','Add to the mash')}: ${mMash.map(miscTxt).join(' · ')}</p>`:''}`);
   }
@@ -3067,7 +3129,8 @@ function shopItems(r,c){
   const w=r.water, wc=c.water, water=[];
   const SN={gypsum:'Yeso',cacl2:'Cloruro de calcio',epsom:'Sal de Epsom',nacl:'Sal de mesa',soda:'Bicarbonato de sodio',chalk:'Tiza',lime:'Cal apagada'};
   for(const k in SN){ const g=(+w.salts[k]||0)+(wc.spargeSalts[k]||0); if(g>0) water.push({key:'s:'+k, icon:'', q:fx(g,1)+' g', n:SN[k], note:''}); }
-  if(+w.lactic>0) water.push({key:'lactic', icon:'', q:fx(+w.lactic,1)+' '+acidUnit(w), n:acidName(w), note:isCitric(w)?(EN()?'monohydrate':'monohidratado'):'88 %'});
+  const acidTot=(+w.lactic||0)+(c.sparge>0?(wc.spargeAcid||0):0);
+  if(acidTot>0) water.push({key:'lactic', icon:'', q:fx(acidTot,1)+' '+acidUnit(w), n:acidName(w), note:isCitric(w)?(EN()?'monohydrate':'monohidratado'):fx(acidConc(w),0)+' %'});
   if(+w.ro>0) water.push({key:'ro', icon:'', q:fx(c.totalWater*(+w.ro)/100,1)+' L', n:'Agua destilada / ósmosis', note:''});
   secs.push(['Agua y sales', water]);
   const pr=primingFor(r,c); secs.push(['Envasado', pr.g>0?[{key:'priming', icon:earSVG(0,'azúcar',20), q:fx(pr.g,0)+' g', n:pr.name, note:'Azúcar para carbonatar'}]:[]]);
