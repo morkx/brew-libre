@@ -11,7 +11,7 @@ A free brewing recipe book for homebrewers: an installable web app (PWA) in Engl
 - Recipe design for All Grain, BIAB and Extract, with BJCP 2021 style guidelines (including regional styles) and AHA/BA styles.
 - OG, FG, ABV, IBU (Tinseth, Rager, Garetz) and color (Morey, Daniels, Mosher) in SRM, EBC or °L; gravity in SG, °Plato or °Brix.
 - Searchable database of commercial ingredients (malts by maltster, hops, yeasts).
-- Water: enter lab reports in any unit, mash pH estimate, salt and acid additions (lactic or citric).
+- Water: enter lab reports in any unit, mash pH estimate, salt additions and pH adjustment to a target from an estimated or measured pH (lactic, phosphoric or citric acid, also for the sparge water).
 - Mash and decoction, refractometer correction (Terrill / Novotný), carbonation with priming sugar or in a keg.
 - Commercial equipment profiles (BrewZilla, Grainfather, Anvil Foundry…) with automatic recipe rescaling.
 - Shopping list, printing, and BeerXML import/export.
@@ -46,7 +46,7 @@ The `android/` folder holds the Android project (built with [Capacitor](https://
 bash build-apk.sh
 ```
 
-The script installs JDK 21, Node and the Android SDK, copies the web app into the Android project and signs the APK with your release key, which is kept outside the repo. Before each new version, bump `versionCode` and `versionName` in `android/app/build.gradle` and add the changelog at `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
+The script installs JDK 21, Node and the Android SDK, copies the web app into the Android project and signs the APK with your release key, which is kept outside the repo. Before building a new version, run `version.sh` (see [Versions](#versions)): it bumps `versionCode` and `versionName` and creates the changelog at `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
 
 Descriptions, icon and screenshots for F-Droid/IzzyOnDroid stores are in `fastlane/metadata/android/`.
 
@@ -63,9 +63,10 @@ Descriptions, icon and screenshots for F-Droid/IzzyOnDroid stores are in `fastla
 | `android/` | Android project (Capacitor) |
 | `fastlane/` | Description, icon and screenshots for app stores |
 | `build-apk.sh` | Builds and signs the APK on Arch Linux |
+| `version.sh` | Bumps the version number in every file |
 | `netlify.toml` | Settings for publishing on Netlify |
 
-When you change `index.html`, bump `VERSION` in `sw.js` so installed copies update.
+Every change to `index.html` ships as a new version (see [Versions](#versions)); that changes `VERSION` in `sw.js`, so installed copies update.
 
 ## Publishing
 
@@ -93,6 +94,32 @@ then drag the `www/` folder onto [app.netlify.com/drop](https://app.netlify.com/
 ### On GitHub Pages
 
 Settings → Pages → Source: "Deploy from a branch" → branch `main`, folder `/ (root)`.
+
+## Versions
+
+Brew-libre uses [semantic versioning](https://semver.org/) `MAJOR.MINOR.PATCH`: the **patch** goes up for bug fixes, the **minor** for new features and the **major** if the recipe book format changes in an incompatible way. The version is shown in the About tab.
+
+To release a version:
+
+1. `bash version.sh 1.4.0` updates `package.json`, `index.html`, `sw.js` and `android/app/build.gradle`, and creates the Fastlane changelogs.
+2. Write the changes below, in `README.md` and in the changelogs.
+3. Commit, `git tag v1.4.0` and `git push --tags`.
+
+### 1.3.0 — 2026-11-10
+- Water: new **pH adjustment** section. Editable target pH (previously fixed at 5.4), optional measured pH without acid instead of the estimate, phosphoric acid with editable concentration besides lactic and citric, and sparge water acid with its own target pH.
+- Brew day steps, shopping list and printout include the sparge acid and the target pH.
+- Version number shown in About, and a `version.sh` script.
+
+### 1.2.0 — 2026-11-07
+- **Print instructions** button: the brew sheet on one A4 page.
+
+### 1.1.0 — 2026-11-05
+- Bottle **label designer**: shapes, figures, typefaces and colours; Tropical template.
+- About tab with links to the repository, license and bug reports.
+- Netlify publishing.
+
+### 1.0.0 — 2026-10-27
+- First version: PWA, clone recipes to import and Android app with Capacitor.
 
 ## Credits
 

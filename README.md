@@ -11,7 +11,7 @@ Recetario cervecero libre para cerveceros caseros: una app web instalable (PWA),
 - Diseño de recetas All Grain, BIAB y Extracto, con guías de estilo BJCP 2021 (incluye estilos regionales) y AHA/BA.
 - OG, FG, ABV, IBU (Tinseth, Rager, Garetz) y color (Morey, Daniels, Mosher) en SRM, EBC o °L; densidad en SG, °Plato o °Brix.
 - Base de ingredientes comerciales (maltas por maltería, lúpulos, levaduras) con buscador.
-- Agua: análisis de laboratorio en cualquier unidad, pH de macerado, sales y ácido (láctico o cítrico).
+- Agua: análisis de laboratorio en cualquier unidad, pH de macerado, sales y ajuste de pH con pH objetivo o medido (ácido láctico, fosfórico o cítrico, también para el agua de lavado).
 - Macerado y decocción, refractómetro (Terrill / Novotný), carbonatación con azúcar o en barril.
 - Equipos comerciales (BrewZilla, Grainfather, Anvil Foundry…) con reescalado automático.
 - Lista de compras, impresión e importación/exportación BeerXML.
@@ -44,7 +44,7 @@ La carpeta `android/` contiene el proyecto Android (hecho con [Capacitor](https:
 bash build-apk.sh
 ```
 
-El script instala JDK 21, Node y el Android SDK, copia la app web al proyecto Android y firma la APK con tu clave de release, que se guarda fuera del repo. Antes de cada versión nueva subí `versionCode` y `versionName` en `android/app/build.gradle` y agregá el changelog en `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
+El script instala JDK 21, Node y el Android SDK, copia la app web al proyecto Android y firma la APK con tu clave de release, que se guarda fuera del repo. Antes de compilar una versión nueva corré `version.sh` (ver [Versiones](#versiones)): sube `versionCode` y `versionName` y crea el changelog en `fastlane/metadata/android/*/changelogs/<versionCode>.txt`.
 
 Las descripciones, el ícono y las capturas para tiendas F-Droid/IzzyOnDroid están en `fastlane/metadata/android/`.
 
@@ -61,9 +61,10 @@ Las descripciones, el ícono y las capturas para tiendas F-Droid/IzzyOnDroid est
 | `android/` | Proyecto Android (Capacitor) |
 | `fastlane/` | Descripción, ícono y capturas para tiendas de apps |
 | `build-apk.sh` | Compila y firma la APK en Arch Linux |
+| `version.sh` | Sube el número de versión en todos los archivos |
 | `netlify.toml` | Configuración para publicar en Netlify |
 
-Al cambiar `index.html`, subí el número de `VERSION` en `sw.js` para que las copias instaladas se actualicen.
+Cada cambio en `index.html` sale con una versión nueva (ver [Versiones](#versiones)); así cambia `VERSION` en `sw.js` y las copias instaladas se actualizan.
 
 ## Publicar
 
@@ -91,6 +92,32 @@ y arrastrá la carpeta `www/` a [app.netlify.com/drop](https://app.netlify.com/d
 ### En GitHub Pages
 
 Settings → Pages → Source: «Deploy from a branch» → rama `main`, carpeta `/ (root)`.
+
+## Versiones
+
+Brew-libre usa [versionado semántico](https://semver.org/lang/es/) `MAYOR.MENOR.PARCHE`: se sube el **parche** al corregir errores, la **menor** al agregar funciones y la **mayor** si cambia el formato de los recetarios de forma incompatible. La versión se ve en la pestaña «Acerca de».
+
+Para publicar una versión:
+
+1. `bash version.sh 1.4.0` actualiza `package.json`, `index.html`, `sw.js` y `android/app/build.gradle`, y crea los changelogs de Fastlane.
+2. Anotá los cambios abajo, en `README.en.md` y en los changelogs.
+3. Commit, `git tag v1.4.0` y `git push --tags`.
+
+### 1.3.0 — 2026-11-10
+- Agua: nueva sección **Ajuste de pH**. pH objetivo editable (antes fijo en 5,4), pH medido sin ácido opcional en lugar del estimado, ácido fosfórico con concentración editable además de láctico y cítrico, y ácido para el agua de lavado con su propio pH.
+- El día de cocción, la lista de compras y la impresión incluyen el ácido del lavado y el pH objetivo.
+- Número de versión visible en «Acerca de» y script `version.sh`.
+
+### 1.2.0 — 2026-11-07
+- Botón **Imprimir instrucciones**: la hoja de elaboración en una página A4.
+
+### 1.1.0 — 2026-11-05
+- **Diseñador de etiquetas** para botellas: formas, figuras, tipografías y colores; plantilla Tropical.
+- «Acerca de» con enlace al repositorio, licencia y reporte de errores.
+- Publicación en Netlify.
+
+### 1.0.0 — 2026-10-27
+- Primera versión: PWA, recetas clon para importar y app Android con Capacitor.
 
 ## Créditos
 

@@ -1,0 +1,4 @@
+• Water: pH adjustment with target pH, measured pH, phosphoric acid and sparge water acid.
+• "Print instructions" button: the brew sheet on one A4 page.
+• Bottle label designer with shapes, figures, typefaces and colours.
+• The app version is shown in "About".
