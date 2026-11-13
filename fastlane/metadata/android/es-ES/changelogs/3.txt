@@ -1,0 +1,1 @@
+• Donaciones: se agregó Mercado Pago y se quitaron los datos de transferencia bancaria.

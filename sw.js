@@ -1,6 +1,6 @@
 /* Brew-libre service worker: caches the app so it works offline.
    VERSION is set by version.sh; a new value makes installed copies update. */
-const VERSION = 'brew-libre-1.3.0';
+const VERSION = 'brew-libre-1.3.1';
 const CORE = [
   './',
   './index.html',

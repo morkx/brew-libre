@@ -105,6 +105,9 @@ To release a version:
 2. Write the changes below, in `README.md` and in the changelogs.
 3. Commit, `git tag v1.4.0` and `git push --tags`.
 
+### 1.3.1 — 2026-11-13
+- About: donations via **Mercado Pago**; bank transfer details removed.
+
 ### 1.3.0 — 2026-11-10
 - Water: new **pH adjustment** section. Editable target pH (previously fixed at 5.4), optional measured pH without acid instead of the estimate, phosphoric acid with editable concentration besides lactic and citric, and sparge water acid with its own target pH.
 - Brew day steps, shopping list and printout include the sparge acid and the target pH.
