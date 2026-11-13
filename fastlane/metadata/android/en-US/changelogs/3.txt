@@ -1,0 +1,1 @@
+• Donations: added Mercado Pago and removed the bank transfer details.

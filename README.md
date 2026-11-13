@@ -103,6 +103,9 @@ Para publicar una versión:
 2. Anotá los cambios abajo, en `README.en.md` y en los changelogs.
 3. Commit, `git tag v1.4.0` y `git push --tags`.
 
+### 1.3.1 — 2026-11-13
+- «Acerca de»: donaciones con **Mercado Pago**; se quitaron los datos de transferencia bancaria.
+
 ### 1.3.0 — 2026-11-10
 - Agua: nueva sección **Ajuste de pH**. pH objetivo editable (antes fijo en 5,4), pH medido sin ácido opcional en lugar del estimado, ácido fosfórico con concentración editable además de láctico y cítrico, y ácido para el agua de lavado con su propio pH.
 - El día de cocción, la lista de compras y la impresión incluyen el ácido del lavado y el pH objetivo.

@@ -40,7 +40,7 @@ if(/^https?:/.test(location.protocol)){ const l=document.createElement('link'); 
   --bg:#eaeeec; --surface:#ffffff; --surface-2:#f4f7f6; --fg:#18211f; --muted:#5a6964; --line:#d3dbd8;
   --accent:#a8541f; --accent-soft:#f3e3d7; --accent-ink:#ffffff;
   --ok:#3f7a33; --ok-soft:#e2efdc; --warn:#9a6a10; --warn-soft:#f6ecd4; --bad:#b0352a; --bad-soft:#f6dedb;
-  --glass:#e9eef0; --paypal:#ffc439; --paypal-ink:#111111;
+  --glass:#e9eef0; --paypal:#ffc439; --paypal-ink:#111111; --mp:#009ee3; --mp-ink:#ffffff;
   --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
@@ -128,6 +128,7 @@ details.help[open]>summary{margin-bottom:4px}
 .don code{font-family:var(--f-mono);font-size:12.5px;user-select:all}
 .don .btn{font-size:11px;padding:1px 6px;margin-left:4px}
 .don .btn.paypal{align-self:flex-start;margin:6px 0 0;font-size:13px;padding:7px 14px;background:var(--paypal);border-color:var(--paypal);color:var(--paypal-ink);text-decoration:none}
+.don .btn.mp{align-self:flex-start;margin:6px 0 0;font-size:13px;padding:7px 14px;background:var(--mp);border-color:var(--mp);color:var(--mp-ink);text-decoration:none}
 .libhead{display:flex;align-items:center;justify-content:space-between;gap:8px}
 
 /* recipe sheet */
@@ -380,7 +381,7 @@ const DB = JSON.parse(document.getElementById('dbjson').textContent);
 const by = (arr,k='name') => Object.fromEntries(arr.map(x=>[x[k],x]));
 DB.styles.forEach(s=>{ if(s.id==='B21-21B'){ s.og=s.fg=s.abv=s.ibu=s.srm=null; s.desc='Specialty IPA agrupa Session, Cold, Black, Brown, Red, Rye, White y Brut IPA: los rangos dependen de la variante (ver BJCP 21B). '+s.desc; } });
 const FERM = by(DB.fermentables), HOPS = by(DB.hops), YEAST = by(DB.yeasts), STY = by(DB.styles,'id');
-const APP_VERSION = '1.3.0', APP_DATE = '2026-11-10';   // lo actualiza version.sh
+const APP_VERSION = '1.3.1', APP_DATE = '2026-11-13';   // lo actualiza version.sh
 const LB = 2.20462, GAL = 3.78541;
 /* Ácido para bajar el pH: láctico 88 % en ml o cítrico monohidratado en g.
    A pH de macerado (~5,4) 1 ml de láctico 88 % ≈ 11,5 mEq y 1 g de cítrico monohidratado ≈ 9,2 mEq
@@ -583,8 +584,8 @@ const EN_EXACT = {
 'Recetario cervecero libre y gratuito, basado en la planilla Beer_calc v5.6. Calcula densidades, amargor, color, agua, carbonatación y lecturas de refractómetro, y guarda tus recetas en un archivo en tu equipo.':'A free homebrew recipe book based on the Beer_calc v5.6 spreadsheet. It calculates gravities, bitterness, color, water, carbonation and refractometer readings, and saves your recipes to a file on your device.',
 'Créditos: las fórmulas, las bases de ingredientes originales y la receta de ejemplo provienen de la planilla Beer_calc v5.6 (autor original no identificado; si sos el autor, escribime para darte el crédito). El código fue escrito con asistencia de IA (Claude, de Anthropic); la idea, el diseño funcional y el criterio cervecero son de Sebastián Valenzuela.':'Credits: the formulas, the original ingredient databases and the example recipe come from the Beer_calc v5.6 spreadsheet (original author unknown; if you are the author, write to me so I can credit you). The code was written with AI assistance (Claude, by Anthropic); the idea, functional design and brewing know-how are by Sebastián Valenzuela.',
 'Contacto y sugerencias':'Contact and suggestions','Código fuente':'Source code','Copiar dirección':'Copy address','Software libre bajo la licencia GPL-3.0 o posterior.':'Free software under the GPL-3.0-or-later license.','Novedades de cada versión':'What\'s new in each version','Reportar un error o sugerir una mejora':'Report a bug or suggest an improvement','Copiar':'Copy','Copiar correo':'Copy email','Si te gusta podés donarme a:':'If you like it, you can donate:',
-'Transferencias dentro de Santander':'Transfers within Santander (Uruguay)','Transferencias desde otros bancos':'Transfers from other banks','Cuenta:':'Account:','Moneda: UYU':'Currency: UYU',
-'Copiar cuenta Santander':'Copy Santander account','Copiar cuenta para otros bancos':'Copy account for other banks','Donar con PayPal':'Donate with PayPal',
+'Donar con Mercado Pago':'Donate with Mercado Pago','Desde Uruguay, con tarjeta, saldo o cuenta de Mercado Pago.':'From Uruguay, with a card, balance or Mercado Pago account.',
+'Donar con PayPal':'Donate with PayPal',
 'Desde cualquier país, con tarjeta o cuenta PayPal.':'From any country, with a card or a PayPal account.',
 // readout
 'Los resultados aparecen acá.':'Results show up here.','Alcohol':'Alcohol','dentro del estilo':'within style','fuera de estilo':'out of style',
@@ -600,7 +601,7 @@ const EN_EXACT = {
 'Nada para comprar: la receta está vacía.':'Nothing to buy: the recipe is empty.',
 'Levadura seca: sobres según la dosis del fabricante (50–80 g/hL en ales, 100–150 g/hL en lagers). Líquida: 0,75 (ale) o 1,5 (lager) millones de células por ml y °Plato, unos 100 mil millones por sobre. Las sales suman macerado y lavado.':'Dry yeast: packs from the manufacturer dose (50–80 g/hL for ales, 100–150 g/hL for lagers). Liquid: 0.75 (ale) or 1.5 (lager) million cells per ml per °Plato, about 100 billion per pack. Salts include mash and sparge.',
 'Sin coincidencias en la base: queda como ingrediente propio (cargá color y densidad).':'No match in the database: it stays as a custom ingredient (enter color and potential).',
-'Buscá: pilsner, weyermann, crystal…':'Search: pilsner, weyermann, crystal…','agua':'water','macerado':'mash','Nueva receta':'New recipe','Sucursal: 02 - 18 De Julio':'Branch: 02 - 18 De Julio','Mi equipo':'My system','Mi fermentador':'My fermenter','Lavado':'Sparge','Grano':'Grain','pH macerado':'Mash pH',
+'Buscá: pilsner, weyermann, crystal…':'Search: pilsner, weyermann, crystal…','agua':'water','macerado':'mash','Nueva receta':'New recipe','Mi equipo':'My system','Mi fermentador':'My fermenter','Lavado':'Sparge','Grano':'Grain','pH macerado':'Mash pH',
 // preferences
 'Unidad de color':'Color unit','Unidad de densidad':'Gravity unit','Fórmula de IBU':'IBU formula','Fórmula de color':'Color formula','Fórmula de alcohol':'ABV formula',
 'SRM (EE.UU.)':'SRM (US)','EBC (Europa)':'EBC (Europe)','Densidad (1.050)':'Specific gravity (1.050)','Grados Plato (°P)':'Degrees Plato (°P)','Grados Brix (°Bx)':'Degrees Brix (°Bx)',
@@ -2497,15 +2498,9 @@ function renderTab(){
         <a class="btn paypal" href="https://www.paypal.com/donate/?business=S3NTS4TC4Z8MQ&amp;no_recurring=0&amp;currency_code=USD" target="_blank" rel="noopener">Donar con PayPal</a>
       </div>
       <div class="don">
-        <b>Transferencias dentro de Santander</b>
-        <span>Cuenta: <code>451860</code> <button class="btn icon ghost" data-copy="451860" aria-label="Copiar cuenta Santander">Copiar</button></span>
-        <span>Moneda: UYU</span>
-        <span>Sucursal: 02 - 18 De Julio</span>
-      </div>
-      <div class="don">
-        <b>Transferencias desde otros bancos</b>
-        <span>Cuenta: <code>0002000000451860</code> <button class="btn icon ghost" data-copy="0002000000451860" aria-label="Copiar cuenta para otros bancos">Copiar</button></span>
-        <span>Moneda: UYU</span>
+        <b>Mercado Pago</b>
+        <span>Desde Uruguay, con tarjeta, saldo o cuenta de Mercado Pago.</span>
+        <a class="btn mp" href="https://link.mercadopago.com.uy/svalenztech" target="_blank" rel="noopener">Donar con Mercado Pago</a>
       </div>
     </div>`;
   }
